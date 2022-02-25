@@ -7,26 +7,34 @@
 
 import SwiftUI
 
-protocol SelectableItem: Identifiable, Equatable {
-    
-    var title: String { get }
-}
+protocol SelectableItem: Equatable {}
 
 struct SelectableRow<Model>: View where Model: SelectableItem {
+    
+    var image: Image?
+    var title: String?
     
     var item: Model
     @Binding var selectedItem: Model?
     
     var body: some View {
         HStack {
-            Text(item.title)
+            
+            image
+            
+            if let title = self.title {
+                Text(title)
+            }
             
             Spacer()
+            
             if item == selectedItem {
-                Image(systemName: "circle.fill")
+                Image("checkboxesRadioChecked")
+            } else {
+                Image("checkboxesIosUnchecked")
             }
         }
-        .background(Color.clear)
+        .contentShape(Rectangle())
         .onTapGesture {
             self.selectedItem = self.item
         }
@@ -41,8 +49,8 @@ struct PriceClassRow: View  {
         HStack {
             
             VStack(alignment: .leading) {
-                Text(shoppingCartItem.priceClass.name).font(.applicationFont(withWeight: .bold, andSize: 15))
-                Text(String(shoppingCartItem.priceClass.price)).font(.applicationFont(withWeight: .regular, andSize: 13))
+                Text(shoppingCartItem.priceGroup.name).font(.applicationFont(withWeight: .bold, andSize: 15))
+                Text(String(shoppingCartItem.priceGroup.price)).font(.applicationFont(withWeight: .regular, andSize: 13))
             }
             
             Spacer()

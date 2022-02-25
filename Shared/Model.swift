@@ -37,7 +37,6 @@ extension Font {
 
 struct TicketModel {
     
-    
     var priceCategory: String = "1 Vuxen"
     var operatorImage: Image = Image(systemName: "heart.fill")
     var identifier: String = "1234 567890"

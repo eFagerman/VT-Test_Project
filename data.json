@@ -1,0 +1,51 @@
+
+
+{
+    "name": "VT",
+    "icon": "se_vasttrafik",
+    "icon_url": "http...",
+    "zones": {
+        "vt-a": {
+            "bob": { ... },
+            "resources": { ... },
+        }
+        "vt-b": {
+            "bob": { ... },
+            "resources": { ... },
+        },
+    },
+    "product_types": [
+        {
+            "sort": 0,
+            "id": "vt-enkel",
+            "zones": ["vt-a","vt-b","vt-c","vt-ab","vt-ac","vt-bv","vt-abc"]
+            "price_group": ["vt-adult", "vt-youth"]
+            "bob": { ... },
+            "resources": { ... },
+            "settings": { ... }, // ex. max quantity, validity, travel-periods etc
+        },
+        {
+            "sort": 1,
+            "id": "vt-dygnsbiljett"
+            "zones": ["vt-a","vt-b","vt-c","vt-ab","vt-ac","vt-bv","vt-abc"]
+            "price_groups": ["vt-adult", "vt-youth"]
+            "bob": { ... },
+            "resources": { ... },
+            "settings": { ... },
+        },
+    ],
+    "price_groups": [
+        {
+            "sort": 0,
+            "id": "vt-adult",
+            "bob": { ... },
+            "resources": { ... },
+        },
+        {
+            "sort": 1,
+            "id": "vt-youth",
+            "bob": { ... },
+            "resources": { ... },
+        },
+    ]
+}

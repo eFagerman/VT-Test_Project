@@ -44,26 +44,8 @@ struct HistoricalTicketSwiftUIView<TicketHistoryViewModel>: View where TicketHis
     }
 }
 
-struct PriceClass: Hashable, Identifiable {
-    var id: Self { self }
-    var name: String
-    var price: Int
-}
 
 
-struct Product: Hashable, Identifiable {
-    var id: Self { self }
-    var name: String
-    var zone: String? = nil
-    var priceClasses: [PriceClass]
-    var operatorName: String
-}
-
-struct TicketOperator: Hashable, Identifiable {
-    var id: Self { self }
-    var name: String
-    var products: [Product]
-}
 
 
 
@@ -83,7 +65,7 @@ protocol SelectTicketData: ObservableObject {
 }
 
 
-extension Product: SelectableItem {
+extension ProductType: SelectableItem {
     
     var title: String {
         self.name
@@ -102,7 +84,7 @@ struct SelectTicketTypeSwiftUIView: View {
     @ObservedObject var viewModel: SelectTicketTypeViewModel
     @State private var isExpanded = false
     @State private var selectedOperator: TicketOperator? = nil
-    @State private var selectedProduct: Product? = nil
+    @State private var selectedProduct: ProductType? = nil
     
     var body: some View {
         
@@ -137,12 +119,9 @@ struct SelectTicketTypeSwiftUIView: View {
                         
                         ForEach(viewModel.ticketOperators) { ticketOperator in
                             
-                            SelectableRow(item: ticketOperator, selectedItem: $selectedOperator)
+                            SelectableRow(image: ticketOperator.image, title: ticketOperator.name, item: ticketOperator, selectedItem: $selectedOperator)
                                 .onChange(of: selectedOperator) { newValue in
                                     isExpanded = false
-                                    //                                    withAnimation(.easeInOut(duration: 4.0)) {
-                                    //                                        isExpanded = false
-                                    //                                    }
                                 }
                         }
                     }
@@ -150,13 +129,13 @@ struct SelectTicketTypeSwiftUIView: View {
                 
                 // PRODUCT
                 Section(header: Text(viewModel.selectTicketTypeSectionHeader)) {
-                    
-                    if let products = selectedOperator?.products {
+        
+                    if let selectedOperator = selectedOperator, let productTypes = selectedOperator.productTypes {
                         
-                        ForEach(products) { product in
-                            
-                            NavigationLink(destination: SelectPriceCategorySwiftUIView(shoppingCart: ShoppingCart(product: product))) {
-                                Text(product.name)
+                        ForEach(productTypes) { productType in
+                            let shoppingCart = ShoppingCart(ticketOperator: selectedOperator, productType: productType)
+                            NavigationLink(destination: SelectPriceCategorySwiftUIView(shoppingCart: shoppingCart)) {
+                                Text(productType.name)
                             }
                         }
                     }
@@ -186,37 +165,46 @@ struct SelectTicketTypeSwiftUIView: View {
 }
 
 
-struct SelectTicketTypeSwiftUIView_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        
-        let priceClass1 = PriceClass(name: "Vuxen", price: 99)
-        let priceClass2 = PriceClass(name: "Barn", price: 33)
-        
-        let product1 = Product(name: "SL Enkelbiljett", priceClasses: [priceClass1, priceClass2], operatorName: "SL")
-        
-        let product2 = Product(name: "SL 30 dagars", priceClasses: [priceClass1, priceClass2], operatorName: "SL")
-        
-        let product3 = Product(name: "VT Enkelbiljett", priceClasses: [priceClass1, priceClass2], operatorName: "Västtrafik")
-        
-        let product4 = Product(name: "VT 30 dagars", priceClasses: [priceClass1, priceClass2], operatorName: "Västtrafik")
-        
-        
-        let ticketOperator1 = TicketOperator(name: "SL", products: [product1, product2])
-        
-        let ticketOperator2 = TicketOperator(name: "Västtrafik", products: [product3, product4])
-        
-        let historicalTicket1 = HistoricalTicket(operatorImage: Image(systemName: "heart.fill"), ticketName: "Enkelbiljett", priceCategory: "Vuxen")
-        
-        let historicalTicket2 = HistoricalTicket(operatorImage: Image(systemName: "heart.fill"), ticketName: "Enkelbiljett", priceCategory: "Barn")
-        
-        let historicalTicket3 = HistoricalTicket(operatorImage: Image(systemName: "heart.fill"), ticketName: "Enkelbiljett", priceCategory: "Barn")
-        
-        let historicalTicket4 = HistoricalTicket(operatorImage: Image(systemName: "heart.fill"), ticketName: "Enkelbiljett", priceCategory: "Barn")
-        
-        
-        let viewModel = SelectTicketTypeViewModel(historicalTickets: [historicalTicket1, historicalTicket2, historicalTicket3, historicalTicket4], ticketOperators: [ticketOperator1, ticketOperator2])
-        
-        SelectTicketTypeSwiftUIView(viewModel: viewModel)
-    }
-}
+//struct SelectTicketTypeSwiftUIView_Previews: PreviewProvider {
+//    
+//    static var previews: some View {
+//        
+//        let priceClass1 = PriceClass(name: "Vuxen", price: 99)
+//        let priceClass2 = PriceClass(name: "Barn", price: 33)
+//        
+////        let product1 = Product(name: "SL Enkelbiljett", priceClasses: [priceClass1, priceClass2], operatorName: "SL", operatorImage: Image(systemName: "tortoise.fill"))
+////
+////        let product2 = Product(name: "SL 30 dagars", priceClasses: [priceClass1, priceClass2], operatorName: "SL", operatorImage: Image(systemName: "tortoise.fill"))
+////
+////        let product3 = Product(name: "VT Enkelbiljett", priceClasses: [priceClass1, priceClass2], operatorName: "Västtrafik", operatorImage: Image(systemName: "hare"))
+////
+////        let product4 = Product(name: "VT 30 dagars", priceClasses: [priceClass1, priceClass2], operatorName: "Västtrafik", operatorImage: Image(systemName: "hare"))
+////
+//        let product1 = Product(name: "SL Enkelbiljett", priceClasses: [priceClass1, priceClass2], operatorName: "SL")
+//        
+//        let product2 = Product(name: "SL 30 dagars", priceClasses: [priceClass1, priceClass2], operatorName: "SL")
+//        
+//        let product3 = Product(name: "VT Enkelbiljett", priceClasses: [priceClass1, priceClass2], operatorName: "Västtrafik")
+//        
+//        let product4 = Product(name: "VT 30 dagars", priceClasses: [priceClass1, priceClass2], operatorName: "Västtrafik")
+//       
+//        
+//        
+//        let ticketOperator1 = TicketOperator(name: "SL", products: [product1, product2])
+//        
+//        let ticketOperator2 = TicketOperator(name: "Västtrafik", products: [product3, product4])
+//        
+//        let historicalTicket1 = HistoricalTicket(operatorImage: Image(systemName: "heart.fill"), ticketName: "Enkelbiljett", priceCategory: "Vuxen")
+//        
+//        let historicalTicket2 = HistoricalTicket(operatorImage: Image(systemName: "heart.fill"), ticketName: "Enkelbiljett", priceCategory: "Barn")
+//        
+//        let historicalTicket3 = HistoricalTicket(operatorImage: Image(systemName: "heart.fill"), ticketName: "Enkelbiljett", priceCategory: "Barn")
+//        
+//        let historicalTicket4 = HistoricalTicket(operatorImage: Image(systemName: "heart.fill"), ticketName: "Enkelbiljett", priceCategory: "Barn")
+//        
+//        
+//        let viewModel = SelectTicketTypeViewModel(historicalTickets: [historicalTicket1, historicalTicket2, historicalTicket3, historicalTicket4], ticketOperators: [ticketOperator1, ticketOperator2])
+//        
+//        SelectTicketTypeSwiftUIView(viewModel: viewModel)
+//    }
+//}

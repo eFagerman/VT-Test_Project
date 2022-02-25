@@ -39,18 +39,22 @@
 		E4C4A8E327BC2E3B004CDDBD /* InactiveTicketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4A8E127BC2E3B004CDDBD /* InactiveTicketViewModel.swift */; };
 		E4C4A8E827BC3E58004CDDBD /* ActiveFlexTicketSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4A8E727BC3E58004CDDBD /* ActiveFlexTicketSwiftUIView.swift */; };
 		E4C4A8E927BC3E58004CDDBD /* ActiveFlexTicketSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4A8E727BC3E58004CDDBD /* ActiveFlexTicketSwiftUIView.swift */; };
-		E4C4A8EB27BC414E004CDDBD /* TicketSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4A8EA27BC414E004CDDBD /* TicketSwiftUIView.swift */; };
-		E4C4A8EC27BC414E004CDDBD /* TicketSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4A8EA27BC414E004CDDBD /* TicketSwiftUIView.swift */; };
 		E4C4A8EF27BC53F2004CDDBD /* ActiveFlexTicketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4A8EE27BC53F2004CDDBD /* ActiveFlexTicketViewModel.swift */; };
 		E4C4A8F027BC53F2004CDDBD /* ActiveFlexTicketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4A8EE27BC53F2004CDDBD /* ActiveFlexTicketViewModel.swift */; };
-		E4CD0F5C27C43DAD00D6536F /* PickerSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CD0F5B27C43DAD00D6536F /* PickerSwiftUIView.swift */; };
-		E4CD0F5D27C43DAD00D6536F /* PickerSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CD0F5B27C43DAD00D6536F /* PickerSwiftUIView.swift */; };
 		E4CD0F6027C5936100D6536F /* SelectableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CD0F5F27C5936100D6536F /* SelectableRow.swift */; };
 		E4CD0F6127C5936100D6536F /* SelectableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CD0F5F27C5936100D6536F /* SelectableRow.swift */; };
 		E4CD0F6527C698FF00D6536F /* SelectPriceCategorySwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CD0F6427C698FF00D6536F /* SelectPriceCategorySwiftUIView.swift */; };
 		E4CD0F6627C698FF00D6536F /* SelectPriceCategorySwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CD0F6427C698FF00D6536F /* SelectPriceCategorySwiftUIView.swift */; };
 		E4CD0F6927C7B35500D6536F /* ShoppingCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CD0F6827C7B35500D6536F /* ShoppingCart.swift */; };
 		E4CD0F6A27C7B35500D6536F /* ShoppingCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CD0F6827C7B35500D6536F /* ShoppingCart.swift */; };
+		E4CD0F6C27C7B9FF00D6536F /* PurchaseSummarySwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CD0F6B27C7B9FF00D6536F /* PurchaseSummarySwiftUIView.swift */; };
+		E4CD0F6D27C7B9FF00D6536F /* PurchaseSummarySwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CD0F6B27C7B9FF00D6536F /* PurchaseSummarySwiftUIView.swift */; };
+		E4CD0F6F27C7BDCA00D6536F /* ImageTextRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CD0F6E27C7BDCA00D6536F /* ImageTextRow.swift */; };
+		E4CD0F7027C7BDCA00D6536F /* ImageTextRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CD0F6E27C7BDCA00D6536F /* ImageTextRow.swift */; };
+		E4CD0F7227C8E38300D6536F /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = E4CD0F7127C8E38300D6536F /* data.json */; };
+		E4CD0F7327C8E38300D6536F /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = E4CD0F7127C8E38300D6536F /* data.json */; };
+		E4CD0F7527C8E53000D6536F /* TicketOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CD0F7427C8E53000D6536F /* TicketOperator.swift */; };
+		E4CD0F7627C8E53000D6536F /* TicketOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CD0F7427C8E53000D6536F /* TicketOperator.swift */; };
 		E4DDB77027C3EB0D00592912 /* SelectTicketTypeSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DDB76F27C3EB0D00592912 /* SelectTicketTypeSwiftUIView.swift */; };
 		E4DDB77127C3EB0D00592912 /* SelectTicketTypeSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DDB76F27C3EB0D00592912 /* SelectTicketTypeSwiftUIView.swift */; };
 		E4DDB77327C3F52500592912 /* SelectTicketTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DDB77227C3F52500592912 /* SelectTicketTypeViewModel.swift */; };
@@ -78,12 +82,14 @@
 		E4C4A8DE27BC2D67004CDDBD /* InactiveTicketSwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InactiveTicketSwiftUIView.swift; sourceTree = "<group>"; };
 		E4C4A8E127BC2E3B004CDDBD /* InactiveTicketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InactiveTicketViewModel.swift; sourceTree = "<group>"; };
 		E4C4A8E727BC3E58004CDDBD /* ActiveFlexTicketSwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveFlexTicketSwiftUIView.swift; sourceTree = "<group>"; };
-		E4C4A8EA27BC414E004CDDBD /* TicketSwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketSwiftUIView.swift; sourceTree = "<group>"; };
 		E4C4A8EE27BC53F2004CDDBD /* ActiveFlexTicketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveFlexTicketViewModel.swift; sourceTree = "<group>"; };
-		E4CD0F5B27C43DAD00D6536F /* PickerSwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerSwiftUIView.swift; sourceTree = "<group>"; };
 		E4CD0F5F27C5936100D6536F /* SelectableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableRow.swift; sourceTree = "<group>"; };
 		E4CD0F6427C698FF00D6536F /* SelectPriceCategorySwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPriceCategorySwiftUIView.swift; sourceTree = "<group>"; };
 		E4CD0F6827C7B35500D6536F /* ShoppingCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCart.swift; sourceTree = "<group>"; };
+		E4CD0F6B27C7B9FF00D6536F /* PurchaseSummarySwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseSummarySwiftUIView.swift; sourceTree = "<group>"; };
+		E4CD0F6E27C7BDCA00D6536F /* ImageTextRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTextRow.swift; sourceTree = "<group>"; };
+		E4CD0F7127C8E38300D6536F /* data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
+		E4CD0F7427C8E53000D6536F /* TicketOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketOperator.swift; sourceTree = "<group>"; };
 		E4DDB76F27C3EB0D00592912 /* SelectTicketTypeSwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTicketTypeSwiftUIView.swift; sourceTree = "<group>"; };
 		E4DDB77227C3F52500592912 /* SelectTicketTypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTicketTypeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -109,6 +115,7 @@
 		E44FA2A427B54461008912CC = {
 			isa = PBXGroup;
 			children = (
+				E4CD0F7127C8E38300D6536F /* data.json */,
 				E405E9BF27BD9D4F0094BD01 /* TicketTest--iOS--Info.plist */,
 				E44FA2A927B54461008912CC /* Shared */,
 				E44FA2B827B54463008912CC /* macOS */,
@@ -171,11 +178,11 @@
 				E44FA2C927B5AA3F008912CC /* ActiveTicketSwiftUIView.swift */,
 				E4C4A8E727BC3E58004CDDBD /* ActiveFlexTicketSwiftUIView.swift */,
 				E44FA2E827BAFB34008912CC /* TestSwiftUIView.swift */,
-				E4C4A8EA27BC414E004CDDBD /* TicketSwiftUIView.swift */,
 				E4DDB76F27C3EB0D00592912 /* SelectTicketTypeSwiftUIView.swift */,
-				E4CD0F5B27C43DAD00D6536F /* PickerSwiftUIView.swift */,
-				E4CD0F5F27C5936100D6536F /* SelectableRow.swift */,
 				E4CD0F6427C698FF00D6536F /* SelectPriceCategorySwiftUIView.swift */,
+				E4CD0F6B27C7B9FF00D6536F /* PurchaseSummarySwiftUIView.swift */,
+				E4CD0F5F27C5936100D6536F /* SelectableRow.swift */,
+				E4CD0F6E27C7BDCA00D6536F /* ImageTextRow.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -184,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				E4CD0F6827C7B35500D6536F /* ShoppingCart.swift */,
+				E4CD0F7427C8E53000D6536F /* TicketOperator.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -270,6 +278,7 @@
 				E405E9B927BD99B10094BD01 /* Sk-Modernist-Regular.otf in Resources */,
 				E44FA2BE27B54463008912CC /* Assets.xcassets in Resources */,
 				E405E9BD27BD99B10094BD01 /* Sk-Modernist-Bold.otf in Resources */,
+				E4CD0F7227C8E38300D6536F /* data.json in Resources */,
 				E405E9BB27BD99B10094BD01 /* Sk-Modernist-Mono.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -281,6 +290,7 @@
 				E405E9BA27BD99B10094BD01 /* Sk-Modernist-Regular.otf in Resources */,
 				E44FA2BF27B54463008912CC /* Assets.xcassets in Resources */,
 				E405E9BE27BD99B10094BD01 /* Sk-Modernist-Bold.otf in Resources */,
+				E4CD0F7327C8E38300D6536F /* data.json in Resources */,
 				E405E9BC27BD99B10094BD01 /* Sk-Modernist-Mono.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -301,17 +311,18 @@
 				E44FA2E927BAFB34008912CC /* TestSwiftUIView.swift in Sources */,
 				E44FA2D027B68099008912CC /* TicketsTabView.swift in Sources */,
 				E44FA2BC27B54463008912CC /* ContentView.swift in Sources */,
+				E4CD0F6F27C7BDCA00D6536F /* ImageTextRow.swift in Sources */,
 				E44FA2BA27B54463008912CC /* TicketTestApp.swift in Sources */,
 				E44FA2CD27B5AA62008912CC /* Model.swift in Sources */,
-				E4C4A8EB27BC414E004CDDBD /* TicketSwiftUIView.swift in Sources */,
 				E4C4A8EF27BC53F2004CDDBD /* ActiveFlexTicketViewModel.swift in Sources */,
+				E4CD0F7527C8E53000D6536F /* TicketOperator.swift in Sources */,
 				E4DDB77327C3F52500592912 /* SelectTicketTypeViewModel.swift in Sources */,
-				E4CD0F5C27C43DAD00D6536F /* PickerSwiftUIView.swift in Sources */,
 				E4CD0F6927C7B35500D6536F /* ShoppingCart.swift in Sources */,
 				E44FA2D627B9A79B008912CC /* InactiveFlexTicketViewModel.swift in Sources */,
 				E4DDB77027C3EB0D00592912 /* SelectTicketTypeSwiftUIView.swift in Sources */,
 				E4CD0F6027C5936100D6536F /* SelectableRow.swift in Sources */,
 				E4C4A8E827BC3E58004CDDBD /* ActiveFlexTicketSwiftUIView.swift in Sources */,
+				E4CD0F6C27C7B9FF00D6536F /* PurchaseSummarySwiftUIView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,17 +339,18 @@
 				E44FA2EA27BAFB34008912CC /* TestSwiftUIView.swift in Sources */,
 				E44FA2D127B68099008912CC /* TicketsTabView.swift in Sources */,
 				E44FA2BD27B54463008912CC /* ContentView.swift in Sources */,
+				E4CD0F7027C7BDCA00D6536F /* ImageTextRow.swift in Sources */,
 				E44FA2BB27B54463008912CC /* TicketTestApp.swift in Sources */,
 				E44FA2CE27B5AA62008912CC /* Model.swift in Sources */,
-				E4C4A8EC27BC414E004CDDBD /* TicketSwiftUIView.swift in Sources */,
 				E4C4A8F027BC53F2004CDDBD /* ActiveFlexTicketViewModel.swift in Sources */,
+				E4CD0F7627C8E53000D6536F /* TicketOperator.swift in Sources */,
 				E4DDB77427C3F52500592912 /* SelectTicketTypeViewModel.swift in Sources */,
-				E4CD0F5D27C43DAD00D6536F /* PickerSwiftUIView.swift in Sources */,
 				E4CD0F6A27C7B35500D6536F /* ShoppingCart.swift in Sources */,
 				E44FA2D727B9A79B008912CC /* InactiveFlexTicketViewModel.swift in Sources */,
 				E4DDB77127C3EB0D00592912 /* SelectTicketTypeSwiftUIView.swift in Sources */,
 				E4CD0F6127C5936100D6536F /* SelectableRow.swift in Sources */,
 				E4C4A8E927BC3E58004CDDBD /* ActiveFlexTicketSwiftUIView.swift in Sources */,
+				E4CD0F6D27C7B9FF00D6536F /* PurchaseSummarySwiftUIView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

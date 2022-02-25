@@ -13,46 +13,46 @@ struct SelectPriceCategorySwiftUIView: View {
     
     var body: some View {
         
-        NavigationView {
+        VStack {
             
-            VStack {
+            List {
                 
-                List {
-                    
-                    // TICKET TYPE
-                    Section(header: Text("Biljettyp")) {
-                        Text(shoppingCart.product.name)
-                    }
-                    
-                    
-                    // ZONE
-                    if let zone = shoppingCart.product.zone {
-                        Section(header: Text("Zon")) {
-                            Text(zone)
-                        }
-                    }
-                    
-                    
-                    // PRICE CLASS
-                    Section(header: Text("Prisklass")) {
-                        
-                        ForEach($shoppingCart.items) { $item in
-                            PriceClassRow(shoppingCartItem: $item)
-                        }
+                // TICKET TYPE
+                Section(header: Text("Biljettyp")) {
+                    Text(shoppingCart.productType.name)
+                }
+                
+                
+                // ZONE
+                if let zone = shoppingCart.productType.zone {
+                    Section(header: Text("Zon")) {
+                        Text(zone)
                     }
                 }
-                .listStyle(GroupedListStyle())
-                .padding(.top)
                 
-                Spacer()
                 
-                Button("Köp biljett") {
-                    print(shoppingCart.items)
+                // PRICE CLASS
+                Section(header: Text("Prisklass")) {
+                    
+                    ForEach($shoppingCart.items) { $item in
+                        PriceClassRow(shoppingCartItem: $item)
+                    }
                 }
             }
+            .listStyle(GroupedListStyle())
+            .padding(.top)
+            
+            Spacer()
+            
+            let viewModel = PurchaseSummaryViewModel(shoppingCart: shoppingCart)
+            NavigationLink("Köp biljett") {
+                PurchaseSummarySwiftUIView(viewModel: viewModel)
+                    .navigationTitle("Köp biljett")
+            }
+           
         }
-        .navigationTitle(shoppingCart.product.operatorName)
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle(shoppingCart.ticketOperator.name)
+        
     }
 }
 
