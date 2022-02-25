@@ -44,11 +44,6 @@ struct HistoricalTicketSwiftUIView<TicketHistoryViewModel>: View where TicketHis
     }
 }
 
-
-
-
-
-
 protocol SelectTicketData: ObservableObject {
     
     var title: String { get }
@@ -163,48 +158,3 @@ struct SelectTicketTypeSwiftUIView: View {
         }
     }
 }
-
-
-//struct SelectTicketTypeSwiftUIView_Previews: PreviewProvider {
-//    
-//    static var previews: some View {
-//        
-//        let priceClass1 = PriceClass(name: "Vuxen", price: 99)
-//        let priceClass2 = PriceClass(name: "Barn", price: 33)
-//        
-////        let product1 = Product(name: "SL Enkelbiljett", priceClasses: [priceClass1, priceClass2], operatorName: "SL", operatorImage: Image(systemName: "tortoise.fill"))
-////
-////        let product2 = Product(name: "SL 30 dagars", priceClasses: [priceClass1, priceClass2], operatorName: "SL", operatorImage: Image(systemName: "tortoise.fill"))
-////
-////        let product3 = Product(name: "VT Enkelbiljett", priceClasses: [priceClass1, priceClass2], operatorName: "Västtrafik", operatorImage: Image(systemName: "hare"))
-////
-////        let product4 = Product(name: "VT 30 dagars", priceClasses: [priceClass1, priceClass2], operatorName: "Västtrafik", operatorImage: Image(systemName: "hare"))
-////
-//        let product1 = Product(name: "SL Enkelbiljett", priceClasses: [priceClass1, priceClass2], operatorName: "SL")
-//        
-//        let product2 = Product(name: "SL 30 dagars", priceClasses: [priceClass1, priceClass2], operatorName: "SL")
-//        
-//        let product3 = Product(name: "VT Enkelbiljett", priceClasses: [priceClass1, priceClass2], operatorName: "Västtrafik")
-//        
-//        let product4 = Product(name: "VT 30 dagars", priceClasses: [priceClass1, priceClass2], operatorName: "Västtrafik")
-//       
-//        
-//        
-//        let ticketOperator1 = TicketOperator(name: "SL", products: [product1, product2])
-//        
-//        let ticketOperator2 = TicketOperator(name: "Västtrafik", products: [product3, product4])
-//        
-//        let historicalTicket1 = HistoricalTicket(operatorImage: Image(systemName: "heart.fill"), ticketName: "Enkelbiljett", priceCategory: "Vuxen")
-//        
-//        let historicalTicket2 = HistoricalTicket(operatorImage: Image(systemName: "heart.fill"), ticketName: "Enkelbiljett", priceCategory: "Barn")
-//        
-//        let historicalTicket3 = HistoricalTicket(operatorImage: Image(systemName: "heart.fill"), ticketName: "Enkelbiljett", priceCategory: "Barn")
-//        
-//        let historicalTicket4 = HistoricalTicket(operatorImage: Image(systemName: "heart.fill"), ticketName: "Enkelbiljett", priceCategory: "Barn")
-//        
-//        
-//        let viewModel = SelectTicketTypeViewModel(historicalTickets: [historicalTicket1, historicalTicket2, historicalTicket3, historicalTicket4], ticketOperators: [ticketOperator1, ticketOperator2])
-//        
-//        SelectTicketTypeSwiftUIView(viewModel: viewModel)
-//    }
-//}
