@@ -10,8 +10,8 @@ import SwiftUI
 
 struct HistoricalTicket: TicketHistory {
     var operatorImage: Image
-    var ticketName: String
-    var priceCategory: String
+    var ticketTypeName: String
+    var priceGroupName: String
 }
 
 

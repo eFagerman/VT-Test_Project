@@ -35,14 +35,15 @@ struct TicketInfoSwiftUIView: View {
     var body: some View {
         
         VStack {
-            ForEach(shoppingCartItems) { shoppingCartItem in
+            ForEach(shoppingCartItems.filter({$0.number > 0})) { shoppingCartItem in
                 
                 let number = String(shoppingCartItem.number)
                 let priceClassName = shoppingCartItem.priceGroup.name
-                let price = String(shoppingCartItem.priceGroup.price) + " " + shoppingCartItem.priceGroup.currency
+                let price = shoppingCartItem.priceGroup.priceWithCurrency
+                let ticketType = shoppingCartItem.productType.name
                 
                 HStack {
-                    Text(number + " " + priceClassName)
+                    Text(number + " " + priceClassName + " " + ticketType)
                     Spacer()
                     Text(price)
                 }.font(.applicationFont(withWeight: .regular, andSize: 15))

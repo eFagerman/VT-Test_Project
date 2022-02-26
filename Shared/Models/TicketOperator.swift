@@ -27,6 +27,13 @@ struct PriceGroup: Hashable, Identifiable {
     var currency: String = "kr"
 }
 
+extension PriceGroup {
+    
+    var priceWithCurrency: String {
+        return String(price) + " " + currency
+    }
+}
+
 struct ProductType: Hashable, Identifiable {
     var id: String
     var name: String

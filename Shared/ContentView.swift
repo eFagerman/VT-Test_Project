@@ -15,15 +15,15 @@ class ProductsData {
     
     private init() {
         
-        let slPriceGroup1 = PriceGroup(id: "sl-adult", name: "Vuxen", price: 99)
-        let slPriceGroup2 = PriceGroup(id: "sl-youth", name: "Rabbaterad", price: 33)
-        let vtPriceGroup1 = PriceGroup(id: "vt-adult", name: "Vuxen", price: 99)
-        let vtPriceGroup2 = PriceGroup(id: "vt-youth", name: "Barn", price: 33)
+        let slPriceGroup1 = PriceGroup(id: "sl-adult", name: "Vuxen", price: 50)
+        let slPriceGroup2 = PriceGroup(id: "sl-youth", name: "Rabbaterad", price: 25)
+        let vtPriceGroup1 = PriceGroup(id: "vt-adult", name: "Vuxen", price: 40)
+        let vtPriceGroup2 = PriceGroup(id: "vt-youth", name: "Barn", price: 20)
 
         let slProduct1 = ProductType(id: "sl-enkel", name: "SL Enkelbiljett", priceGroups: [slPriceGroup1.id, slPriceGroup2.id])
-        let slProduct2 = ProductType(id: "sl-30", name: "SL 30 dagars", priceGroups: [slPriceGroup1.id, slPriceGroup1.id])
+        let slProduct2 = ProductType(id: "sl-30", name: "SL 30 dagars", priceGroups: [slPriceGroup1.id, slPriceGroup2.id])
         let vtProduct1 = ProductType(id: "vt-enkel", name: "VT Enkelbiljett", priceGroups: [vtPriceGroup1.id, vtPriceGroup2.id])
-        let vtProduct2 = ProductType(id: "vt-30", name: "VT 30 dagars", priceGroups: [vtPriceGroup2.id, vtPriceGroup2.id])
+        let vtProduct2 = ProductType(id: "vt-30", name: "VT 30 dagars", priceGroups: [vtPriceGroup1.id, vtPriceGroup2.id])
 
 
         let slTicketOperator = TicketOperator(id: "sl", name: "SL", productTypes: [slProduct1, slProduct2], priceGroups: [slPriceGroup1, slPriceGroup2], image: Image(systemName: "tortoise.fill"))
@@ -41,10 +41,10 @@ struct ContentView: View {
     let activeTicketViewModel = ActiveTicketViewModel(ticketModel: TicketModel())
     let activeFlexTicketViewModel = ActiveFlexTicketViewModel(ticketModel: TicketModel())
     
-    let historicalTicket1 = HistoricalTicket(operatorImage: Image(systemName: "heart.fill"), ticketName: "Enkelbiljett", priceCategory: "Vuxen")
-    let historicalTicket2 = HistoricalTicket(operatorImage: Image(systemName: "heart.fill"), ticketName: "Enkelbiljett", priceCategory: "Barn")
-    let historicalTicket3 = HistoricalTicket(operatorImage: Image(systemName: "heart.fill"), ticketName: "Enkelbiljett", priceCategory: "Barn")
-    let historicalTicket4 = HistoricalTicket(operatorImage: Image(systemName: "heart.fill"), ticketName: "Enkelbiljett", priceCategory: "Barn")
+    let historicalTicket1 = HistoricalTicket(operatorImage: Image(systemName: "heart.fill"), ticketTypeName: "Enkelbiljett", priceGroupName: "Vuxen")
+    let historicalTicket2 = HistoricalTicket(operatorImage: Image(systemName: "heart.fill"), ticketTypeName: "Enkelbiljett", priceGroupName: "Barn")
+    let historicalTicket3 = HistoricalTicket(operatorImage: Image(systemName: "heart.fill"), ticketTypeName: "Enkelbiljett", priceGroupName: "Barn")
+    let historicalTicket4 = HistoricalTicket(operatorImage: Image(systemName: "heart.fill"), ticketTypeName: "Enkelbiljett", priceGroupName: "Barn")
     
     
     @State private var showingSheet = false

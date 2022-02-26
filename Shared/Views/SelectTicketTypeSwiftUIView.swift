@@ -10,8 +10,8 @@ import SwiftUI
 protocol TicketHistory {
     
     var operatorImage: Image { get }
-    var ticketName: String { get }
-    var priceCategory: String { get }
+    var ticketTypeName: String { get }
+    var priceGroupName: String { get }
 }
 
 
@@ -28,11 +28,11 @@ struct HistoricalTicketSwiftUIView<TicketHistoryViewModel>: View where TicketHis
                     .alignmentGuide(.alignItems, computeValue: { d in
                         return d[HorizontalAlignment.leading]
                     })
-                Text(viewModel.ticketName)
+                Text(viewModel.ticketTypeName)
                     .font(.applicationFont(withWeight: .bold, andSize: 15))
             }
             
-            Text(viewModel.priceCategory)
+            Text(viewModel.priceGroupName)
                 .font(.applicationFont(withWeight: .regular, andSize: 15))
                 .alignmentGuide(.alignItems, computeValue: { d in
                     return d[HorizontalAlignment.leading]
@@ -52,11 +52,8 @@ protocol SelectTicketData: ObservableObject {
     var selectTicketTypeSectionHeader: String { get }
     
     var historicalTickets: [TicketHistory] { get set }
-    
     var ticketOperators: [TicketOperator] { get set }
-    
     var selectedOperator: TicketOperator { get set }
-    
 }
 
 
@@ -94,37 +91,41 @@ struct SelectTicketTypeSwiftUIView: View {
                         
                         HStack(spacing: 8) {
                             
-                            ForEach(viewModel.historicalTickets, id: \.ticketName) { historicalTicket in
+                            ForEach(viewModel.historicalTickets, id: \.ticketTypeName) { historicalTicket in
                                 
-                                let viewModel = HistoricalTicket(operatorImage: historicalTicket.operatorImage, ticketName: historicalTicket.ticketName, priceCategory: historicalTicket.priceCategory)
-                                
+                                let viewModel = HistoricalTicket(operatorImage: historicalTicket.operatorImage, ticketTypeName: historicalTicket.ticketTypeName, priceGroupName: historicalTicket.priceGroupName)
                                 HistoricalTicketSwiftUIView(viewModel: viewModel)
                             }
                         }
                         .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
                     }
                     .frame(height: 67, alignment: .leading)
-                    
                 }
                 
                 // OPERATOR
                 Section(header: Text(viewModel.operatorSectionHeader)) {
                     
-                    DisclosureGroup(selectedOperator?.name ?? "", isExpanded: $isExpanded) {
-                        
-                        ForEach(viewModel.ticketOperators) { ticketOperator in
-                            
-                            SelectableRow(image: ticketOperator.image, title: ticketOperator.name, item: ticketOperator, selectedItem: $selectedOperator)
-                                .onChange(of: selectedOperator) { newValue in
-                                    isExpanded = false
-                                }
-                        }
-                    }
+                    DisclosureGroup(
+                        isExpanded: $isExpanded,
+                        content: {
+                            ForEach(viewModel.ticketOperators) { ticketOperator in
+                                SelectableRow(image: ticketOperator.image, title: ticketOperator.name, item: ticketOperator, selectedItem: $selectedOperator)
+                                    .onChange(of: selectedOperator) { newValue in
+                                        isExpanded = false
+                                    }
+                            }
+                        },
+                        label: {
+                            HStack(spacing: 20) {
+                                selectedOperator?.image
+                                Text(selectedOperator?.name ?? "")
+                            }
+                        })
                 }
                 
                 // PRODUCT
                 Section(header: Text(viewModel.selectTicketTypeSectionHeader)) {
-        
+                    
                     if let selectedOperator = selectedOperator, let productTypes = selectedOperator.productTypes {
                         
                         ForEach(productTypes) { productType in

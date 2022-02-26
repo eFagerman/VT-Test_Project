@@ -50,7 +50,7 @@ struct PriceClassRow: View  {
             
             VStack(alignment: .leading) {
                 Text(shoppingCartItem.priceGroup.name).font(.applicationFont(withWeight: .bold, andSize: 15))
-                Text(String(shoppingCartItem.priceGroup.price)).font(.applicationFont(withWeight: .regular, andSize: 13))
+                Text(shoppingCartItem.priceGroup.priceWithCurrency).font(.applicationFont(withWeight: .regular, andSize: 13))
             }
             
             Spacer()
