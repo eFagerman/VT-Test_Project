@@ -109,6 +109,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D2EC8EC27CCD014004C95BF /* TicketViews */ = {
+			isa = PBXGroup;
+			children = (
+				E44FA2CF27B68099008912CC /* TicketsTabView.swift */,
+				E4C4A8DE27BC2D67004CDDBD /* InactiveTicketSwiftUIView.swift */,
+				E44FA2D227B68126008912CC /* InactiveFlexTicketSwiftUIView.swift */,
+				E44FA2C927B5AA3F008912CC /* ActiveTicketSwiftUIView.swift */,
+				E4C4A8E727BC3E58004CDDBD /* ActiveFlexTicketSwiftUIView.swift */,
+			);
+			path = TicketViews;
+			sourceTree = "<group>";
+		};
+		4D2EC8ED27CCD01C004C95BF /* PurchaseViews */ = {
+			isa = PBXGroup;
+			children = (
+				E4DDB76F27C3EB0D00592912 /* SelectTicketTypeSwiftUIView.swift */,
+				E4CD0F6427C698FF00D6536F /* SelectPriceCategorySwiftUIView.swift */,
+				E4CD0F6B27C7B9FF00D6536F /* PurchaseSummarySwiftUIView.swift */,
+			);
+			path = PurchaseViews;
+			sourceTree = "<group>";
+		};
+		4D2EC8EE27CCD054004C95BF /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				E4CD0F6E27C7BDCA00D6536F /* ImageTextRow.swift */,
+				E4CD0F5F27C5936100D6536F /* SelectableRow.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
 		E44FA2A427B54461008912CC = {
 			isa = PBXGroup;
 			children = (
@@ -169,16 +200,9 @@
 		E4C4A8E627BC3A54004CDDBD /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E44FA2CF27B68099008912CC /* TicketsTabView.swift */,
-				E4C4A8DE27BC2D67004CDDBD /* InactiveTicketSwiftUIView.swift */,
-				E44FA2D227B68126008912CC /* InactiveFlexTicketSwiftUIView.swift */,
-				E44FA2C927B5AA3F008912CC /* ActiveTicketSwiftUIView.swift */,
-				E4C4A8E727BC3E58004CDDBD /* ActiveFlexTicketSwiftUIView.swift */,
-				E4DDB76F27C3EB0D00592912 /* SelectTicketTypeSwiftUIView.swift */,
-				E4CD0F6427C698FF00D6536F /* SelectPriceCategorySwiftUIView.swift */,
-				E4CD0F6B27C7B9FF00D6536F /* PurchaseSummarySwiftUIView.swift */,
-				E4CD0F5F27C5936100D6536F /* SelectableRow.swift */,
-				E4CD0F6E27C7BDCA00D6536F /* ImageTextRow.swift */,
+				4D2EC8ED27CCD01C004C95BF /* PurchaseViews */,
+				4D2EC8EC27CCD014004C95BF /* TicketViews */,
+				4D2EC8EE27CCD054004C95BF /* SubViews */,
 			);
 			path = Views;
 			sourceTree = "<group>";
