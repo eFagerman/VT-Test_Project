@@ -26,10 +26,8 @@ struct ZoneSelectorView: View {
     }
 }
 
-/*
 struct ZoneSelectorView_Previews: PreviewProvider {
     static var previews: some View {
-        ZoneSelectorView()
+        ZoneSelectorView(shoppingCart: ShoppingCart(ticketOperator: ProductsData.shared.vtTicketOperator, productType: ProductsData.shared.vtTicketOperator.productTypes[0]))
     }
 }
-*/

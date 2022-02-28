@@ -13,6 +13,8 @@ class ProductsData {
     
     var ticketOperators: [TicketOperator]
     
+    var vtTicketOperator: TicketOperator
+    
     private init() {
         
         let slPriceGroup1 = PriceGroup(id: "sl-adult", name: "Vuxen", price: 50)
@@ -27,7 +29,7 @@ class ProductsData {
 
 
         let slTicketOperator = TicketOperator(id: "sl", name: "SL", productTypes: [slProduct1, slProduct2], zones: [Zone(id: "A")], priceGroups: [slPriceGroup1, slPriceGroup2], image: Image(systemName: "tortoise.fill"))
-        let vtTicketOperator = TicketOperator(id: "vt", name: "Västtrafik", productTypes: [vtProduct1, vtProduct2], zones: [Zone(id: "A"), Zone(id: "B"), Zone(id: "C"), Zone(id: "AB")], priceGroups: [vtPriceGroup1, vtPriceGroup2], image: Image(systemName: "hare"))
+        self.vtTicketOperator = TicketOperator(id: "vt", name: "Västtrafik", productTypes: [vtProduct1, vtProduct2], zones: [Zone(id: "A"), Zone(id: "B"), Zone(id: "C"), Zone(id: "AB")], priceGroups: [vtPriceGroup1, vtPriceGroup2], image: Image(systemName: "hare"))
 
         self.ticketOperators = [slTicketOperator, vtTicketOperator]
     }
