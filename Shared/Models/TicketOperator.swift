@@ -12,6 +12,7 @@ struct TicketOperator: Hashable, Identifiable {
     var id: String
     var name: String
     var productTypes: [ProductType]
+    var zones: [Zone]
     var priceGroups: [PriceGroup]
     var image: Image
     
@@ -39,4 +40,8 @@ struct ProductType: Hashable, Identifiable {
     var name: String
     var zone: String? = nil
     var priceGroups: [String]
+}
+
+struct Zone: Hashable, Identifiable {
+    var id: String
 }

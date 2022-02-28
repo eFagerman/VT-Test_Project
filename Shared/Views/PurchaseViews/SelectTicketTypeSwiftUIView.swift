@@ -130,8 +130,14 @@ struct SelectTicketTypeSwiftUIView: View {
                         
                         ForEach(productTypes) { productType in
                             let shoppingCart = ShoppingCart(ticketOperator: selectedOperator, productType: productType)
-                            NavigationLink(destination: SelectPriceCategorySwiftUIView(shoppingCart: shoppingCart)) {
-                                Text(productType.name)
+                            if selectedOperator.zones.count > 1 {
+                                NavigationLink(destination: ZoneSelectorView(shoppingCart: shoppingCart)) {
+                                    Text(productType.name)
+                                }
+                            } else {
+                                NavigationLink(destination: SelectPriceCategorySwiftUIView(shoppingCart: shoppingCart)) {
+                                    Text(productType.name)
+                                }
                             }
                         }
                     }

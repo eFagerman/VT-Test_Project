@@ -1,5 +1,5 @@
 
-
+// product structure
 {
     "name": "VT",
     "icon": "se_vasttrafik",
@@ -48,4 +48,16 @@
             "resources": { ... },
         },
     ]
+}
+
+{
+    "order": [
+        {
+            "operator": "se_vt",
+            "zone": "vt-a",
+            "price_group": "vt-adult",
+            "product": "vt-enkel",
+            "quantity": 1
+        }
+     ]
 }

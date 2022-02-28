@@ -8,13 +8,28 @@
 import SwiftUI
 
 struct ZoneSelectorView: View {
+    
+    @ObservedObject var shoppingCart: ShoppingCart
+    
     var body: some View {
-        Text("Hello, World!")
+        VStack {
+
+            Text(shoppingCart.productType.name)
+            
+            Spacer()
+            NavigationLink("Köp biljett") {
+                SelectPriceCategorySwiftUIView(shoppingCart: shoppingCart)
+                    .navigationTitle("Köp biljett")
+            }
+
+        }
     }
 }
 
+/*
 struct ZoneSelectorView_Previews: PreviewProvider {
     static var previews: some View {
         ZoneSelectorView()
     }
 }
+*/
