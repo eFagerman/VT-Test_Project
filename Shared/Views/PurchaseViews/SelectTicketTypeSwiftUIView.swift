@@ -131,7 +131,7 @@ struct SelectTicketTypeSwiftUIView: View {
                         ForEach(productTypes) { productType in
                             let shoppingCart = ShoppingCart(ticketOperator: selectedOperator, productType: productType)
                             if selectedOperator.zones.count > 1 {
-                                NavigationLink(destination: ZoneSelectorView(shoppingCart: shoppingCart)) {
+                                NavigationLink(destination: ZoneSelectorView(viewModel: ZoneSelectorViewModel(shoppingCart: shoppingCart))) {
                                     Text(productType.name)
                                 }
                             } else {
@@ -163,5 +163,12 @@ struct SelectTicketTypeSwiftUIView: View {
                 self.selectedOperator = viewModel.ticketOperators.first!
             }
         }
+    }
+}
+
+struct SelectTicketTypeSwiftUIView_Previews: PreviewProvider {
+    static var previews: some View {
+        let viewModel = SelectTicketTypeViewModel(historicalTickets: [ProductsData.shared.historicalTicket1, ProductsData.shared.historicalTicket2, ProductsData.shared.historicalTicket3, ProductsData.shared.historicalTicket4], ticketOperators: ProductsData.shared.ticketOperators)
+        SelectTicketTypeSwiftUIView(viewModel: viewModel)
     }
 }

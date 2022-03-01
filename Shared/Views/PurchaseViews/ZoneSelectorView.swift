@@ -7,27 +7,38 @@
 
 import SwiftUI
 
+
+class ZoneSelectorViewModel: ObservableObject {
+    
+    @Published var shoppingCart: ShoppingCart
+  
+    init(shoppingCart: ShoppingCart) {
+        self.shoppingCart = shoppingCart
+    }
+}
+
 struct ZoneSelectorView: View {
     
-    @ObservedObject var shoppingCart: ShoppingCart
+    @ObservedObject var viewModel: ZoneSelectorViewModel
+
     
     var body: some View {
         VStack {
 
-            Text(shoppingCart.productType.name)
             
+            Text(viewModel.shoppingCart.productType.name)
             Spacer()
             NavigationLink("Köp biljett") {
-                SelectPriceCategorySwiftUIView(shoppingCart: shoppingCart)
+                SelectPriceCategorySwiftUIView(shoppingCart: viewModel.shoppingCart)
                     .navigationTitle("Köp biljett")
             }
-
         }
     }
+
 }
 
 struct ZoneSelectorView_Previews: PreviewProvider {
     static var previews: some View {
-        ZoneSelectorView(shoppingCart: ShoppingCart(ticketOperator: ProductsData.shared.vtTicketOperator, productType: ProductsData.shared.vtTicketOperator.productTypes[0]))
+        ZoneSelectorView(viewModel: ZoneSelectorViewModel(shoppingCart: ShoppingCart(ticketOperator: ProductsData.shared.vtTicketOperator, productType: ProductsData.shared.vtTicketOperator.productTypes[0])))
     }
 }

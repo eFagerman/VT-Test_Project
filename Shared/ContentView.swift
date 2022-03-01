@@ -14,6 +14,10 @@ class ProductsData {
     var ticketOperators: [TicketOperator]
     
     var vtTicketOperator: TicketOperator
+    var historicalTicket1: HistoricalTicket
+    var historicalTicket2: HistoricalTicket
+    var historicalTicket3: HistoricalTicket
+    var historicalTicket4: HistoricalTicket
     
     private init() {
         
@@ -32,6 +36,11 @@ class ProductsData {
         self.vtTicketOperator = TicketOperator(id: "vt", name: "Västtrafik", productTypes: [vtProduct1, vtProduct2], zones: [Zone(id: "A"), Zone(id: "B"), Zone(id: "C"), Zone(id: "AB")], priceGroups: [vtPriceGroup1, vtPriceGroup2], image: Image(systemName: "hare"))
 
         self.ticketOperators = [slTicketOperator, vtTicketOperator]
+        
+        self.historicalTicket1 = HistoricalTicket(operatorImage: Image(systemName: "heart.fill"), ticketTypeName: "Enkelbiljett", priceGroupName: "Vuxen")
+        self.historicalTicket2 = HistoricalTicket(operatorImage: Image(systemName: "heart.fill"), ticketTypeName: "Enkelbiljett", priceGroupName: "Barn")
+        self.historicalTicket3 = HistoricalTicket(operatorImage: Image(systemName: "heart.fill"), ticketTypeName: "Enkelbiljett", priceGroupName: "Barn")
+        self.historicalTicket4 = HistoricalTicket(operatorImage: Image(systemName: "heart.fill"), ticketTypeName: "Enkelbiljett", priceGroupName: "Barn")
     }
 }
 
@@ -42,11 +51,6 @@ struct ContentView: View {
     let inactiveFlexTicketViewModel = InactiveFlexTicketViewModel(ticketModel: TicketModel())
     let activeTicketViewModel = ActiveTicketViewModel(ticketModel: TicketModel())
     let activeFlexTicketViewModel = ActiveFlexTicketViewModel(ticketModel: TicketModel())
-    
-    let historicalTicket1 = HistoricalTicket(operatorImage: Image(systemName: "heart.fill"), ticketTypeName: "Enkelbiljett", priceGroupName: "Vuxen")
-    let historicalTicket2 = HistoricalTicket(operatorImage: Image(systemName: "heart.fill"), ticketTypeName: "Enkelbiljett", priceGroupName: "Barn")
-    let historicalTicket3 = HistoricalTicket(operatorImage: Image(systemName: "heart.fill"), ticketTypeName: "Enkelbiljett", priceGroupName: "Barn")
-    let historicalTicket4 = HistoricalTicket(operatorImage: Image(systemName: "heart.fill"), ticketTypeName: "Enkelbiljett", priceGroupName: "Barn")
     
     
     @State private var showingSheet = false
@@ -64,7 +68,7 @@ struct ContentView: View {
 //                }
         
     
-        let viewModel = SelectTicketTypeViewModel(historicalTickets: [historicalTicket1, historicalTicket2, historicalTicket3, historicalTicket4], ticketOperators: ProductsData.shared.ticketOperators)
+        let viewModel = SelectTicketTypeViewModel(historicalTickets: [ProductsData.shared.historicalTicket1, ProductsData.shared.historicalTicket2, ProductsData.shared.historicalTicket3, ProductsData.shared.historicalTicket4], ticketOperators: ProductsData.shared.ticketOperators)
 
         SelectTicketTypeSwiftUIView(viewModel: viewModel)
 
