@@ -14,11 +14,16 @@ class ZoneSelectorViewModel: ObservableObject {
     let ticketTypeSectionÄndra = "Ändra"
     let zoneSearchSectionTitle = "Sök zon"
     let zoneSelectionSectionTitle = "Välj zon"
+    let placeholderText = "Ange adress eller plats"
     
     @Published var shoppingCart: ShoppingCart
+    @Published var fromText: String
+    @Published var toText: String
   
     init(shoppingCart: ShoppingCart) {
         self.shoppingCart = shoppingCart
+        self.fromText = ""
+        self.toText = ""
     }
 }
 
@@ -43,13 +48,32 @@ struct ZoneSelectorView: View {
                 
                 // ZONE SEARCH
                 Section(header: Text(viewModel.zoneSearchSectionTitle)) {
-                    Text("")
+                    HStack {
+                        Image(systemName: "info.circle.fill").foregroundColor(.gray)
+                        FirstResponderTextField(
+                            placeholder: viewModel.placeholderText,
+                            text: $viewModel.fromText
+                        )
+                    }
+                    .frame(height: 45)
+                    
+                    HStack {
+                        Image(systemName: "info.circle.fill").foregroundColor(.gray)
+                        FirstResponderTextField(
+                            placeholder: viewModel.placeholderText,
+                            text: $viewModel.toText
+                        )
+                    }
+                    .frame(height: 45)
                 }
                 .textCase(nil)
+                .listRowBackground(Color.clear)
+
 
                 // ZONE SELECTION
                 Section(header: Text(viewModel.zoneSelectionSectionTitle)) {
-                    Text("")
+                    Text("a")
+                    
                 }
                 .textCase(nil)
 
@@ -60,8 +84,10 @@ struct ZoneSelectorView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Info") {
-                        print("Help tapped!")
+                    Button {
+                        print("Info was tapped")
+                    } label: {
+                        Image(systemName: "info.circle.fill")
                     }
                 }
             }
@@ -93,3 +119,51 @@ struct ZoneSelectorView_Previews: PreviewProvider {
         ZoneSelectorView(viewModel: ZoneSelectorViewModel(shoppingCart: ShoppingCart(ticketOperator: ProductsData.shared.vtTicketOperator, productType: ProductsData.shared.vtTicketOperator.productTypes[0])))
     }
 }
+
+
+
+struct FirstResponderTextField: UIViewRepresentable {
+    
+    let placeholder: String
+    @Binding var text: String
+    
+    class Coordinator: NSObject, UITextFieldDelegate {
+        @Binding var text: String
+        var becameFirstResponder = false
+
+        init(text: Binding<String>) {
+            self._text = text
+        }
+        
+        func textFieldDidChangeSelection(_ textField: UITextField) {
+            text = textField.text ?? ""
+        }
+    }
+    
+    func makeCoordinator() -> Coordinator {
+        return Coordinator(text: $text)
+    }
+    
+    func makeUIView(context: Context) -> some UIView {
+        let textField = UITextField()
+        textField.delegate = context.coordinator
+        textField.placeholder = placeholder
+        textField.text = text
+        textField.font = UIFont(name: "Sk-Modernist-Regular", size: 17.0)
+        textField.tintColor = UIColor.blue // UIColor.General.accentColor
+        textField.textColor = UIColor.black // UIColor.Text.primary
+        textField.attributedPlaceholder = NSAttributedString(
+            string: placeholder,
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray /*UIColor.General.placeholderColor*/]
+        )
+        return textField
+    }
+    
+    func updateUIView(_ uiView: UIViewType, context: Context) {
+        if !context.coordinator.becameFirstResponder {
+            uiView.becomeFirstResponder()
+            context.coordinator.becameFirstResponder = true
+        }
+    }
+}
+
