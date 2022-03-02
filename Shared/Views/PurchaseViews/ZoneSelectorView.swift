@@ -36,9 +36,8 @@ struct ZoneSelectorView: View {
 
     
     var body: some View {
-        VStack {
             
-            List {
+            ScrollView {
                 
                 // TICKET TYPE
                 Section(header: ticketTypeSectionHeaderView()) {
@@ -98,7 +97,7 @@ struct ZoneSelectorView: View {
                 SelectPriceCategorySwiftUIView(shoppingCart: viewModel.shoppingCart)
                     .navigationTitle("Köp biljett")
             }
-        }
+        
     }
     
     private func ticketTypeSectionHeaderView() -> some View {
