@@ -45,29 +45,29 @@ struct ZoneSelectorView: View {
                 Text(viewModel.shoppingCart.productType.name)
                 
                 // ZONE SEARCH
-                    Text(viewModel.zoneSearchSectionTitle)
-                    HStack {
-                        Image(systemName: "info.circle.fill").foregroundColor(.gray)
-                        FirstResponderTextField(
-                            placeholder: viewModel.placeholderText,
-                            text: $viewModel.fromText
-                        )
-                    }
-                    .frame(height: 45)
-                    
-                    HStack {
-                        Image(systemName: "info.circle.fill").foregroundColor(.gray)
-                        FirstResponderTextField(
-                            placeholder: viewModel.placeholderText,
-                            text: $viewModel.toText
-                        )
-                    }
-                    .frame(height: 45)
-
+                Text(viewModel.zoneSearchSectionTitle)
+                HStack {
+                    Image(systemName: "info.circle.fill").foregroundColor(.gray)
+                    FirstResponderTextField(
+                        placeholder: viewModel.placeholderText,
+                        text: $viewModel.fromText
+                    )
+                }
+                .frame(height: 45)
+                
+                HStack {
+                    Image(systemName: "info.circle.fill").foregroundColor(.gray)
+                    FirstResponderTextField(
+                        placeholder: viewModel.placeholderText,
+                        text: $viewModel.toText
+                    )
+                }
+                .frame(height: 45)
+                
                 // ZONE SELECTION
                 Text(viewModel.zoneSelectionSectionTitle)
-                    Text("a")
-
+                Text("a")
+                
             }
             .listStyle(GroupedListStyle())
             .padding(.top)
