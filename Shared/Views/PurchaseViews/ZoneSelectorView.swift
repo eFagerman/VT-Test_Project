@@ -67,8 +67,6 @@ struct ZoneSelectorView: View {
                     .frame(height: 45)
                 }
                 .textCase(nil)
-                .listRowBackground(Color.clear)
-
 
                 // ZONE SELECTION
                 Section(header: Text(viewModel.zoneSelectionSectionTitle)) {
@@ -91,6 +89,7 @@ struct ZoneSelectorView: View {
                     }
                 }
             }
+            .background(Color.gray)
 
             
             Spacer()
