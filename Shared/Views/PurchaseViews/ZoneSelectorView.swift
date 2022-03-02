@@ -41,13 +41,11 @@ struct ZoneSelectorView: View {
             ScrollView {
                 
                 // TICKET TYPE
-                Section(header: ticketTypeSectionHeaderView()) {
-                    Text(viewModel.shoppingCart.productType.name)
-                }
-                .textCase(nil)
+                ticketTypeSectionHeaderView()
+                Text(viewModel.shoppingCart.productType.name)
                 
                 // ZONE SEARCH
-                Section(header: Text(viewModel.zoneSearchSectionTitle)) {
+                    Text(viewModel.zoneSearchSectionTitle)
                     HStack {
                         Image(systemName: "info.circle.fill").foregroundColor(.gray)
                         FirstResponderTextField(
@@ -65,15 +63,10 @@ struct ZoneSelectorView: View {
                         )
                     }
                     .frame(height: 45)
-                }
-                .textCase(nil)
 
                 // ZONE SELECTION
-                Section(header: Text(viewModel.zoneSelectionSectionTitle)) {
+                Text(viewModel.zoneSelectionSectionTitle)
                     Text("a")
-                    
-                }
-                .textCase(nil)
 
             }
             .listStyle(GroupedListStyle())
@@ -109,6 +102,7 @@ struct ZoneSelectorView: View {
                 presentation.wrappedValue.dismiss()
             }
         }
+        .padding()
     }
 
 
