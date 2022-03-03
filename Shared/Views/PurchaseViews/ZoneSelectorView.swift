@@ -16,9 +16,16 @@ class ZoneSelectorViewModel: ObservableObject {
     let zoneSelectionSectionTitle = "Välj zon"
     let placeholderText = "Ange adress eller plats"
     
+    let activeBackgroundColor = UIColor.white
+    let activeTextColor = UIColor.black
+    let inactiveBackgroundColor = UIColor.blue
+    let inactiveTextColor = UIColor.white
+
     @Published var shoppingCart: ShoppingCart
     @Published var fromText: String
     @Published var toText: String
+    @Published var isFromTextActive = false
+    @Published var isToTextActive = true
   
     init(shoppingCart: ShoppingCart) {
         self.shoppingCart = shoppingCart
@@ -47,20 +54,38 @@ struct ZoneSelectorView: View {
                 // ZONE SEARCH
                 Text(viewModel.zoneSearchSectionTitle)
                 HStack {
+                    Spacer().frame(width: 8)
                     Image(systemName: "info.circle.fill").foregroundColor(.gray)
+                    Spacer().frame(width: 8)
                     FirstResponderTextField(
                         placeholder: viewModel.placeholderText,
-                        text: $viewModel.fromText
-                    )
+                        text: $viewModel.fromText,
+                        isActive: $viewModel.isFromTextActive,
+                        activeBackgroundColor: viewModel.activeBackgroundColor,
+                        activeTextColor: viewModel.activeTextColor,
+                        inactiveBackgroundColor: viewModel.inactiveBackgroundColor,
+                        inactiveTextColor: viewModel.inactiveTextColor)
+                    Spacer().frame(width: 8)
+                    Text("Från")
+                    Spacer().frame(width: 17)
                 }
+
                 .frame(height: 45)
+                .background(viewModel.isFromTextActive ? Color(UIColor.white) : Color(UIColor.blue))
+                .cornerRadius(20, corners: [.topLeft, .topRight])
+                .cornerRadius(3, corners: [.bottomLeft, .bottomRight])
+                .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
                 
                 HStack {
                     Image(systemName: "info.circle.fill").foregroundColor(.gray)
                     FirstResponderTextField(
                         placeholder: viewModel.placeholderText,
-                        text: $viewModel.toText
-                    )
+                        text: $viewModel.toText,
+                        isActive: $viewModel.isToTextActive,
+                        activeBackgroundColor: viewModel.activeBackgroundColor,
+                        activeTextColor: viewModel.activeTextColor,
+                        inactiveBackgroundColor: viewModel.inactiveBackgroundColor,
+                        inactiveTextColor: viewModel.inactiveTextColor)
                 }
                 .frame(height: 45)
                 
@@ -120,22 +145,49 @@ struct FirstResponderTextField: UIViewRepresentable {
     
     let placeholder: String
     @Binding var text: String
+    @Binding var isActive: Bool
+    let activeBackgroundColor: UIColor?
+    let activeTextColor: UIColor?
+    let inactiveBackgroundColor: UIColor?
+    let inactiveTextColor: UIColor?
     
     class Coordinator: NSObject, UITextFieldDelegate {
         @Binding var text: String
+        @Binding var isActive: Bool
         var becameFirstResponder = false
+        let activeBackgroundColor: UIColor?
+        let activeTextColor: UIColor?
+        let inactiveBackgroundColor: UIColor?
+        let inactiveTextColor: UIColor?
 
-        init(text: Binding<String>) {
+        init(text: Binding<String>, isActive: Binding<Bool>, activeBackgroundColor: UIColor? = nil, activeTextColor: UIColor? = nil, inactiveBackgroundColor: UIColor? = nil, inactiveTextColor: UIColor? = nil) {
             self._text = text
+            self._isActive = isActive
+            self.activeBackgroundColor = activeBackgroundColor
+            self.activeTextColor = activeTextColor
+            self.inactiveBackgroundColor = inactiveBackgroundColor
+            self.inactiveTextColor = inactiveTextColor
         }
         
         func textFieldDidChangeSelection(_ textField: UITextField) {
             text = textField.text ?? ""
         }
+        
+        func textFieldDidBeginEditing(_ textField: UITextField) {
+            isActive = true
+            textField.backgroundColor = activeBackgroundColor
+            textField.textColor = activeTextColor
+        }
+        
+        func textFieldDidEndEditing(_ textField: UITextField) {
+            isActive = false
+            textField.backgroundColor = inactiveBackgroundColor
+            textField.textColor = inactiveTextColor
+        }
     }
     
     func makeCoordinator() -> Coordinator {
-        return Coordinator(text: $text)
+        return Coordinator(text: $text, isActive: $isActive, activeBackgroundColor: activeBackgroundColor, activeTextColor: activeTextColor, inactiveBackgroundColor: inactiveBackgroundColor, inactiveTextColor: inactiveTextColor)
     }
     
     func makeUIView(context: Context) -> some UIView {
@@ -143,9 +195,11 @@ struct FirstResponderTextField: UIViewRepresentable {
         textField.delegate = context.coordinator
         textField.placeholder = placeholder
         textField.text = text
+        textField.clearButtonMode = .always
         textField.font = UIFont(name: "Sk-Modernist-Regular", size: 17.0)
         textField.tintColor = UIColor.blue // UIColor.General.accentColor
-        textField.textColor = UIColor.black // UIColor.Text.primary
+        textField.backgroundColor = getBackgroundColor()
+        textField.textColor = getTextColor()
         textField.attributedPlaceholder = NSAttributedString(
             string: placeholder,
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray /*UIColor.General.placeholderColor*/]
@@ -153,8 +207,28 @@ struct FirstResponderTextField: UIViewRepresentable {
         return textField
     }
     
+    func getBackgroundColor() -> UIColor {
+        var backgroundColor = UIColor.clear
+        if isActive, let activeBackgroundColor = activeBackgroundColor  {
+            backgroundColor = activeBackgroundColor
+        } else if !isActive, let inactiveBackgroundColor = inactiveBackgroundColor  {
+            backgroundColor = inactiveBackgroundColor
+        }
+        return backgroundColor
+    }
+
+    func getTextColor() -> UIColor {
+        var textColor = UIColor.black // UIColor.Text.primary
+        if isActive, let activeTextColor = activeTextColor  {
+            textColor = activeTextColor
+        } else if !isActive, let inactiveTextColor = inactiveTextColor  {
+            textColor = inactiveTextColor
+        }
+        return textColor
+    }
+
     func updateUIView(_ uiView: UIViewType, context: Context) {
-        if !context.coordinator.becameFirstResponder {
+        if !context.coordinator.becameFirstResponder, isActive == true {
             uiView.becomeFirstResponder()
             context.coordinator.becameFirstResponder = true
         }
