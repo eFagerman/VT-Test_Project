@@ -117,6 +117,11 @@ struct ZoneSelectorView: View {
                     }
 
                 }
+                .frame(height: 45)
+                .background(viewModel.isToTextActive ? Color(UIColor.white) : Color(UIColor.blue))
+                .cornerRadius(3, corners: [.topLeft, .topRight])
+                .cornerRadius(20, corners: [.bottomLeft, .bottomRight])
+                .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
                 
 
                 
