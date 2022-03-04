@@ -54,56 +54,56 @@ struct ZoneSelectorView: View {
                 Text(viewModel.zoneSearchSectionTitle)
                 
                 ZStack {
-                
-                VStack {
                     
-                HStack {
-                    Spacer().frame(width: 8)
-                    Image(systemName: "info.circle.fill").foregroundColor(.gray)
-                    Spacer().frame(width: 8)
-                    FirstResponderTextField(
-                        placeholder: viewModel.placeholderText,
-                        text: $viewModel.fromText,
-                        isActive: $viewModel.isFromTextActive,
-                        activeBackgroundColor: viewModel.activeBackgroundColor,
-                        activeTextColor: viewModel.activeTextColor,
-                        inactiveBackgroundColor: viewModel.inactiveBackgroundColor,
-                        inactiveTextColor: viewModel.inactiveTextColor)
-                    Spacer().frame(width: 8)
-                    TextOfEqualWidth(text: "Från", minTextWidth: $textMinWidth)
-                    Spacer().frame(width: 15)
-                }
-                .frame(height: 45)
-                .background(viewModel.isFromTextActive ? Color(UIColor.white) : Color(UIColor.blue))
-                .cornerRadius(20, corners: [.topLeft, .topRight])
-                .cornerRadius(3, corners: [.bottomLeft, .bottomRight])
-                .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
-                
-                Spacer().frame(height: 4)
-
-                HStack {
-                    Spacer().frame(width: 8)
-                    Image(systemName: "info.circle.fill").foregroundColor(.gray)
-                    Spacer().frame(width: 8)
-                    FirstResponderTextField(
-                        placeholder: viewModel.placeholderText,
-                        text: $viewModel.toText,
-                        isActive: $viewModel.isToTextActive,
-                        activeBackgroundColor: viewModel.activeBackgroundColor,
-                        activeTextColor: viewModel.activeTextColor,
-                        inactiveBackgroundColor: viewModel.inactiveBackgroundColor,
-                        inactiveTextColor: viewModel.inactiveTextColor)
-                    Spacer().frame(width: 8)
-                    TextOfEqualWidth(text: "Till", minTextWidth: $textMinWidth)
-                    Spacer().frame(width: 15)
-                }
-                .frame(height: 45)
-                .background(viewModel.isToTextActive ? Color(UIColor.white) : Color(UIColor.blue))
-                .cornerRadius(3, corners: [.topLeft, .topRight])
-                .cornerRadius(20, corners: [.bottomLeft, .bottomRight])
-                .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
-                    
-                }
+                    VStack {
+                        
+                        HStack {
+                            Spacer().frame(width: 8)
+                            Image(systemName: "info.circle.fill").foregroundColor(.gray)
+                            Spacer().frame(width: 8)
+                            FirstResponderTextField(
+                                placeholder: viewModel.placeholderText,
+                                text: $viewModel.fromText,
+                                isActive: $viewModel.isFromTextActive,
+                                activeBackgroundColor: viewModel.activeBackgroundColor,
+                                activeTextColor: viewModel.activeTextColor,
+                                inactiveBackgroundColor: viewModel.inactiveBackgroundColor,
+                                inactiveTextColor: viewModel.inactiveTextColor)
+                            Spacer().frame(width: 8)
+                            TextOfEqualWidth(text: "Från", minTextWidth: $textMinWidth)
+                            Spacer().frame(width: 15)
+                        }
+                        .frame(height: 45)
+                        .background(viewModel.isFromTextActive ? Color(UIColor.white) : Color(UIColor.blue))
+                        .cornerRadius(20, corners: [.topLeft, .topRight])
+                        .cornerRadius(3, corners: [.bottomLeft, .bottomRight])
+                        .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
+                        
+                        Spacer().frame(height: 4)
+                        
+                        HStack {
+                            Spacer().frame(width: 8)
+                            Image(systemName: "info.circle.fill").foregroundColor(.gray)
+                            Spacer().frame(width: 8)
+                            FirstResponderTextField(
+                                placeholder: viewModel.placeholderText,
+                                text: $viewModel.toText,
+                                isActive: $viewModel.isToTextActive,
+                                activeBackgroundColor: viewModel.activeBackgroundColor,
+                                activeTextColor: viewModel.activeTextColor,
+                                inactiveBackgroundColor: viewModel.inactiveBackgroundColor,
+                                inactiveTextColor: viewModel.inactiveTextColor)
+                            Spacer().frame(width: 8)
+                            TextOfEqualWidth(text: "Till", minTextWidth: $textMinWidth)
+                            Spacer().frame(width: 15)
+                        }
+                        .frame(height: 45)
+                        .background(viewModel.isToTextActive ? Color(UIColor.white) : Color(UIColor.blue))
+                        .cornerRadius(3, corners: [.topLeft, .topRight])
+                        .cornerRadius(20, corners: [.bottomLeft, .bottomRight])
+                        .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
+                        
+                    }
                     
                     Button(action: {
                         print("switch")
