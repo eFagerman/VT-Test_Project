@@ -38,9 +38,8 @@ class ZoneSelectorViewModel: ObservableObject {
 struct ZoneSelectorView: View {
     
     @Environment(\.presentationMode) var presentation
-
     @ObservedObject var viewModel: ZoneSelectorViewModel
-
+    @State private var textMinWidth: CGFloat?
     
     var body: some View {
         VStack {
@@ -66,18 +65,21 @@ struct ZoneSelectorView: View {
                         inactiveBackgroundColor: viewModel.inactiveBackgroundColor,
                         inactiveTextColor: viewModel.inactiveTextColor)
                     Spacer().frame(width: 8)
-                    Text("Från")
-                    Spacer().frame(width: 17)
+                    TextOfEqualWidth(text: "Från", minTextWidth: $textMinWidth)
+                    Spacer().frame(width: 15)
                 }
-
                 .frame(height: 45)
                 .background(viewModel.isFromTextActive ? Color(UIColor.white) : Color(UIColor.blue))
                 .cornerRadius(20, corners: [.topLeft, .topRight])
                 .cornerRadius(3, corners: [.bottomLeft, .bottomRight])
                 .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
                 
+                Spacer().frame(height: 4)
+
                 HStack {
+                    Spacer().frame(width: 8)
                     Image(systemName: "info.circle.fill").foregroundColor(.gray)
+                    Spacer().frame(width: 8)
                     FirstResponderTextField(
                         placeholder: viewModel.placeholderText,
                         text: $viewModel.toText,
@@ -86,8 +88,16 @@ struct ZoneSelectorView: View {
                         activeTextColor: viewModel.activeTextColor,
                         inactiveBackgroundColor: viewModel.inactiveBackgroundColor,
                         inactiveTextColor: viewModel.inactiveTextColor)
+                    Spacer().frame(width: 8)
+                    TextOfEqualWidth(text: "Till", minTextWidth: $textMinWidth)
+                    Spacer().frame(width: 15)
                 }
                 .frame(height: 45)
+                .background(viewModel.isToTextActive ? Color(UIColor.white) : Color(UIColor.blue))
+                .cornerRadius(3, corners: [.topLeft, .topRight])
+                .cornerRadius(20, corners: [.bottomLeft, .bottomRight])
+                .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
+
                 
                 // ZONE SELECTION
                 Text(viewModel.zoneSelectionSectionTitle)
@@ -235,3 +245,38 @@ struct FirstResponderTextField: UIViewRepresentable {
     }
 }
 
+
+struct TextOfEqualWidth: View {
+    let text: String
+    let minTextWidth: Binding<CGFloat?>
+    
+    var body: some View {
+        Text(text).equalWidth(minTextWidth)
+    }
+}
+
+struct EqualWidthPreferenceKey: PreferenceKey {
+    typealias Value = CGFloat
+    static var defaultValue: CGFloat = 0
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value = nextValue()
+    }
+}
+
+struct EqualWidth: ViewModifier {
+    let width: Binding<CGFloat?>
+    func body(content: Content) -> some View {
+        content.frame(width: width.wrappedValue, alignment: .leading)
+            .background(GeometryReader { proxy in
+                Color.clear.preference(key: EqualWidthPreferenceKey.self, value: proxy.size.width)
+            }).onPreferenceChange(EqualWidthPreferenceKey.self) { (value) in
+                self.width.wrappedValue = max(self.width.wrappedValue ?? 0, value)
+            }
+    }
+}
+
+extension View {
+    func equalWidth(_ width: Binding<CGFloat?>) -> some View {
+        return modifier(EqualWidth(width: width))
+    }
+}
