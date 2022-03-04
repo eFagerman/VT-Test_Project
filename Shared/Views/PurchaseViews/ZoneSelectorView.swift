@@ -52,6 +52,11 @@ struct ZoneSelectorView: View {
                 
                 // ZONE SEARCH
                 Text(viewModel.zoneSearchSectionTitle)
+                
+                ZStack {
+                
+                VStack {
+                    
                 HStack {
                     Spacer().frame(width: 8)
                     Image(systemName: "info.circle.fill").foregroundColor(.gray)
@@ -97,6 +102,22 @@ struct ZoneSelectorView: View {
                 .cornerRadius(3, corners: [.topLeft, .topRight])
                 .cornerRadius(20, corners: [.bottomLeft, .bottomRight])
                 .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
+                    
+                }
+                    
+                    Button(action: {
+                        print("switch")
+                    }) {
+                        HStack {
+                            Spacer()
+                            Image(systemName: "info.circle.fill").foregroundColor(.gray)
+                                .frame(width: 26)
+                            Spacer().frame(width: 15 + 8 + CGFloat(textMinWidth ?? 0)/2 - CGFloat(26)/2)
+                        }
+                    }
+
+                }
+                
 
                 
                 // ZONE SELECTION
