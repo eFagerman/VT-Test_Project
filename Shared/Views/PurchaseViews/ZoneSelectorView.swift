@@ -108,6 +108,10 @@ struct ZoneSelectorView: View {
                     Button(action: {
                         self.viewModel.isFromTextActive.toggle()
                         self.viewModel.isToTextActive.toggle()
+                        let oldFromText = viewModel.fromText
+                        let oldToText = viewModel.toText
+                        self.viewModel.fromText = oldToText
+                        self.viewModel.toText = oldFromText
                     }) {
                         HStack {
                             Spacer()
@@ -183,42 +187,32 @@ struct FirstResponderTextField: UIViewRepresentable {
     let inactiveTextColor: UIColor?
     
     class Coordinator: NSObject, UITextFieldDelegate {
-        @Binding var text: String
-        @Binding var isActive: Bool
-        var becameFirstResponder = false
-        let activeBackgroundColor: UIColor?
-        let activeTextColor: UIColor?
-        let inactiveBackgroundColor: UIColor?
-        let inactiveTextColor: UIColor?
-
-        init(text: Binding<String>, isActive: Binding<Bool>, activeBackgroundColor: UIColor? = nil, activeTextColor: UIColor? = nil, inactiveBackgroundColor: UIColor? = nil, inactiveTextColor: UIColor? = nil) {
-            self._text = text
-            self._isActive = isActive
-            self.activeBackgroundColor = activeBackgroundColor
-            self.activeTextColor = activeTextColor
-            self.inactiveBackgroundColor = inactiveBackgroundColor
-            self.inactiveTextColor = inactiveTextColor
+        
+        var parent: FirstResponderTextField
+        
+        init(_ parent: FirstResponderTextField) {
+            self.parent = parent
         }
         
         func textFieldDidChangeSelection(_ textField: UITextField) {
-            text = textField.text ?? ""
+            parent.text = textField.text ?? ""
         }
         
         func textFieldDidBeginEditing(_ textField: UITextField) {
-            isActive = true
-            textField.backgroundColor = activeBackgroundColor
-            textField.textColor = activeTextColor
+            parent.isActive = true
+            textField.backgroundColor = parent.activeBackgroundColor
+            textField.textColor = parent.activeTextColor
         }
         
         func textFieldDidEndEditing(_ textField: UITextField) {
-            isActive = false
-            textField.backgroundColor = inactiveBackgroundColor
-            textField.textColor = inactiveTextColor
+            parent.isActive = false
+            textField.backgroundColor = parent.inactiveBackgroundColor
+            textField.textColor = parent.inactiveTextColor
         }
     }
     
     func makeCoordinator() -> Coordinator {
-        return Coordinator(text: $text, isActive: $isActive, activeBackgroundColor: activeBackgroundColor, activeTextColor: activeTextColor, inactiveBackgroundColor: inactiveBackgroundColor, inactiveTextColor: inactiveTextColor)
+        return Coordinator(self)
     }
     
     func makeUIView(context: Context) -> some UIView {
@@ -259,10 +253,13 @@ struct FirstResponderTextField: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: UIViewType, context: Context) {
-        if !context.coordinator.becameFirstResponder, isActive == true {
-            uiView.becomeFirstResponder()
-        } else if context.coordinator.becameFirstResponder, isActive == false {
-            uiView.resignFirstResponder()
+        if let textField = uiView as? UITextField {
+            textField.text = text
+            if isActive == true {
+                textField.becomeFirstResponder()
+            } else {
+                textField.resignFirstResponder()
+            }
         }
     }
 }
