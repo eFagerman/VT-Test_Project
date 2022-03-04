@@ -106,7 +106,8 @@ struct ZoneSelectorView: View {
                     }
                     
                     Button(action: {
-                        print("switch")
+                        self.viewModel.isFromTextActive.toggle()
+                        self.viewModel.isToTextActive.toggle()
                     }) {
                         HStack {
                             Spacer()
@@ -260,7 +261,8 @@ struct FirstResponderTextField: UIViewRepresentable {
     func updateUIView(_ uiView: UIViewType, context: Context) {
         if !context.coordinator.becameFirstResponder, isActive == true {
             uiView.becomeFirstResponder()
-            context.coordinator.becameFirstResponder = true
+        } else if context.coordinator.becameFirstResponder, isActive == false {
+            uiView.resignFirstResponder()
         }
     }
 }
