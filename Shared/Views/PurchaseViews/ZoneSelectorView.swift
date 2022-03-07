@@ -151,9 +151,18 @@ struct ZoneSelectorView: View {
                 
 
                 
-                // ZONE SELECTION
-                Text(viewModel.zoneSelectionSectionTitle)
-                    .font(.applicationFont(withWeight: .bold, andSize: 13))
+                // ZONE SELECTION HEADER
+                HStack {
+                    Text(viewModel.zoneSelectionSectionTitle)
+                        .font(.applicationFont(withWeight: .bold, andSize: 13))
+                    Spacer()
+                }
+                .padding(.horizontal)
+                .padding(.top, 24)
+                .padding(.bottom, 1)
+
+                // ZONE LIST
+
                 Text("a")
                     .font(.applicationFont(withWeight: .regular, andSize: 17))
 
