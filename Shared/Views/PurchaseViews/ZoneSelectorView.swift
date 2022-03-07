@@ -58,6 +58,7 @@ struct ZoneSelectorView: View {
                     HStack {
                         Spacer().frame(width: 16)
                         Text(viewModel.shoppingCart.productType.name)
+                            .font(.applicationFont(withWeight: .bold, andSize: 15))
                         Spacer()
                     }
                 }
@@ -69,6 +70,7 @@ struct ZoneSelectorView: View {
                 // ZONE SEARCH
                 HStack {
                     Text(viewModel.zoneSearchSectionTitle)
+                        .font(.applicationFont(withWeight: .bold, andSize: 13))
                     Spacer()
                 }
                 .padding(.horizontal)
@@ -93,6 +95,7 @@ struct ZoneSelectorView: View {
                                 inactiveTextColor: viewModel.inactiveTextColor)
                             Spacer().frame(width: 8)
                             TextOfEqualWidth(text: "Från", minTextWidth: $textMinWidth)
+                                .font(.applicationFont(withWeight: .regular, andSize: 13))
                             Spacer().frame(width: 15)
                         }
                         .frame(height: 45)
@@ -117,7 +120,8 @@ struct ZoneSelectorView: View {
                                 inactiveTextColor: viewModel.inactiveTextColor)
                             Spacer().frame(width: 8)
                             TextOfEqualWidth(text: "Till", minTextWidth: $textMinWidth)
-                            Spacer().frame(width: 15)
+                                .font(.applicationFont(withWeight: .regular, andSize: 15))
+                            Spacer().frame(width: 13)
                         }
                         .frame(height: 45)
                         .background(viewModel.isToTextActive ? Color(UIColor.white) : Color(UIColor.blue))
@@ -149,8 +153,10 @@ struct ZoneSelectorView: View {
                 
                 // ZONE SELECTION
                 Text(viewModel.zoneSelectionSectionTitle)
+                    .font(.applicationFont(withWeight: .bold, andSize: 13))
                 Text("a")
-                
+                    .font(.applicationFont(withWeight: .regular, andSize: 17))
+
             }
             .padding(.top)
             .navigationTitle(viewModel.shoppingCart.ticketOperator.name)
@@ -173,16 +179,19 @@ struct ZoneSelectorView: View {
                 SelectPriceCategorySwiftUIView(shoppingCart: viewModel.shoppingCart)
                     .navigationTitle("Köp biljett")
             }
+            .font(.applicationFont(withWeight: .bold, andSize: 21))
         }
     }
     
     private func ticketTypeSectionHeaderView() -> some View {
         HStack {
             Text(viewModel.ticketTypeSectionTitle)
+                .font(.applicationFont(withWeight: .bold, andSize: 13))
             Spacer()
             Button(viewModel.ticketTypeSectionÄndra) {
                 presentation.wrappedValue.dismiss()
             }
+            .font(.applicationFont(withWeight: .regular, andSize: 13))
         }
         .padding(.horizontal)
     }
