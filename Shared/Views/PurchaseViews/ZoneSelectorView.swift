@@ -46,10 +46,26 @@ struct ZoneSelectorView: View {
             
             ScrollView {
                 
+                
                 // TICKET TYPE
                 ticketTypeSectionHeaderView()
-                Text(viewModel.shoppingCart.productType.name)
-                
+                    .padding(.bottom, -1)
+
+                Divider().background(Color(UIColor.red))
+                    .padding(.top, 1)
+                Spacer().frame(height: 0)
+                VStack {
+                    HStack {
+                        Spacer().frame(width: 16)
+                        Text(viewModel.shoppingCart.productType.name)
+                        Spacer()
+                    }
+                }
+                .frame(height: 46)
+                .background(Color(UIColor.white))
+                Spacer().frame(height: 0)
+                Divider().background(Color(UIColor.red))
+
                 // ZONE SEARCH
                 Text(viewModel.zoneSearchSectionTitle)
                 
@@ -162,7 +178,7 @@ struct ZoneSelectorView: View {
                 presentation.wrappedValue.dismiss()
             }
         }
-        .padding()
+        .padding(.horizontal)
     }
 
 
