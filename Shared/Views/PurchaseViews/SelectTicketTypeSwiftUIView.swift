@@ -87,7 +87,7 @@ struct SelectTicketTypeSwiftUIView: View {
                 // HISTORY
                 Section(header: Text(viewModel.historySectionHeader)) {
                     
-                    ScrollView(.horizontal) {
+                    ScrollView(.horizontal, showsIndicators: false) {
                         
                         HStack(spacing: 8) {
                             
@@ -100,6 +100,7 @@ struct SelectTicketTypeSwiftUIView: View {
                         .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
                     }
                     .frame(height: 67, alignment: .leading)
+                    .padding(EdgeInsets(top: 0, leading: -20, bottom: 0, trailing: -20))
                 }
                 
                 // OPERATOR
