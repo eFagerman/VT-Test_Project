@@ -44,10 +44,22 @@ class ZoneSelectorViewModel: ObservableObject {
     
     private static func getZoneCellModelList() -> [ZoneCellModel] {
         let zoneA = ZoneCellModel(title: "Zon A", message: "Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ", selected: true, dimmed: false)
-        let zoneB = ZoneCellModel(title: "Zon B", message: "Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ", selected: false, dimmed: false)
+        let zoneB = ZoneCellModel(title: "Zon B", message: "Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ", selected: false, dimmed: true)
         let zoneC = ZoneCellModel(title: "Zon C", message: "Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ", selected: false, dimmed: false)
         let zoneAB = ZoneCellModel(title: "Zon AB", message: "Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ", selected: false, dimmed: false)
         return [zoneA, zoneB, zoneC, zoneAB]
+    }
+    
+    func tappedOn(tappedIndex: Int) {
+        var newZoneList = [ZoneCellModel]()
+        var index = -1
+        for zoneListItem in self.zoneList {
+            index += 1
+            var newZoneListItem = zoneListItem
+            newZoneListItem.selected = tappedIndex == index
+            newZoneList.append(newZoneListItem)
+        }
+        self.zoneList = newZoneList
     }
 }
 
@@ -179,9 +191,18 @@ struct ZoneSelectorView: View {
                 .padding(.bottom, 1)
 
                 // ZONE LIST
-                ForEach(viewModel.zoneList, id: \.title) { zoneCellModel in
-                    Text(zoneCellModel.title)
-                        .font(.applicationFont(withWeight: .regular, andSize: 17))
+                // this one doesn't work: Divider().background(Color(UIColor.yellow))
+
+                ForEach(viewModel.zoneList.indices) { i in
+                    VStack {
+                        ZoneCellView(viewModel: viewModel.zoneList[i])
+                            .onTapGesture {
+                                viewModel.tappedOn(tappedIndex: i)
+                            }
+                        Spacer().frame(height: 0)
+                        Divider().background(Color(UIColor.yellow))
+                        Spacer().frame(height: 0)
+                    }
                 }
                 
             }
@@ -372,4 +393,27 @@ extension View {
     func equalWidth(_ width: Binding<CGFloat?>) -> some View {
         return modifier(EqualWidth(width: width))
     }
+}
+
+
+
+// tmp
+struct RadioButtonView: View {
+
+    let isSelected: Bool
+
+    var body: some View {
+        if isSelected {
+            Image(systemName: "circle.circle")
+                .renderingMode(.template)
+                .foregroundColor(Color(UIColor.green))
+                .padding(.horizontal, 16)
+        } else {
+            Image(systemName: "circle")
+                .renderingMode(.template)
+                .foregroundColor(Color(UIColor.white))
+                .padding(.horizontal, 16)
+        }
+    }
+    
 }
