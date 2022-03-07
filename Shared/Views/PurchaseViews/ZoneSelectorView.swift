@@ -8,6 +8,13 @@
 import SwiftUI
 
 
+struct ZoneCellModel {
+    let title: String
+    let message: String
+    var selected = false
+    var dimmed = false
+}
+
 class ZoneSelectorViewModel: ObservableObject {
     
     let ticketTypeSectionTitle = "Biljettyp"
@@ -26,11 +33,21 @@ class ZoneSelectorViewModel: ObservableObject {
     @Published var toText: String
     @Published var isFromTextActive = false
     @Published var isToTextActive = true
+    @Published var zoneList: [ZoneCellModel]
   
     init(shoppingCart: ShoppingCart) {
         self.shoppingCart = shoppingCart
         self.fromText = ""
         self.toText = ""
+        self.zoneList = ZoneSelectorViewModel.getZoneCellModelList()
+    }
+    
+    private static func getZoneCellModelList() -> [ZoneCellModel] {
+        let zoneA = ZoneCellModel(title: "Zon A", message: "Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ", selected: true, dimmed: false)
+        let zoneB = ZoneCellModel(title: "Zon B", message: "Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ", selected: false, dimmed: false)
+        let zoneC = ZoneCellModel(title: "Zon C", message: "Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ", selected: false, dimmed: false)
+        let zoneAB = ZoneCellModel(title: "Zon AB", message: "Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ", selected: false, dimmed: false)
+        return [zoneA, zoneB, zoneC, zoneAB]
     }
 }
 
@@ -162,10 +179,11 @@ struct ZoneSelectorView: View {
                 .padding(.bottom, 1)
 
                 // ZONE LIST
-
-                Text("a")
-                    .font(.applicationFont(withWeight: .regular, andSize: 17))
-
+                ForEach(viewModel.zoneList, id: \.title) { zoneCellModel in
+                    Text(zoneCellModel.title)
+                        .font(.applicationFont(withWeight: .regular, andSize: 17))
+                }
+                
             }
             .padding(.top)
             .navigationTitle(viewModel.shoppingCart.ticketOperator.name)
