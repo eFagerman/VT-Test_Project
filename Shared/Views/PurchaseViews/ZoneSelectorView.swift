@@ -67,7 +67,13 @@ struct ZoneSelectorView: View {
                 Divider().background(Color(UIColor.red))
 
                 // ZONE SEARCH
-                Text(viewModel.zoneSearchSectionTitle)
+                HStack {
+                    Text(viewModel.zoneSearchSectionTitle)
+                    Spacer()
+                }
+                .padding(.horizontal)
+                .padding(.top, 16)
+                .padding(.bottom, -1)
                 
                 ZStack {
                     
