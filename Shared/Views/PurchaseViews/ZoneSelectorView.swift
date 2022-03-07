@@ -15,6 +15,12 @@ struct ZoneCellModel {
     var dimmed = false
 }
 
+struct SearchSuggestionModel: Hashable {
+    let transportIconName: String
+    let stopName: String
+    let areaName: String
+}
+
 class ZoneSelectorViewModel: ObservableObject {
     
     let ticketTypeSectionTitle = "Biljettyp"
@@ -34,12 +40,14 @@ class ZoneSelectorViewModel: ObservableObject {
     @Published var isFromTextActive = false
     @Published var isToTextActive = true
     @Published var zoneList: [ZoneCellModel]
-  
+    @Published var searchSuggestionList: [SearchSuggestionModel]
+
     init(shoppingCart: ShoppingCart) {
         self.shoppingCart = shoppingCart
         self.fromText = ""
         self.toText = ""
         self.zoneList = ZoneSelectorViewModel.getZoneCellModelList()
+        self.searchSuggestionList = ZoneSelectorViewModel.getSearchSuggestionModelList()
     }
     
     private static func getZoneCellModelList() -> [ZoneCellModel] {
@@ -50,7 +58,14 @@ class ZoneSelectorViewModel: ObservableObject {
         return [zoneA, zoneB, zoneC, zoneAB]
     }
     
-    func tappedOn(tappedIndex: Int) {
+    private static func getSearchSuggestionModelList() -> [SearchSuggestionModel] {
+        let searchSuggestion1 = SearchSuggestionModel(transportIconName: "tram.fill", stopName: "Järntorget", areaName: "Göteborg")
+        let searchSuggestion2 = SearchSuggestionModel(transportIconName: "bus.fill", stopName: "Järntorget", areaName: "Göteborg")
+        let searchSuggestion3 = SearchSuggestionModel(transportIconName: "mappin", stopName: "Järntorget", areaName: "Göteborg")
+        return [searchSuggestion1, searchSuggestion2, searchSuggestion3]
+    }
+
+    func tappedOnZone(tappedIndex: Int) {
         var newZoneList = [ZoneCellModel]()
         var index = -1
         for zoneListItem in self.zoneList {
@@ -61,6 +76,12 @@ class ZoneSelectorViewModel: ObservableObject {
         }
         self.zoneList = newZoneList
     }
+    
+    func tappedOnSearch(tappedIndex: Int) {
+        toText = searchSuggestionList[tappedIndex].stopName
+        self.searchSuggestionList.remove(at: tappedIndex)
+    }
+
 }
 
 
@@ -74,7 +95,6 @@ struct ZoneSelectorView: View {
         VStack {
             
             ScrollView {
-                
                 
                 // TICKET TYPE
                 ticketTypeSectionHeaderView()
@@ -97,88 +117,21 @@ struct ZoneSelectorView: View {
                 Divider().background(Color(UIColor.red))
 
                 // ZONE SEARCH
-                HStack {
-                    Text(viewModel.zoneSearchSectionTitle)
-                        .font(.applicationFont(withWeight: .bold, andSize: 13))
-                    Spacer()
-                }
-                .padding(.horizontal)
-                .padding(.top, 24)
-                .padding(.bottom, 1)
+                zoneSearchView()
                 
-                ZStack {
-                    
-                    VStack {
-                        
-                        HStack {
-                            Spacer().frame(width: 8)
-                            Image(systemName: "info.circle.fill").foregroundColor(.gray)
-                            Spacer().frame(width: 8)
-                            FirstResponderTextField(
-                                placeholder: viewModel.placeholderText,
-                                text: $viewModel.fromText,
-                                isActive: $viewModel.isFromTextActive,
-                                activeBackgroundColor: viewModel.activeBackgroundColor,
-                                activeTextColor: viewModel.activeTextColor,
-                                inactiveBackgroundColor: viewModel.inactiveBackgroundColor,
-                                inactiveTextColor: viewModel.inactiveTextColor)
-                            Spacer().frame(width: 8)
-                            TextOfEqualWidth(text: "Från", minTextWidth: $textMinWidth)
-                                .font(.applicationFont(withWeight: .regular, andSize: 13))
-                            Spacer().frame(width: 15)
+                // SEARCH SUGGESTIONS
+                ForEach(viewModel.searchSuggestionList, id: \.self) { searchSuggestion in
+                    StopCellView(viewModel: searchSuggestion)
+                        .onTapGesture {
+                            viewModel.tappedOnSearch(tappedIndex: viewModel.searchSuggestionList.firstIndex(of: searchSuggestion) ?? 0)
                         }
-                        .frame(height: 45)
-                        .background(viewModel.isFromTextActive ? Color(UIColor.white) : Color(UIColor.blue))
-                        .cornerRadius(20, corners: [.topLeft, .topRight])
-                        .cornerRadius(3, corners: [.bottomLeft, .bottomRight])
-                        .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
-                        
-                        Spacer().frame(height: 4)
-                        
-                        HStack {
-                            Spacer().frame(width: 8)
-                            Image(systemName: "info.circle.fill").foregroundColor(.gray)
-                            Spacer().frame(width: 8)
-                            FirstResponderTextField(
-                                placeholder: viewModel.placeholderText,
-                                text: $viewModel.toText,
-                                isActive: $viewModel.isToTextActive,
-                                activeBackgroundColor: viewModel.activeBackgroundColor,
-                                activeTextColor: viewModel.activeTextColor,
-                                inactiveBackgroundColor: viewModel.inactiveBackgroundColor,
-                                inactiveTextColor: viewModel.inactiveTextColor)
-                            Spacer().frame(width: 8)
-                            TextOfEqualWidth(text: "Till", minTextWidth: $textMinWidth)
-                                .font(.applicationFont(withWeight: .regular, andSize: 15))
-                            Spacer().frame(width: 13)
-                        }
-                        .frame(height: 45)
-                        .background(viewModel.isToTextActive ? Color(UIColor.white) : Color(UIColor.blue))
-                        .cornerRadius(3, corners: [.topLeft, .topRight])
-                        .cornerRadius(20, corners: [.bottomLeft, .bottomRight])
-                        .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
-                        
-                    }
-                    
-                    Button(action: {
-                        self.viewModel.isFromTextActive.toggle()
-                        self.viewModel.isToTextActive.toggle()
-                        let oldFromText = viewModel.fromText
-                        let oldToText = viewModel.toText
-                        self.viewModel.fromText = oldToText
-                        self.viewModel.toText = oldFromText
-                    }) {
-                        HStack {
-                            Spacer()
-                            Image(systemName: "info.circle.fill").foregroundColor(.gray)
-                                .frame(width: 26)
-                            Spacer().frame(width: 15 + 8 + CGFloat(textMinWidth ?? 0)/2 - CGFloat(26)/2)
-                        }
+                    if viewModel.searchSuggestionList.firstIndex(of: searchSuggestion) ?? -1 < viewModel.searchSuggestionList.count - 1 {
+                        Spacer().frame(height: 0)
+                        Divider().background(Color(UIColor.yellow))
+                        Spacer().frame(height: 0)
                     }
 
                 }
-                
-
                 
                 // ZONE SELECTION HEADER
                 HStack {
@@ -192,12 +145,11 @@ struct ZoneSelectorView: View {
 
                 // ZONE LIST
                 // this one doesn't work: Divider().background(Color(UIColor.yellow))
-
                 ForEach(viewModel.zoneList.indices) { i in
                     VStack {
                         ZoneCellView(viewModel: viewModel.zoneList[i])
                             .onTapGesture {
-                                viewModel.tappedOn(tappedIndex: i)
+                                viewModel.tappedOnZone(tappedIndex: i)
                             }
                         Spacer().frame(height: 0)
                         Divider().background(Color(UIColor.yellow))
@@ -219,7 +171,6 @@ struct ZoneSelectorView: View {
                 }
             }
             .background(Color.gray)
-
             
             Spacer()
             
@@ -243,7 +194,88 @@ struct ZoneSelectorView: View {
         }
         .padding(.horizontal)
     }
-
+    
+    private func zoneSearchView() -> some View {
+        VStack {
+            HStack {
+                Text(viewModel.zoneSearchSectionTitle)
+                    .font(.applicationFont(withWeight: .bold, andSize: 13))
+                Spacer()
+            }
+            .padding(.horizontal)
+            .padding(.top, 24)
+            .padding(.bottom, 1)
+            
+            ZStack {
+                
+                VStack {
+                    
+                    HStack {
+                        Spacer().frame(width: 8)
+                        Image(systemName: "info.circle.fill").foregroundColor(.gray)
+                        Spacer().frame(width: 8)
+                        FirstResponderTextField(
+                            placeholder: viewModel.placeholderText,
+                            text: $viewModel.fromText,
+                            isActive: $viewModel.isFromTextActive,
+                            activeBackgroundColor: viewModel.activeBackgroundColor,
+                            activeTextColor: viewModel.activeTextColor,
+                            inactiveBackgroundColor: viewModel.inactiveBackgroundColor,
+                            inactiveTextColor: viewModel.inactiveTextColor)
+                        Spacer().frame(width: 8)
+                        TextOfEqualWidth(text: "Från", minTextWidth: $textMinWidth)
+                            .font(.applicationFont(withWeight: .regular, andSize: 13))
+                        Spacer().frame(width: 15)
+                    }
+                    .frame(height: 45)
+                    .background(viewModel.isFromTextActive ? Color(UIColor.white) : Color(UIColor.blue))
+                    .cornerRadius(20, corners: [.topLeft, .topRight])
+                    .cornerRadius(3, corners: [.bottomLeft, .bottomRight])
+                    .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
+                    
+                    Spacer().frame(height: 4)
+                    
+                    HStack {
+                        Spacer().frame(width: 8)
+                        Image(systemName: "info.circle.fill").foregroundColor(.gray)
+                        Spacer().frame(width: 8)
+                        FirstResponderTextField(
+                            placeholder: viewModel.placeholderText,
+                            text: $viewModel.toText,
+                            isActive: $viewModel.isToTextActive,
+                            activeBackgroundColor: viewModel.activeBackgroundColor,
+                            activeTextColor: viewModel.activeTextColor,
+                            inactiveBackgroundColor: viewModel.inactiveBackgroundColor,
+                            inactiveTextColor: viewModel.inactiveTextColor)
+                        Spacer().frame(width: 8)
+                        TextOfEqualWidth(text: "Till", minTextWidth: $textMinWidth)
+                            .font(.applicationFont(withWeight: .regular, andSize: 15))
+                        Spacer().frame(width: 13)
+                    }
+                    .frame(height: 45)
+                    .background(viewModel.isToTextActive ? Color(UIColor.white) : Color(UIColor.blue))
+                    .cornerRadius(3, corners: [.topLeft, .topRight])
+                    .cornerRadius(20, corners: [.bottomLeft, .bottomRight])
+                    .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
+                }
+                Button(action: {
+                    self.viewModel.isFromTextActive.toggle()
+                    self.viewModel.isToTextActive.toggle()
+                    let oldFromText = viewModel.fromText
+                    let oldToText = viewModel.toText
+                    self.viewModel.fromText = oldToText
+                    self.viewModel.toText = oldFromText
+                }) {
+                    HStack {
+                        Spacer()
+                        Image(systemName: "info.circle.fill").foregroundColor(.gray)
+                            .frame(width: 26)
+                        Spacer().frame(width: 15 + 8 + CGFloat(textMinWidth ?? 0)/2 - CGFloat(26)/2)
+                    }
+                }
+            }
+        }
+    }
 
 }
 
