@@ -74,8 +74,8 @@ struct ZoneSelectorView: View {
                     Spacer()
                 }
                 .padding(.horizontal)
-                .padding(.top, 16)
-                .padding(.bottom, -1)
+                .padding(.top, 24)
+                .padding(.bottom, 1)
                 
                 ZStack {
                     
