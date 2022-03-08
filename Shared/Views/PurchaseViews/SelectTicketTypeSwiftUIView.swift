@@ -88,6 +88,8 @@ struct SelectTicketTypeSwiftUIView: View {
                 historySectionView()
                 
                 // OPERATOR
+                
+                // OPERATOR HEADER
                 HStack {
                     Text(viewModel.operatorSectionHeader)
                         .font(.applicationFont(withWeight: .bold, andSize: 13))
@@ -97,6 +99,7 @@ struct SelectTicketTypeSwiftUIView: View {
                 .padding(.top, 24)
                 .padding(.bottom, 1)
                 
+                // OPERATOR CELLS
                 HStack {
                     DisclosureGroup(
                         isExpanded: $isExpanded,
@@ -134,22 +137,36 @@ struct SelectTicketTypeSwiftUIView: View {
                 }
                 
                 // PRODUCT
-                Section(header: Text(viewModel.selectTicketTypeSectionHeader)) {
-                    
-                    if let selectedOperator = selectedOperator, let productTypes = selectedOperator.productTypes {
-                        
-                        ForEach(productTypes) { productType in
-                            let shoppingCart = ShoppingCart(ticketOperator: selectedOperator, productType: productType)
-                            if selectedOperator.zones.count > 1 {
-                                NavigationLink(destination: ZoneSelectorView(viewModel: ZoneSelectorViewModel(shoppingCart: shoppingCart))) {
-                                    Text(productType.name)
-                                }
-                            } else {
-                                NavigationLink(destination: SelectPriceCategorySwiftUIView(shoppingCart: shoppingCart)) {
-                                    Text(productType.name)
-                                }
+                
+                // PRODUCT HEADER
+                HStack {
+                    Text(viewModel.selectTicketTypeSectionHeader)
+                        .font(.applicationFont(withWeight: .bold, andSize: 13))
+                    Spacer()
+                }
+                .padding(.horizontal)
+                .padding(.top, 24)
+                .padding(.bottom, 1)
+                
+                // PRODUCT CELLS
+                if let selectedOperator = selectedOperator, let productTypes = selectedOperator.productTypes {
+                    ForEach(productTypes) { productType in
+                        let shoppingCart = ShoppingCart(ticketOperator: selectedOperator, productType: productType)
+                        if selectedOperator.zones.count > 1 {
+                            NavigationLink(destination: ZoneSelectorView(viewModel: ZoneSelectorViewModel(shoppingCart: shoppingCart))) {
+                                arrowCell(title: productType.name)
                             }
+                            .buttonStyle(PlainButtonStyle())
+                            
+                        } else {
+                            NavigationLink(destination: SelectPriceCategorySwiftUIView(shoppingCart: shoppingCart)) {
+                                arrowCell(title: productType.name)
+                            }
+                            .buttonStyle(PlainButtonStyle())
                         }
+                        Spacer().frame(height: 0)
+                        Divider().background(Color(UIColor.yellow))
+                        Spacer().frame(height: 0)
                     }
                 }
             }
@@ -181,6 +198,21 @@ struct SelectTicketTypeSwiftUIView: View {
         }
     }
     
+    private func arrowCell(title: String) -> some View {
+        HStack {
+            Spacer().frame(width: 16)
+            Text(title)
+                .font(.applicationFont(withWeight: .regular, andSize: 17))
+            Spacer()
+            Image(systemName: "chevron.compact.right")
+            Spacer().frame(width: 14)
+        }
+        .foregroundColor(.white)
+        .frame(height: 48)
+        .background(Color(UIColor.gray))
+        .animation(.easeInOut)
+    }
+
     private func historySectionView() -> some View {
         VStack {
             HStack {
