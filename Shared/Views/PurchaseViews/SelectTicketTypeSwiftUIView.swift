@@ -93,21 +93,21 @@ struct SelectTicketTypeSwiftUIView: View {
                 .padding(.horizontal)
                 .padding(.top, 24)
                 .padding(.bottom, 1)
-
-                    ScrollView(.horizontal, showsIndicators: false) {
+                
+                ScrollView(.horizontal, showsIndicators: false) {
+                    
+                    HStack(spacing: 8) {
                         
-                        HStack(spacing: 8) {
+                        ForEach(viewModel.historicalTickets, id: \.ticketTypeName) { historicalTicket in
                             
-                            ForEach(viewModel.historicalTickets, id: \.ticketTypeName) { historicalTicket in
-                                
-                                let viewModel = HistoricalTicket(operatorImage: historicalTicket.operatorImage, ticketTypeName: historicalTicket.ticketTypeName, priceGroupName: historicalTicket.priceGroupName)
-                                HistoricalTicketSwiftUIView(viewModel: viewModel)
-                            }
+                            let viewModel = HistoricalTicket(operatorImage: historicalTicket.operatorImage, ticketTypeName: historicalTicket.ticketTypeName, priceGroupName: historicalTicket.priceGroupName)
+                            HistoricalTicketSwiftUIView(viewModel: viewModel)
                         }
-                        .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
                     }
-                    .frame(height: 67, alignment: .leading)
-                    .padding(EdgeInsets(top: 0, leading: -20, bottom: 0, trailing: -20))
+                    .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
+                }
+                .frame(height: 67, alignment: .leading)
+                .padding(EdgeInsets(top: 0, leading: -20, bottom: 0, trailing: -20))
                 
                 // OPERATOR
                 HStack {
@@ -118,7 +118,7 @@ struct SelectTicketTypeSwiftUIView: View {
                 .padding(.horizontal)
                 .padding(.top, 24)
                 .padding(.bottom, 1)
-
+                
                 HStack {
                     DisclosureGroup(
                         isExpanded: $isExpanded,
