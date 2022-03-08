@@ -20,8 +20,17 @@ struct SelectableRow<Model>: View where Model: SelectableItem {
     var body: some View {
         HStack {
             
-            image
-            
+            Spacer().frame(width: 16)
+
+            if let image = image {
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 24.0, height: 24.0)
+            }
+
+            Spacer().frame(width: 16)
+
             if let title = self.title {
                 Text(title)
             }
@@ -30,8 +39,10 @@ struct SelectableRow<Model>: View where Model: SelectableItem {
             
             if item == selectedItem {
                 Image("checkboxesRadioChecked")
+                    .frame(width: 18.0, height: 18.0)
             } else {
                 Image("checkboxesIosUnchecked")
+                    .frame(width: 18.0, height: 18.0)
             }
         }
         .contentShape(Rectangle())

@@ -82,11 +82,18 @@ struct SelectTicketTypeSwiftUIView: View {
         
         NavigationView {
             
-            List {
+            ScrollView {
                 
                 // HISTORY
-                Section(header: Text(viewModel.historySectionHeader)) {
-                    
+                HStack {
+                    Text(viewModel.historySectionHeader)
+                        .font(.applicationFont(withWeight: .bold, andSize: 13))
+                    Spacer()
+                }
+                .padding(.horizontal)
+                .padding(.top, 24)
+                .padding(.bottom, 1)
+
                     ScrollView(.horizontal, showsIndicators: false) {
                         
                         HStack(spacing: 8) {
@@ -101,27 +108,51 @@ struct SelectTicketTypeSwiftUIView: View {
                     }
                     .frame(height: 67, alignment: .leading)
                     .padding(EdgeInsets(top: 0, leading: -20, bottom: 0, trailing: -20))
-                }
                 
                 // OPERATOR
-                Section(header: Text(viewModel.operatorSectionHeader)) {
-                    
+                HStack {
+                    Text(viewModel.operatorSectionHeader)
+                        .font(.applicationFont(withWeight: .bold, andSize: 13))
+                    Spacer()
+                }
+                .padding(.horizontal)
+                .padding(.top, 24)
+                .padding(.bottom, 1)
+
+                HStack {
                     DisclosureGroup(
                         isExpanded: $isExpanded,
                         content: {
                             ForEach(viewModel.ticketOperators) { ticketOperator in
-                                SelectableRow(image: ticketOperator.image, title: ticketOperator.name, item: ticketOperator, selectedItem: $selectedOperator)
-                                    .onChange(of: selectedOperator) { newValue in
-                                        isExpanded = false
-                                    }
+                                VStack {
+                                    SelectableRow(image: ticketOperator.image, title: ticketOperator.name, item: ticketOperator, selectedItem: $selectedOperator)
+                                        .frame(height: 46)
+                                        .onChange(of: selectedOperator) { newValue in
+                                            isExpanded = false
+                                        }
+                                    Divider()
+                                }
                             }
                         },
                         label: {
-                            HStack(spacing: 20) {
-                                selectedOperator?.image
-                                Text(selectedOperator?.name ?? "")
+                            VStack {
+                                Divider()
+                                
+                                HStack {
+                                    Spacer().frame(width: 16)
+                                    selectedOperator?.image
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 24.0, height: 24.0)
+                                    Spacer().frame(width: 16)
+                                    Text(selectedOperator?.name ?? "")
+                                    Spacer()
+                                }
+                                .frame(height: 46)
+                                Divider()
                             }
                         })
+                    Spacer().frame(width: 23)
                 }
                 
                 // PRODUCT
@@ -144,17 +175,23 @@ struct SelectTicketTypeSwiftUIView: View {
                     }
                 }
             }
-            .listStyle(GroupedListStyle())
             .padding(.top)
             .navigationTitle(viewModel.title)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Stäng") {
-                        print("Help tapped!")
+                    Button {
+                        print("Close")
+                    } label: {
+                        Image(systemName: "xmark")
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        print("Info")
+                    } label: {
+                        Image(systemName: "info.circle.fill")
+                    }
                     Button("Info") {
                         print("Help tapped!")
                     }
