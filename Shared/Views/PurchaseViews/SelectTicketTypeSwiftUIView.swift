@@ -85,29 +85,7 @@ struct SelectTicketTypeSwiftUIView: View {
             ScrollView {
                 
                 // HISTORY
-                HStack {
-                    Text(viewModel.historySectionHeader)
-                        .font(.applicationFont(withWeight: .bold, andSize: 13))
-                    Spacer()
-                }
-                .padding(.horizontal)
-                .padding(.top, 24)
-                .padding(.bottom, 1)
-                
-                ScrollView(.horizontal, showsIndicators: false) {
-                    
-                    HStack(spacing: 8) {
-                        
-                        ForEach(viewModel.historicalTickets, id: \.ticketTypeName) { historicalTicket in
-                            
-                            let viewModel = HistoricalTicket(operatorImage: historicalTicket.operatorImage, ticketTypeName: historicalTicket.ticketTypeName, priceGroupName: historicalTicket.priceGroupName)
-                            HistoricalTicketSwiftUIView(viewModel: viewModel)
-                        }
-                    }
-                    .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
-                }
-                .frame(height: 67, alignment: .leading)
-                .padding(EdgeInsets(top: 0, leading: -20, bottom: 0, trailing: -20))
+                historySectionView()
                 
                 // OPERATOR
                 HStack {
@@ -200,6 +178,34 @@ struct SelectTicketTypeSwiftUIView: View {
             .onAppear {
                 self.selectedOperator = viewModel.ticketOperators.first!
             }
+        }
+    }
+    
+    private func historySectionView() -> some View {
+        VStack {
+            HStack {
+                Text(viewModel.historySectionHeader)
+                    .font(.applicationFont(withWeight: .bold, andSize: 13))
+                Spacer()
+            }
+            .padding(.horizontal)
+            .padding(.top, 24)
+            .padding(.bottom, 1)
+            
+            ScrollView(.horizontal, showsIndicators: false) {
+                
+                HStack(spacing: 8) {
+                    
+                    ForEach(viewModel.historicalTickets, id: \.ticketTypeName) { historicalTicket in
+                        
+                        let viewModel = HistoricalTicket(operatorImage: historicalTicket.operatorImage, ticketTypeName: historicalTicket.ticketTypeName, priceGroupName: historicalTicket.priceGroupName)
+                        HistoricalTicketSwiftUIView(viewModel: viewModel)
+                    }
+                }
+                .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
+            }
+            .frame(height: 67, alignment: .leading)
+            .padding(EdgeInsets(top: 0, leading: -20, bottom: 0, trailing: -20))
         }
     }
 }
