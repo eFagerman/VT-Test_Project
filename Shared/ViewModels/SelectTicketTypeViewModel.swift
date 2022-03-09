@@ -14,7 +14,6 @@ struct HistoricalTicket: TicketHistory {
     var priceGroupName: String
 }
 
-
 //class SelectTicketTypeViewModel: SelectTicketData, ObservableObject {
 class SelectTicketTypeViewModel: ObservableObject {
     
