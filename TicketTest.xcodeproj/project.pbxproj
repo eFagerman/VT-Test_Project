@@ -13,10 +13,10 @@
 		4D1E1D5727D7B890005EE55B /* PriceClassRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1E1D5527D7B890005EE55B /* PriceClassRow.swift */; };
 		4D1E1D5927D7BA07005EE55B /* TextOfEqualWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1E1D5827D7BA07005EE55B /* TextOfEqualWidth.swift */; };
 		4D1E1D5A27D7BA07005EE55B /* TextOfEqualWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1E1D5827D7BA07005EE55B /* TextOfEqualWidth.swift */; };
-		4D1E1D5C27D7BA4B005EE55B /* TicketInfoSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1E1D5B27D7BA4B005EE55B /* TicketInfoSwiftUIView.swift */; };
-		4D1E1D5D27D7BA4B005EE55B /* TicketInfoSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1E1D5B27D7BA4B005EE55B /* TicketInfoSwiftUIView.swift */; };
-		4D1E1D5F27D8F1CC005EE55B /* HistoricalTicketSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1E1D5E27D8F1CC005EE55B /* HistoricalTicketSwiftUIView.swift */; };
-		4D1E1D6027D8F1CC005EE55B /* HistoricalTicketSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1E1D5E27D8F1CC005EE55B /* HistoricalTicketSwiftUIView.swift */; };
+		4D1E1D5C27D7BA4B005EE55B /* TicketInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1E1D5B27D7BA4B005EE55B /* TicketInfoView.swift */; };
+		4D1E1D5D27D7BA4B005EE55B /* TicketInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1E1D5B27D7BA4B005EE55B /* TicketInfoView.swift */; };
+		4D1E1D5F27D8F1CC005EE55B /* HistoricalTicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1E1D5E27D8F1CC005EE55B /* HistoricalTicketView.swift */; };
+		4D1E1D6027D8F1CC005EE55B /* HistoricalTicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1E1D5E27D8F1CC005EE55B /* HistoricalTicketView.swift */; };
 		4D1E1D6227D8F304005EE55B /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1E1D6127D8F304005EE55B /* Protocols.swift */; };
 		4D1E1D6327D8F304005EE55B /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1E1D6127D8F304005EE55B /* Protocols.swift */; };
 		4D1E1D6527D8FA33005EE55B /* DividerTight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1E1D6427D8FA33005EE55B /* DividerTight.swift */; };
@@ -87,8 +87,8 @@
 		4D1E1D5127D7B603005EE55B /* TmpFromMainProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TmpFromMainProject.swift; sourceTree = "<group>"; };
 		4D1E1D5527D7B890005EE55B /* PriceClassRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceClassRow.swift; sourceTree = "<group>"; };
 		4D1E1D5827D7BA07005EE55B /* TextOfEqualWidth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextOfEqualWidth.swift; sourceTree = "<group>"; };
-		4D1E1D5B27D7BA4B005EE55B /* TicketInfoSwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketInfoSwiftUIView.swift; sourceTree = "<group>"; };
-		4D1E1D5E27D8F1CC005EE55B /* HistoricalTicketSwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalTicketSwiftUIView.swift; sourceTree = "<group>"; };
+		4D1E1D5B27D7BA4B005EE55B /* TicketInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketInfoView.swift; sourceTree = "<group>"; };
+		4D1E1D5E27D8F1CC005EE55B /* HistoricalTicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalTicketView.swift; sourceTree = "<group>"; };
 		4D1E1D6127D8F304005EE55B /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		4D1E1D6427D8FA33005EE55B /* DividerTight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerTight.swift; sourceTree = "<group>"; };
 		4D1E1D6727D8FB17005EE55B /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
@@ -178,8 +178,8 @@
 				4D1E1D5527D7B890005EE55B /* PriceClassRow.swift */,
 				E4CD0F6E27C7BDCA00D6536F /* ImageTextRow.swift */,
 				4D1E1D5827D7BA07005EE55B /* TextOfEqualWidth.swift */,
-				4D1E1D5B27D7BA4B005EE55B /* TicketInfoSwiftUIView.swift */,
-				4D1E1D5E27D8F1CC005EE55B /* HistoricalTicketSwiftUIView.swift */,
+				4D1E1D5B27D7BA4B005EE55B /* TicketInfoView.swift */,
+				4D1E1D5E27D8F1CC005EE55B /* HistoricalTicketView.swift */,
 				4D1E1D6427D8FA33005EE55B /* DividerTight.swift */,
 				4D1E1D6727D8FB17005EE55B /* SectionHeaderView.swift */,
 				4D1E1D6A27D90135005EE55B /* FirstResponderTextField.swift */,
@@ -393,12 +393,12 @@
 				4DBFE02F27D626B500F11E58 /* ZoneCellView.swift in Sources */,
 				E44FA2D627B9A79B008912CC /* InactiveFlexTicketViewModel.swift in Sources */,
 				4D1E1D5627D7B890005EE55B /* PriceClassRow.swift in Sources */,
-				4D1E1D5C27D7BA4B005EE55B /* TicketInfoSwiftUIView.swift in Sources */,
+				4D1E1D5C27D7BA4B005EE55B /* TicketInfoView.swift in Sources */,
 				E4DDB77027C3EB0D00592912 /* SelectTicketTypeView.swift in Sources */,
 				4D1E1D5227D7B603005EE55B /* TmpFromMainProject.swift in Sources */,
 				4D1E1D6227D8F304005EE55B /* Protocols.swift in Sources */,
 				4D1E1D6B27D90135005EE55B /* FirstResponderTextField.swift in Sources */,
-				4D1E1D5F27D8F1CC005EE55B /* HistoricalTicketSwiftUIView.swift in Sources */,
+				4D1E1D5F27D8F1CC005EE55B /* HistoricalTicketView.swift in Sources */,
 				E4CD0F6027C5936100D6536F /* SelectableRow.swift in Sources */,
 				E4C4A8E827BC3E58004CDDBD /* ActiveFlexTicketSwiftUIView.swift in Sources */,
 				E4CD0F6C27C7B9FF00D6536F /* PurchaseSummaryView.swift in Sources */,
@@ -432,12 +432,12 @@
 				4DBFE03027D626B500F11E58 /* ZoneCellView.swift in Sources */,
 				E44FA2D727B9A79B008912CC /* InactiveFlexTicketViewModel.swift in Sources */,
 				4D1E1D5727D7B890005EE55B /* PriceClassRow.swift in Sources */,
-				4D1E1D5D27D7BA4B005EE55B /* TicketInfoSwiftUIView.swift in Sources */,
+				4D1E1D5D27D7BA4B005EE55B /* TicketInfoView.swift in Sources */,
 				E4DDB77127C3EB0D00592912 /* SelectTicketTypeView.swift in Sources */,
 				4D1E1D5327D7B603005EE55B /* TmpFromMainProject.swift in Sources */,
 				4D1E1D6327D8F304005EE55B /* Protocols.swift in Sources */,
 				4D1E1D6C27D90135005EE55B /* FirstResponderTextField.swift in Sources */,
-				4D1E1D6027D8F1CC005EE55B /* HistoricalTicketSwiftUIView.swift in Sources */,
+				4D1E1D6027D8F1CC005EE55B /* HistoricalTicketView.swift in Sources */,
 				E4CD0F6127C5936100D6536F /* SelectableRow.swift in Sources */,
 				E4C4A8E927BC3E58004CDDBD /* ActiveFlexTicketSwiftUIView.swift in Sources */,
 				E4CD0F6D27C7B9FF00D6536F /* PurchaseSummaryView.swift in Sources */,
