@@ -39,7 +39,11 @@ struct SelectPriceCategoryView: View {
                 SectionHeaderView(title: "Prisklass")
 
                 ForEach($shoppingCart.items) { $item in
+                    DividerTight()
                     PriceClassRow(shoppingCartItem: $item)
+                }
+                if shoppingCart.items.count > 0 {
+                    DividerTight()
                 }
 
             }
