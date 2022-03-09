@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SelectPriceCategorySwiftUIView: View {
+struct SelectPriceCategoryView: View {
     
     @ObservedObject var shoppingCart: ShoppingCart
     
@@ -46,7 +46,7 @@ struct SelectPriceCategorySwiftUIView: View {
             
             let viewModel = PurchaseSummaryViewModel(shoppingCart: shoppingCart)
             NavigationLink("Köp biljett") {
-                PurchaseSummarySwiftUIView(viewModel: viewModel)
+                PurchaseSummaryView(viewModel: viewModel)
                     .navigationTitle("Köp biljett")
             }
            

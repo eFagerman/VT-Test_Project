@@ -175,7 +175,7 @@ struct ZoneSelectorView: View {
             Spacer()
             
             NavigationLink("Köp biljett") {
-                SelectPriceCategorySwiftUIView(shoppingCart: viewModel.shoppingCart)
+                SelectPriceCategoryView(shoppingCart: viewModel.shoppingCart)
                     .navigationTitle("Köp biljett")
             }
             .font(.applicationFont(withWeight: .bold, andSize: 21))

@@ -28,7 +28,7 @@ class PurchaseSummaryViewModel: ObservableObject {
 }
 
 
-struct PurchaseSummarySwiftUIView: View {
+struct PurchaseSummaryView: View {
     
     @ObservedObject var viewModel: PurchaseSummaryViewModel
     

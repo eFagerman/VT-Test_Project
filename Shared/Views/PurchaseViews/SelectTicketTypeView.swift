@@ -109,7 +109,7 @@ struct SelectTicketTypeView: View {
                             .buttonStyle(PlainButtonStyle())
                             
                         } else {
-                            NavigationLink(destination: SelectPriceCategorySwiftUIView(shoppingCart: shoppingCart)) {
+                            NavigationLink(destination: SelectPriceCategoryView(shoppingCart: shoppingCart)) {
                                 arrowCell(title: productType.name)
                             }
                             .buttonStyle(PlainButtonStyle())
