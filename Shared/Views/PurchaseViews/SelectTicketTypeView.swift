@@ -40,14 +40,7 @@ struct SelectTicketTypeView: View {
                 // OPERATOR
                 
                 // OPERATOR HEADER
-                HStack {
-                    Text(viewModel.operatorSectionHeader)
-                        .font(.applicationFont(withWeight: .bold, andSize: 13))
-                    Spacer()
-                }
-                .padding(.horizontal)
-                .padding(.top, 24)
-                .padding(.bottom, 1)
+                SectionHeaderView(title: viewModel.operatorSectionHeader)
                 
                 // OPERATOR CELLS
                 HStack {
@@ -89,14 +82,7 @@ struct SelectTicketTypeView: View {
                 // PRODUCT
                 
                 // PRODUCT HEADER
-                HStack {
-                    Text(viewModel.selectTicketTypeSectionHeader)
-                        .font(.applicationFont(withWeight: .bold, andSize: 13))
-                    Spacer()
-                }
-                .padding(.horizontal)
-                .padding(.top, 24)
-                .padding(.bottom, 1)
+                SectionHeaderView(title: viewModel.selectTicketTypeSectionHeader)
                 
                 // PRODUCT CELLS
                 if let selectedOperator = selectedOperator, let productTypes = selectedOperator.productTypes {
@@ -163,14 +149,7 @@ struct SelectTicketTypeView: View {
 
     private func historySectionView() -> some View {
         VStack {
-            HStack {
-                Text(viewModel.historySectionHeader)
-                    .font(.applicationFont(withWeight: .bold, andSize: 13))
-                Spacer()
-            }
-            .padding(.horizontal)
-            .padding(.top, 24)
-            .padding(.bottom, 1)
+            SectionHeaderView(title: viewModel.historySectionHeader)
             
             ScrollView(.horizontal, showsIndicators: false) {
                 

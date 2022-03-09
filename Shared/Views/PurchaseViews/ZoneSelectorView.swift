@@ -24,7 +24,6 @@ struct SearchSuggestionModel: Hashable {
 class ZoneSelectorViewModel: ObservableObject {
     
     let ticketTypeSectionTitle = "Biljettyp"
-    let ticketTypeSectionÄndra = "Ändra"
     let zoneSearchSectionTitle = "Sök zon"
     let zoneSelectionSectionTitle = "Välj zon"
     let placeholderText = "Ange adress eller plats"
@@ -87,7 +86,6 @@ class ZoneSelectorViewModel: ObservableObject {
 
 struct ZoneSelectorView: View {
     
-    @Environment(\.presentationMode) var presentation
     @ObservedObject var viewModel: ZoneSelectorViewModel
     @State private var textMinWidth: CGFloat?
     
@@ -97,8 +95,7 @@ struct ZoneSelectorView: View {
             ScrollView {
                 
                 // TICKET TYPE
-                ticketTypeSectionHeaderView()
-                    .padding(.bottom, -1)
+                SectionHeaderView(title: viewModel.ticketTypeSectionTitle, changeButton: true)
 
                 Divider().background(Color(UIColor.red))
                     .padding(.top, 1)
@@ -132,14 +129,8 @@ struct ZoneSelectorView: View {
                 }
                 
                 // ZONE SELECTION HEADER
-                HStack {
-                    Text(viewModel.zoneSelectionSectionTitle)
-                        .font(.applicationFont(withWeight: .bold, andSize: 13))
-                    Spacer()
-                }
-                .padding(.horizontal)
-                .padding(.top, 24)
-                .padding(.bottom, 1)
+                SectionHeaderView(title: viewModel.zoneSelectionSectionTitle)
+                    .padding(.bottom, 4)
 
                 // ZONE LIST
                 // this one doesn't work: Divider().background(Color(UIColor.yellow))
@@ -178,29 +169,9 @@ struct ZoneSelectorView: View {
         }
     }
     
-    private func ticketTypeSectionHeaderView() -> some View {
-        HStack {
-            Text(viewModel.ticketTypeSectionTitle)
-                .font(.applicationFont(withWeight: .bold, andSize: 13))
-            Spacer()
-            Button(viewModel.ticketTypeSectionÄndra) {
-                presentation.wrappedValue.dismiss()
-            }
-            .font(.applicationFont(withWeight: .regular, andSize: 13))
-        }
-        .padding(.horizontal)
-    }
-    
     private func zoneSearchView() -> some View {
         VStack {
-            HStack {
-                Text(viewModel.zoneSearchSectionTitle)
-                    .font(.applicationFont(withWeight: .bold, andSize: 13))
-                Spacer()
-            }
-            .padding(.horizontal)
-            .padding(.top, 24)
-            .padding(.bottom, 1)
+            SectionHeaderView(title: viewModel.zoneSearchSectionTitle)
             
             ZStack {
                 
