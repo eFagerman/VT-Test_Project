@@ -27,6 +27,7 @@ struct SelectTicketTypeView: View {
     @State private var isExpanded = false
     @State private var selectedOperator: TicketOperator? = nil
     @State private var selectedProduct: ProductType? = nil
+    @State var pushActive = false
     
     var body: some View {
         
@@ -159,6 +160,13 @@ struct SelectTicketTypeView: View {
                         
                         let viewModel = HistoricalTicket(operatorImage: historicalTicket.operatorImage, ticketTypeName: historicalTicket.ticketTypeName, priceGroupName: historicalTicket.priceGroupName)
                         HistoricalTicketSwiftUIView(viewModel: viewModel)
+                            .onTapGesture {
+                                pushActive = true
+                            }
+                        let shoppingCart = ShoppingCart(ticketOperator: ProductsData.shared.slTicketOperator, productType: ProductsData.shared.slProduct1)
+                        let viewModel = PurchaseSummaryViewModel(shoppingCart: shoppingCart)
+                        NavigationLink(destination: PurchaseSummaryView(viewModel: viewModel), isActive: $pushActive) {
+                        }.hidden()
                     }
                 }
                 .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
