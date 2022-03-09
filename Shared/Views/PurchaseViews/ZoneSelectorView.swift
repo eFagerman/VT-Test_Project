@@ -97,21 +97,7 @@ struct ZoneSelectorView: View {
                 // TICKET TYPE
                 SectionHeaderView(title: viewModel.ticketTypeSectionTitle, changeButton: true)
 
-                Divider().background(Color(UIColor.red))
-                    .padding(.top, 1)
-                Spacer().frame(height: 0)
-                VStack {
-                    HStack {
-                        Spacer().frame(width: 16)
-                        Text(viewModel.shoppingCart.productType.name)
-                            .font(.applicationFont(withWeight: .bold, andSize: 15))
-                        Spacer()
-                    }
-                }
-                .frame(height: 46)
-                .background(Color(UIColor.white))
-                Spacer().frame(height: 0)
-                Divider().background(Color(UIColor.red))
+                SimpleCell(title: viewModel.shoppingCart.productType.name)
 
                 // ZONE SEARCH
                 zoneSearchView()

@@ -15,31 +15,34 @@ struct SelectPriceCategoryView: View {
         
         VStack {
             
-            List {
-                
-                // TICKET TYPE
-                Section(header: Text("Biljettyp")) {
-                    Text(shoppingCart.productType.name)
-                }
-                
+            ScrollView {
+
+                // TICKET TYPE HEADER
+                SectionHeaderView(title: "Biljettyp", changeButton: true)
+
+                // TICKET TYPE CELL
+                SimpleCell(title: shoppingCart.productType.name)
                 
                 // ZONE
                 if let zone = shoppingCart.productType.zone {
-                    Section(header: Text("Zon")) {
-                        Text(zone)
-                    }
+                    
+                    // ZONE HEADER
+                    SectionHeaderView(title: "Zon", changeButton: true)
+
+                    // ZONE CELL
+                    SimpleCell(title: zone)
+                    
                 }
-                
                 
                 // PRICE CLASS
-                Section(header: Text("Prisklass")) {
-                    
-                    ForEach($shoppingCart.items) { $item in
-                        PriceClassRow(shoppingCartItem: $item)
-                    }
+                
+                SectionHeaderView(title: "Prisklass")
+
+                ForEach($shoppingCart.items) { $item in
+                    PriceClassRow(shoppingCartItem: $item)
                 }
+
             }
-            .listStyle(GroupedListStyle())
             .padding(.top)
             
             Spacer()
@@ -56,8 +59,11 @@ struct SelectPriceCategoryView: View {
     }
 }
 
-//struct SelectPriceCategoryView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SelectPriceCategoryView()
-//    }
-//}
+struct SelectPriceCategoryView_Previews: PreviewProvider {
+    static var previews: some View {
+        let shoppingCart = ShoppingCart(ticketOperator: ProductsData.shared.slTicketOperator, productType: ProductsData.shared.slProduct1)
+        SelectPriceCategoryView(shoppingCart: shoppingCart)
+        let shoppingCart2 = ShoppingCart(ticketOperator: ProductsData.shared.slTicketOperator, productType: ProductsData.shared.slProduct2)
+        SelectPriceCategoryView(shoppingCart: shoppingCart2)
+    }
+}

@@ -19,6 +19,8 @@ class ProductsData {
     var historicalTicket3: HistoricalTicket
     var historicalTicket4: HistoricalTicket
     var slProduct1: ProductType
+    var slProduct2: ProductType
+    var vtProduct1: ProductType
     var slTicketOperator: TicketOperator
     
     private init() {
@@ -28,9 +30,9 @@ class ProductsData {
         let vtPriceGroup1 = PriceGroup(id: "vt-adult", name: "Vuxen", price: 40)
         let vtPriceGroup2 = PriceGroup(id: "vt-youth", name: "Barn", price: 20)
 
-        self.slProduct1 = ProductType(id: "sl-enkel", name: "SL Enkelbiljett", priceGroups: [slPriceGroup1.id, slPriceGroup2.id])
-        let slProduct2 = ProductType(id: "sl-30", name: "SL 30 dagars", priceGroups: [slPriceGroup1.id, slPriceGroup2.id])
-        let vtProduct1 = ProductType(id: "vt-enkel", name: "VT Enkelbiljett", priceGroups: [vtPriceGroup1.id, vtPriceGroup2.id])
+        self.slProduct1 = ProductType(id: "sl-enkel", name: "SL Enkelbiljett", zone: "AB", priceGroups: [slPriceGroup1.id, slPriceGroup2.id])
+        self.slProduct2 = ProductType(id: "sl-30", name: "SL 30 dagars", priceGroups: [slPriceGroup1.id, slPriceGroup2.id])
+        self.vtProduct1 = ProductType(id: "vt-enkel", name: "VT Enkelbiljett", zone: "AB", priceGroups: [vtPriceGroup1.id, vtPriceGroup2.id])
         let vtProduct2 = ProductType(id: "vt-30", name: "VT 30 dagars", priceGroups: [vtPriceGroup1.id, vtPriceGroup2.id])
 
 
