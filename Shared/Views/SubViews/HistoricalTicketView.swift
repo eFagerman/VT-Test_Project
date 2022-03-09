@@ -36,3 +36,8 @@ struct HistoricalTicketView<TicketHistoryViewModel>: View where TicketHistoryVie
     }
 }
 
+struct HistoricalTicketView_Previews: PreviewProvider {
+    static var previews: some View {
+        HistoricalTicketView(viewModel: ProductsData.shared.historicalTicket1)
+    }
+}
