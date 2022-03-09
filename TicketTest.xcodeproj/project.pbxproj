@@ -71,8 +71,8 @@
 		E4CD0F7327C8E38300D6536F /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = E4CD0F7127C8E38300D6536F /* data.json */; };
 		E4CD0F7527C8E53000D6536F /* TicketOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CD0F7427C8E53000D6536F /* TicketOperator.swift */; };
 		E4CD0F7627C8E53000D6536F /* TicketOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CD0F7427C8E53000D6536F /* TicketOperator.swift */; };
-		E4DDB77027C3EB0D00592912 /* SelectTicketTypeSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DDB76F27C3EB0D00592912 /* SelectTicketTypeSwiftUIView.swift */; };
-		E4DDB77127C3EB0D00592912 /* SelectTicketTypeSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DDB76F27C3EB0D00592912 /* SelectTicketTypeSwiftUIView.swift */; };
+		E4DDB77027C3EB0D00592912 /* SelectTicketTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DDB76F27C3EB0D00592912 /* SelectTicketTypeView.swift */; };
+		E4DDB77127C3EB0D00592912 /* SelectTicketTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DDB76F27C3EB0D00592912 /* SelectTicketTypeView.swift */; };
 		E4DDB77327C3F52500592912 /* SelectTicketTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DDB77227C3F52500592912 /* SelectTicketTypeViewModel.swift */; };
 		E4DDB77427C3F52500592912 /* SelectTicketTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DDB77227C3F52500592912 /* SelectTicketTypeViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -114,7 +114,7 @@
 		E4CD0F6E27C7BDCA00D6536F /* ImageTextRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTextRow.swift; sourceTree = "<group>"; };
 		E4CD0F7127C8E38300D6536F /* data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 		E4CD0F7427C8E53000D6536F /* TicketOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketOperator.swift; sourceTree = "<group>"; };
-		E4DDB76F27C3EB0D00592912 /* SelectTicketTypeSwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTicketTypeSwiftUIView.swift; sourceTree = "<group>"; };
+		E4DDB76F27C3EB0D00592912 /* SelectTicketTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTicketTypeView.swift; sourceTree = "<group>"; };
 		E4DDB77227C3F52500592912 /* SelectTicketTypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTicketTypeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -151,7 +151,7 @@
 		4D2EC8ED27CCD01C004C95BF /* PurchaseViews */ = {
 			isa = PBXGroup;
 			children = (
-				E4DDB76F27C3EB0D00592912 /* SelectTicketTypeSwiftUIView.swift */,
+				E4DDB76F27C3EB0D00592912 /* SelectTicketTypeView.swift */,
 				4D2EC8EF27CCD0FB004C95BF /* ZoneSelectorView.swift */,
 				E4CD0F6427C698FF00D6536F /* SelectPriceCategorySwiftUIView.swift */,
 				E4CD0F6B27C7B9FF00D6536F /* PurchaseSummarySwiftUIView.swift */,
@@ -380,7 +380,7 @@
 				E44FA2D627B9A79B008912CC /* InactiveFlexTicketViewModel.swift in Sources */,
 				4D1E1D5627D7B890005EE55B /* PriceClassRow.swift in Sources */,
 				4D1E1D5C27D7BA4B005EE55B /* TicketInfoSwiftUIView.swift in Sources */,
-				E4DDB77027C3EB0D00592912 /* SelectTicketTypeSwiftUIView.swift in Sources */,
+				E4DDB77027C3EB0D00592912 /* SelectTicketTypeView.swift in Sources */,
 				4D1E1D5227D7B603005EE55B /* TmpFromMainProject.swift in Sources */,
 				4D1E1D6227D8F304005EE55B /* Protocols.swift in Sources */,
 				4D1E1D5F27D8F1CC005EE55B /* HistoricalTicketSwiftUIView.swift in Sources */,
@@ -416,7 +416,7 @@
 				E44FA2D727B9A79B008912CC /* InactiveFlexTicketViewModel.swift in Sources */,
 				4D1E1D5727D7B890005EE55B /* PriceClassRow.swift in Sources */,
 				4D1E1D5D27D7BA4B005EE55B /* TicketInfoSwiftUIView.swift in Sources */,
-				E4DDB77127C3EB0D00592912 /* SelectTicketTypeSwiftUIView.swift in Sources */,
+				E4DDB77127C3EB0D00592912 /* SelectTicketTypeView.swift in Sources */,
 				4D1E1D5327D7B603005EE55B /* TmpFromMainProject.swift in Sources */,
 				4D1E1D6327D8F304005EE55B /* Protocols.swift in Sources */,
 				4D1E1D6027D8F1CC005EE55B /* HistoricalTicketSwiftUIView.swift in Sources */,

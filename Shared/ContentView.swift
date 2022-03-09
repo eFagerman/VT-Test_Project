@@ -70,7 +70,7 @@ struct ContentView: View {
     
         let viewModel = SelectTicketTypeViewModel(historicalTickets: [ProductsData.shared.historicalTicket1, ProductsData.shared.historicalTicket2, ProductsData.shared.historicalTicket3, ProductsData.shared.historicalTicket4], ticketOperators: ProductsData.shared.ticketOperators)
 
-        SelectTicketTypeSwiftUIView(viewModel: viewModel)
+        SelectTicketTypeView(viewModel: viewModel)
 
     }
 }

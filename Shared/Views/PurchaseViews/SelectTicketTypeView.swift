@@ -21,7 +21,7 @@ extension TicketOperator: SelectableItem {
 }
 
 //struct SelectTicketTypeSwiftUIView<SelectTicketViewModel>: View where SelectTicketViewModel: SelectTicketData {
-struct SelectTicketTypeSwiftUIView: View {
+struct SelectTicketTypeView: View {
     
     @ObservedObject var viewModel: SelectTicketTypeViewModel
     @State private var isExpanded = false
@@ -194,6 +194,6 @@ struct SelectTicketTypeSwiftUIView: View {
 struct SelectTicketTypeSwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
         let viewModel = SelectTicketTypeViewModel(historicalTickets: [ProductsData.shared.historicalTicket1, ProductsData.shared.historicalTicket2, ProductsData.shared.historicalTicket3, ProductsData.shared.historicalTicket4], ticketOperators: ProductsData.shared.ticketOperators)
-        SelectTicketTypeSwiftUIView(viewModel: viewModel)
+        SelectTicketTypeView(viewModel: viewModel)
     }
 }
