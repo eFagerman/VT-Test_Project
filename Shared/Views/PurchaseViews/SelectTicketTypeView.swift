@@ -114,9 +114,7 @@ struct SelectTicketTypeView: View {
                             }
                             .buttonStyle(PlainButtonStyle())
                         }
-                        Spacer().frame(height: 0)
-                        Divider().background(Color(UIColor.yellow))
-                        Spacer().frame(height: 0)
+                        DividerTight()
                     }
                 }
             }

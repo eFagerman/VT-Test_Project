@@ -19,6 +19,8 @@
 		4D1E1D6027D8F1CC005EE55B /* HistoricalTicketSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1E1D5E27D8F1CC005EE55B /* HistoricalTicketSwiftUIView.swift */; };
 		4D1E1D6227D8F304005EE55B /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1E1D6127D8F304005EE55B /* Protocols.swift */; };
 		4D1E1D6327D8F304005EE55B /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1E1D6127D8F304005EE55B /* Protocols.swift */; };
+		4D1E1D6527D8FA33005EE55B /* DividerTight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1E1D6427D8FA33005EE55B /* DividerTight.swift */; };
+		4D1E1D6627D8FA33005EE55B /* DividerTight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1E1D6427D8FA33005EE55B /* DividerTight.swift */; };
 		4D2EC8F027CCD0FB004C95BF /* ZoneSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2EC8EF27CCD0FB004C95BF /* ZoneSelectorView.swift */; };
 		4D2EC8F127CCD0FB004C95BF /* ZoneSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2EC8EF27CCD0FB004C95BF /* ZoneSelectorView.swift */; };
 		4DBFE02F27D626B500F11E58 /* ZoneCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBFE02E27D626B500F11E58 /* ZoneCellView.swift */; };
@@ -84,6 +86,7 @@
 		4D1E1D5B27D7BA4B005EE55B /* TicketInfoSwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketInfoSwiftUIView.swift; sourceTree = "<group>"; };
 		4D1E1D5E27D8F1CC005EE55B /* HistoricalTicketSwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalTicketSwiftUIView.swift; sourceTree = "<group>"; };
 		4D1E1D6127D8F304005EE55B /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		4D1E1D6427D8FA33005EE55B /* DividerTight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerTight.swift; sourceTree = "<group>"; };
 		4D2EC8EF27CCD0FB004C95BF /* ZoneSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoneSelectorView.swift; sourceTree = "<group>"; };
 		4DBFE02E27D626B500F11E58 /* ZoneCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoneCellView.swift; sourceTree = "<group>"; };
 		4DBFE03127D65EB800F11E58 /* StopCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopCellView.swift; sourceTree = "<group>"; };
@@ -171,6 +174,7 @@
 				4D1E1D5827D7BA07005EE55B /* TextOfEqualWidth.swift */,
 				4D1E1D5B27D7BA4B005EE55B /* TicketInfoSwiftUIView.swift */,
 				4D1E1D5E27D8F1CC005EE55B /* HistoricalTicketSwiftUIView.swift */,
+				4D1E1D6427D8FA33005EE55B /* DividerTight.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -368,6 +372,7 @@
 				4D1E1D5927D7BA07005EE55B /* TextOfEqualWidth.swift in Sources */,
 				E44FA2BC27B54463008912CC /* ContentView.swift in Sources */,
 				E4CD0F6F27C7BDCA00D6536F /* ImageTextRow.swift in Sources */,
+				4D1E1D6527D8FA33005EE55B /* DividerTight.swift in Sources */,
 				E44FA2BA27B54463008912CC /* TicketTestApp.swift in Sources */,
 				E44FA2CD27B5AA62008912CC /* Model.swift in Sources */,
 				E4C4A8EF27BC53F2004CDDBD /* ActiveFlexTicketViewModel.swift in Sources */,
@@ -404,6 +409,7 @@
 				4D1E1D5A27D7BA07005EE55B /* TextOfEqualWidth.swift in Sources */,
 				E44FA2BD27B54463008912CC /* ContentView.swift in Sources */,
 				E4CD0F7027C7BDCA00D6536F /* ImageTextRow.swift in Sources */,
+				4D1E1D6627D8FA33005EE55B /* DividerTight.swift in Sources */,
 				E44FA2BB27B54463008912CC /* TicketTestApp.swift in Sources */,
 				E44FA2CE27B5AA62008912CC /* Model.swift in Sources */,
 				E4C4A8F027BC53F2004CDDBD /* ActiveFlexTicketViewModel.swift in Sources */,

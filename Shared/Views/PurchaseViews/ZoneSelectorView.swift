@@ -126,9 +126,7 @@ struct ZoneSelectorView: View {
                             viewModel.tappedOnSearch(tappedIndex: viewModel.searchSuggestionList.firstIndex(of: searchSuggestion) ?? 0)
                         }
                     if viewModel.searchSuggestionList.firstIndex(of: searchSuggestion) ?? -1 < viewModel.searchSuggestionList.count - 1 {
-                        Spacer().frame(height: 0)
-                        Divider().background(Color(UIColor.yellow))
-                        Spacer().frame(height: 0)
+                        DividerTight()
                     }
 
                 }
@@ -151,9 +149,7 @@ struct ZoneSelectorView: View {
                             .onTapGesture {
                                 viewModel.tappedOnZone(tappedIndex: i)
                             }
-                        Spacer().frame(height: 0)
-                        Divider().background(Color(UIColor.yellow))
-                        Spacer().frame(height: 0)
+                        DividerTight()
                     }
                 }
                 
