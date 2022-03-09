@@ -1,5 +1,5 @@
 //
-//  HistoricalTicketSwiftUIView.swift
+//  HistoricalTicketView.swift
 //  TicketTest
 //
 //  Created by Johan Thureson on 2022-03-09.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HistoricalTicketSwiftUIView<TicketHistoryViewModel>: View where TicketHistoryViewModel: TicketHistory {
+struct HistoricalTicketView<TicketHistoryViewModel>: View where TicketHistoryViewModel: TicketHistory {
     
     var viewModel: TicketHistoryViewModel
     

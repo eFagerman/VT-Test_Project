@@ -30,16 +30,16 @@ struct TicketsTabView: View {
             ForEach(0..<ticketsViewModel.viewModels.count) { index in
                         
                 if let viewModel = ticketsViewModel.viewModels[index] as? InactiveTicketViewModel {
-                    InactiveTicketSwiftUIView(viewModel: viewModel)
+                    InactiveTicketView(viewModel: viewModel)
 
                 } else if let viewModel = ticketsViewModel.viewModels[index] as? InactiveFlexTicketViewModel {
-                    InactiveFlexTicketSwiftUIView(viewModel: viewModel)
+                    InactiveFlexTicketView(viewModel: viewModel)
 
                 } else if let viewModel = ticketsViewModel.viewModels[index] as? ActiveTicketViewModel {
-                    ActiveTicketSwiftUIView(viewModel: viewModel)
+                    ActiveTicketView(viewModel: viewModel)
 
                 } else if let viewModel = ticketsViewModel.viewModels[index] as? ActiveFlexTicketViewModel {
-                    ActiveFlexTicketSwiftUIView(viewModel: viewModel)
+                    ActiveFlexTicketView(viewModel: viewModel)
                 }
             }
         }

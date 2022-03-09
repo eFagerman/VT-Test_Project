@@ -1,5 +1,5 @@
 //
-//  InactiveSingleTicketSwiftUIView.swift
+//  InactiveSingleTicketView.swift
 //  TicketTest
 //
 //  Created by Erik Fagerman on 2022-02-15.
@@ -22,7 +22,7 @@ protocol InactiveTicket: ObservableObject {
 }
 
 
-struct InactiveTicketSwiftUIView<ViewModel>: View where ViewModel: InactiveTicket {
+struct InactiveTicketView<ViewModel>: View where ViewModel: InactiveTicket {
     
     @ObservedObject var viewModel: ViewModel
     
@@ -110,9 +110,9 @@ struct InactiveTicketSwiftUIView<ViewModel>: View where ViewModel: InactiveTicke
     }
 }
 
-struct InactivatedTicketSwiftUIView_Previews: PreviewProvider {
+struct InactivatedTicketView_Previews: PreviewProvider {
     static var previews: some View {
-        InactiveTicketSwiftUIView(viewModel: InactiveTicketViewModel(ticketModel: TicketModel()))
+        InactiveTicketView(viewModel: InactiveTicketViewModel(ticketModel: TicketModel()))
     }
 }
 

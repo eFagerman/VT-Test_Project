@@ -1,5 +1,5 @@
 //
-//  ActiveFlexTicketSwiftUIView.swift
+//  ActiveFlexTicketView.swift
 //  TicketTest
 //
 //  Created by Erik Fagerman on 2022-02-15.
@@ -15,7 +15,7 @@ protocol ActiveFlexTicket: ActiveTicket {
     var validityDate: String { get }
 }
 
-struct ActiveFlexTicketSwiftUIView<ViewModel>: View where ViewModel: ActiveFlexTicket {
+struct ActiveFlexTicketView<ViewModel>: View where ViewModel: ActiveFlexTicket {
     
     @ObservedObject var viewModel: ViewModel
     
@@ -113,8 +113,8 @@ struct ActiveFlexTicketSwiftUIView<ViewModel>: View where ViewModel: ActiveFlexT
     }
 }
 
-struct ActiveFlexTicketSwiftUIView_Previews: PreviewProvider {
+struct ActiveFlexTicketView_Previews: PreviewProvider {
     static var previews: some View {
-        ActiveFlexTicketSwiftUIView(viewModel: ActiveFlexTicketViewModel(ticketModel: TicketModel()))
+        ActiveFlexTicketView(viewModel: ActiveFlexTicketViewModel(ticketModel: TicketModel()))
     }
 }

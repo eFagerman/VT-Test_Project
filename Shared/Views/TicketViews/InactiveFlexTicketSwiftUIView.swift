@@ -37,7 +37,7 @@ extension HorizontalAlignment {
 }
 
 
-struct InactiveFlexTicketSwiftUIView<ViewModel>: View where ViewModel: InactiveFlexticket {
+struct InactiveFlexTicketView<ViewModel>: View where ViewModel: InactiveFlexticket {
     
     @ObservedObject var viewModel: ViewModel
     
@@ -135,9 +135,9 @@ struct InactiveFlexTicketSwiftUIView<ViewModel>: View where ViewModel: InactiveF
     }
 }
 
-struct InactiveFlexTicketSwiftUIView_Previews: PreviewProvider {
+struct InactiveFlexTicketView_Previews: PreviewProvider {
     static var previews: some View {
-        InactiveFlexTicketSwiftUIView(viewModel: InactiveFlexTicketViewModel(ticketModel: TicketModel()))
+        InactiveFlexTicketView(viewModel: InactiveFlexTicketViewModel(ticketModel: TicketModel()))
     }
 }
 

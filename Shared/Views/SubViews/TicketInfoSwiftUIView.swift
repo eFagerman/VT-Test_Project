@@ -1,5 +1,5 @@
 //
-//  TicketInfoSwiftUIView.swift
+//  TicketInfoView.swift
 //  TicketTest
 //
 //  Created by Johan Thureson on 2022-03-08.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TicketInfoSwiftUIView: View {
+struct TicketInfoView: View {
     
     var shoppingCartItems: [ShoppingCartItem]
     

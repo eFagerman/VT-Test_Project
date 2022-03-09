@@ -1,5 +1,5 @@
 //
-//  SelectPriceCategorySwiftUIView.swift
+//  SelectPriceCategoryView.swift
 //  TicketTest
 //
 //  Created by Erik Fagerman on 2022-02-23.
@@ -56,8 +56,8 @@ struct SelectPriceCategoryView: View {
     }
 }
 
-//struct SelectPriceCategorySwiftUIView_Previews: PreviewProvider {
+//struct SelectPriceCategoryView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        SelectPriceCategorySwiftUIView()
+//        SelectPriceCategoryView()
 //    }
 //}

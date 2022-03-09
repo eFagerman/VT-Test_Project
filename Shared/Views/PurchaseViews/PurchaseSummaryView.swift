@@ -1,5 +1,5 @@
 //
-//  PurchaseSummarySwiftUIView.swift
+//  PurchaseSummaryView.swift
 //  TicketTest
 //
 //  Created by Erik Fagerman on 2022-02-24.
@@ -51,7 +51,7 @@ struct PurchaseSummaryView: View {
                     
                     ImageTextRow(image: viewModel.shoppingCart.ticketOperator.image, text: viewModel.shoppingCart.ticketOperator.name)
                     
-                    TicketInfoSwiftUIView(shoppingCartItems: viewModel.shoppingCart.items)
+                    TicketInfoView(shoppingCartItems: viewModel.shoppingCart.items)
                     
                     HStack {
                         VStack(alignment: .leading) {
@@ -93,8 +93,8 @@ struct PurchaseSummaryView: View {
     }
 }
 
-//struct PurchaseSummarySwiftUIView_Previews: PreviewProvider {
+//struct PurchaseSummaryView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        PurchaseSummarySwiftUIView()
+//        PurchaseSummaryView()
 //    }
 //}

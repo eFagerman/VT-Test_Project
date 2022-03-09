@@ -20,7 +20,7 @@ protocol ActiveTicket: ObservableObject {
 }
 
 
-struct ActiveTicketSwiftUIView<ViewModel>: View where ViewModel: ActiveTicket {
+struct ActiveTicketView<ViewModel>: View where ViewModel: ActiveTicket {
     
     @ObservedObject var viewModel: ViewModel
     
@@ -98,7 +98,7 @@ struct ActiveTicketSwiftUIView<ViewModel>: View where ViewModel: ActiveTicket {
 
 struct ActiveTicketView_Previews: PreviewProvider {
     static var previews: some View {
-        ActiveTicketSwiftUIView(viewModel: ActiveTicketViewModel(ticketModel: TicketModel()))
+        ActiveTicketView(viewModel: ActiveTicketViewModel(ticketModel: TicketModel()))
     }
 }
 

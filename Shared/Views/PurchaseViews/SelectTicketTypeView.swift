@@ -1,5 +1,5 @@
 //
-//  SelectTicketTypeSwiftUIView.swift
+//  SelectTicketTypeView.swift
 //  TicketTest
 //
 //  Created by Erik Fagerman on 2022-02-21.
@@ -20,7 +20,7 @@ extension TicketOperator: SelectableItem {
     }
 }
 
-//struct SelectTicketTypeSwiftUIView<SelectTicketViewModel>: View where SelectTicketViewModel: SelectTicketData {
+//struct SelectTicketTypeView<SelectTicketViewModel>: View where SelectTicketViewModel: SelectTicketData {
 struct SelectTicketTypeView: View {
     
     @ObservedObject var viewModel: SelectTicketTypeViewModel
@@ -159,7 +159,7 @@ struct SelectTicketTypeView: View {
                     ForEach(viewModel.historicalTickets, id: \.ticketTypeName) { historicalTicket in
                         
                         let viewModel = HistoricalTicket(operatorImage: historicalTicket.operatorImage, ticketTypeName: historicalTicket.ticketTypeName, priceGroupName: historicalTicket.priceGroupName)
-                        HistoricalTicketSwiftUIView(viewModel: viewModel)
+                        HistoricalTicketView(viewModel: viewModel)
                             .onTapGesture {
                                 pushActive = true
                             }
@@ -176,7 +176,7 @@ struct SelectTicketTypeView: View {
     }
 }
 
-struct SelectTicketTypeSwiftUIView_Previews: PreviewProvider {
+struct SelectTicketTypeView_Previews: PreviewProvider {
     static var previews: some View {
         let viewModel = SelectTicketTypeViewModel(historicalTickets: [ProductsData.shared.historicalTicket1, ProductsData.shared.historicalTicket2, ProductsData.shared.historicalTicket3, ProductsData.shared.historicalTicket4], ticketOperators: ProductsData.shared.ticketOperators)
         SelectTicketTypeView(viewModel: viewModel)
