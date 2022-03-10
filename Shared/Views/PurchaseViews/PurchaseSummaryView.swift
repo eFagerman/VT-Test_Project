@@ -26,7 +26,7 @@ class PurchaseSummaryViewModel: ObservableObject {
     let sumTitle = "Summa:"
     let vatTitle = "Moms"
     let amountTitle = "42 kr"
-    let choosePaymentMethodTitle = ""
+    let choosePaymentMethodTitle = "Välj betalmetod"
     let payTitle = "Betala"
     
     init(shoppingCart: ShoppingCart) {
