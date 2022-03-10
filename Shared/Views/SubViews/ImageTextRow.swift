@@ -15,15 +15,20 @@ struct ImageTextRow: View {
     var body: some View {
         
         HStack {
+            Spacer().frame(width: 16)
             image
+                .frame(width: 24, height: 24)
+            Spacer().frame(width: 8)
             Text(text)
+                .font(.applicationFont(withWeight: .bold, andSize: 15))
             Spacer()
         }
     }
 }
 
-//struct ImageWithTextRow_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ImageWithTextRow()
-//    }
-//}
+struct ImageTextRow_Previews: PreviewProvider {
+    static var previews: some View {
+        ImageTextRow(image: Image(systemName: "bus"), text: "Bus")
+            .background(Color.red)
+    }
+}

@@ -14,8 +14,9 @@ struct TicketInfoView: View {
     var body: some View {
         
         VStack {
-            ForEach(shoppingCartItems.filter({$0.number > 0})) { shoppingCartItem in
-                
+//            ForEach(shoppingCartItems.filter({$0.number > 0})) { shoppingCartItem in
+                ForEach(shoppingCartItems) { shoppingCartItem in
+
                 let number = String(shoppingCartItem.number)
                 let priceClassName = shoppingCartItem.priceGroup.name
                 let price = shoppingCartItem.priceGroup.priceWithCurrency
@@ -25,8 +26,21 @@ struct TicketInfoView: View {
                     Text(number + " " + priceClassName + " " + ticketType)
                     Spacer()
                     Text(price)
-                }.font(.applicationFont(withWeight: .regular, andSize: 15))
+                }
+                .font(.applicationFont(withWeight: .regular, andSize: 15))
+                    if shoppingCartItem != shoppingCartItems.last {
+                        Spacer().frame(height: 8)
+                    }
+
             }
         }
     }
 }
+
+struct TicketInfoView_Previews: PreviewProvider {
+    static var previews: some View {
+        let shoppingCart = ShoppingCart(ticketOperator: ProductsData.shared.vtTicketOperator, productType: ProductsData.shared.vtTicketOperator.productTypes[0])
+        TicketInfoView(shoppingCartItems: shoppingCart.items)
+    }
+}
+

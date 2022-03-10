@@ -22,7 +22,7 @@ class PurchaseSummaryViewModel: ObservableObject {
     var shoppingCart: ShoppingCart
     @Published var paymentMethods: [PaymentMethod] = [PaymentMethod(name: "Betalkort", image: Image(systemName: "creditcard")), PaymentMethod(name: "Swish", image: Image(systemName: "line.3.crossed.swirl.circle"))]
     let yourTicketTitle = "Din biljett"
-    let footerTitle = "Footer text"
+    let footerTitle = "Footer text. Footer text. Footer text. Footer text. Footer text. Footer text. Footer text. Footer text."
     let sumTitle = "Summa:"
     let vatTitle = "Moms"
     let amountTitle = "42 kr"
@@ -46,54 +46,49 @@ struct PurchaseSummaryView: View {
         VStack {
             
             
-            // TICKET
-            List {
-                
-                Section(header: Text(viewModel.yourTicketTitle)
-                            .padding(.leading, -16)
-                            .font(.applicationFont(withWeight: .bold, andSize: 13)),
-                        footer: Text(viewModel.footerTitle)
-                            .padding(.leading, -16)
-                            .font(.applicationFont(withWeight: .regular, andSize: 13))) {
-                    
-                    ImageTextRow(image: viewModel.shoppingCart.ticketOperator.image, text: viewModel.shoppingCart.ticketOperator.name)
-                    
-                    TicketInfoView(shoppingCartItems: viewModel.shoppingCart.items)
-                    
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text(viewModel.sumTitle).font(.applicationFont(withWeight: .bold, andSize: 17))
-                            Text(viewModel.vatTitle).font(.applicationFont(withWeight: .regular, andSize: 15))
-                        }
-                        Spacer()
-                        VStack(alignment: .leading) {
-                            Text(viewModel.shoppingCart.totalPriceWithCurrency).font(.applicationFont(withWeight: .bold, andSize: 17))
-                            Text(viewModel.amountTitle).font(.applicationFont(withWeight: .regular, andSize: 15))
-                        }
+            
+            // PRODUCT HEADER
+            SectionHeaderView(title: viewModel.yourTicketTitle)
+            
+            VStack {
+                // PRODUCT CELLS
+                ImageTextRow(image: viewModel.shoppingCart.ticketOperator.image, text: viewModel.shoppingCart.ticketOperator.name)
+                    .padding(.vertical)
+                    .foregroundColor(.white)
+                DividerTight()
+                TicketInfoView(shoppingCartItems: viewModel.shoppingCart.items)
+                    .padding()
+                DividerTight()
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text(viewModel.sumTitle).font(.applicationFont(withWeight: .bold, andSize: 17))
+                        Text(viewModel.vatTitle).font(.applicationFont(withWeight: .regular, andSize: 15))
+                    }
+                    Spacer()
+                    VStack(alignment: .trailing) {
+                        Text(viewModel.shoppingCart.totalPriceWithCurrency).font(.applicationFont(withWeight: .bold, andSize: 17))
+                        Text(viewModel.amountTitle).font(.applicationFont(withWeight: .regular, andSize: 15))
                     }
                 }
-                
-                Text("THE PAYMENT METHOD PART IS IN THE MAIN PROJECT AS SWIFTUI CODE ALREADY ")
+                .padding()
+            }
+            .background(Color(UIColor.gray))
+            .cornerRadius(7.5)
+            .padding(.horizontal, 12)
 
+            
+            HStack {
+                Text(viewModel.footerTitle)
+                    .font(.applicationFont(withWeight: .regular, andSize: 15))
+                Spacer()
             }
-            .listStyle(.automatic)
-            .padding(.top)
+            .padding(.horizontal)
+            .padding(.bottom, 1)
+
+            Spacer()
             
-            
-            // PAYMENT METHOD
-            /*
-            List {
-                
-                Section(header: Text(viewModel.choosePaymentMethodTitle).font(.applicationFont(withWeight: .bold, andSize: 13))) {
-                    
-                    ForEach(viewModel.paymentMethods, id: \.self) { paymentMetod in
-                        SelectableRow(image: paymentMetod.image, title: paymentMetod.name, item: paymentMetod, selectedItem: $selectablePaymentMethod)
-                    }
-                }
-            }
-            .listStyle(.grouped)
-            */
-            
+            Text("THE PAYMENT METHOD PART IS IN THE MAIN PROJECT AS SWIFTUI CODE ALREADY ")
+
             Spacer()
             
             Button(viewModel.payTitle) {
@@ -109,3 +104,4 @@ struct PurchaseSummaryView_Previews: PreviewProvider {
         PurchaseSummaryView(viewModel: PurchaseSummaryViewModel(shoppingCart: ShoppingCart(ticketOperator: ProductsData.shared.vtTicketOperator, productType: ProductsData.shared.vtTicketOperator.productTypes[0])))
     }
 }
+
