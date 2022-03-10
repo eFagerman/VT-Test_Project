@@ -177,9 +177,9 @@
 		4D2EC8EE27CCD054004C95BF /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
+				4D1E1D5127D7B603005EE55B /* TmpFromMainProject.swift */,
 				4DBFE02E27D626B500F11E58 /* ZoneCellView.swift */,
 				4DBFE03127D65EB800F11E58 /* StopCellView.swift */,
-				4D1E1D5127D7B603005EE55B /* TmpFromMainProject.swift */,
 				E4CD0F5F27C5936100D6536F /* SelectableRow.swift */,
 				4D1E1D5527D7B890005EE55B /* PriceClassRow.swift */,
 				E4CD0F6E27C7BDCA00D6536F /* ImageTextRow.swift */,
