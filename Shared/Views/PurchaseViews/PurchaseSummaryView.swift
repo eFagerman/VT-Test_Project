@@ -100,8 +100,8 @@ struct PurchaseSummaryView: View {
     }
 }
 
-//struct PurchaseSummaryView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PurchaseSummaryView()
-//    }
-//}
+struct PurchaseSummaryView_Previews: PreviewProvider {
+    static var previews: some View {
+        PurchaseSummaryView(viewModel: PurchaseSummaryViewModel(shoppingCart: ShoppingCart(ticketOperator: ProductsData.shared.vtTicketOperator, productType: ProductsData.shared.vtTicketOperator.productTypes[0])))
+    }
+}
