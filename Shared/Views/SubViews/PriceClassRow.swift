@@ -25,14 +25,10 @@ struct PriceClassRow: View  {
             
             Spacer()
             
-            Stepper(String(shoppingCartItem.number), value: $shoppingCartItem.number, in: 0...100)
-                .frame(width: 120)
+            CustomStepper(value: $shoppingCartItem.number, range: 0...100)
                 .font(.applicationFont(withWeight: .bold, andSize: 17))
                 .accentColor(.green)
                 .foregroundColor(.white)
-                .padding()
-                .cornerRadius(6)
-            
         }
         .background(Color.blue)
         
