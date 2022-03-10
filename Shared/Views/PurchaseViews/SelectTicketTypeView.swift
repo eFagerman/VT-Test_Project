@@ -123,12 +123,14 @@ struct SelectTicketTypeView: View {
                         Image(systemName: "info.circle.fill")
                     }
                     Button("Info") {
-                        print("Help tapped!")
+                        print("Help tapped")
                     }
                 }
             }
             .onAppear {
-                self.selectedOperator = viewModel.ticketOperators.first!
+                if let ticketOperator = viewModel.ticketOperators.first {
+                    self.selectedOperator = ticketOperator
+                }
             }
         }
     }

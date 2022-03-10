@@ -29,6 +29,10 @@ class SelectTicketTypeViewModel: ObservableObject {
     init(historicalTickets: [HistoricalTicket], ticketOperators: [TicketOperator]) {
         self.historicalTickets = historicalTickets
         self.ticketOperators = ticketOperators
-        self.selectedOperator = ticketOperators.first!
+        if let ticketOperator = ticketOperators.first {
+            self.selectedOperator = ticketOperator
+        } else {
+            self.selectedOperator = TicketOperator(id: "", name: "", productTypes: [], zones: [], priceGroups: [], image: Image(""))
+        }
     }
 }
