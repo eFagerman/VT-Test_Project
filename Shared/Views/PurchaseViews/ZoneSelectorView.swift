@@ -26,7 +26,10 @@ class ZoneSelectorViewModel: ObservableObject {
     let ticketTypeSectionTitle = "Biljettyp"
     let zoneSearchSectionTitle = "Sök zon"
     let zoneSelectionSectionTitle = "Välj zon"
-    let placeholderText = "Ange adress eller plats"
+    let placeholderTitle = "Ange adress eller plats"
+    let buyTicketTitle = "Köp biljett"
+    let fromTitle = "Från"
+    let toTitle = "Till"
     
     let activeBackgroundColor = UIColor.white
     let activeTextColor = UIColor.black
@@ -119,7 +122,6 @@ struct ZoneSelectorView: View {
                     .padding(.bottom, 4)
 
                 // ZONE LIST
-                // this one doesn't work: Divider().background(Color(UIColor.yellow))
                 ForEach(viewModel.zoneList.indices) { i in
                     VStack {
                         ZoneCellView(viewModel: viewModel.zoneList[i])
@@ -147,9 +149,9 @@ struct ZoneSelectorView: View {
             
             Spacer()
             
-            NavigationLink("Köp biljett") {
+            NavigationLink(viewModel.buyTicketTitle) {
                 SelectPriceCategoryView(viewModel: SelectPriceCategoryViewModel(shoppingCart: viewModel.shoppingCart))
-                    .navigationTitle("Köp biljett")
+                    .navigationTitle(viewModel.buyTicketTitle)
             }
             .font(.applicationFont(withWeight: .bold, andSize: 21))
         }
@@ -168,7 +170,7 @@ struct ZoneSelectorView: View {
                         Image(systemName: "info.circle.fill").foregroundColor(.gray)
                         Spacer().frame(width: 8)
                         FirstResponderTextField(
-                            placeholder: viewModel.placeholderText,
+                            placeholder: viewModel.placeholderTitle,
                             text: $viewModel.fromText,
                             isActive: $viewModel.isFromTextActive,
                             activeBackgroundColor: viewModel.activeBackgroundColor,
@@ -176,7 +178,7 @@ struct ZoneSelectorView: View {
                             inactiveBackgroundColor: viewModel.inactiveBackgroundColor,
                             inactiveTextColor: viewModel.inactiveTextColor)
                         Spacer().frame(width: 8)
-                        TextOfEqualWidth(text: "Från", minTextWidth: $textMinWidth)
+                        TextOfEqualWidth(text: viewModel.fromTitle, minTextWidth: $textMinWidth)
                             .font(.applicationFont(withWeight: .regular, andSize: 13))
                         Spacer().frame(width: 15)
                     }
@@ -193,7 +195,7 @@ struct ZoneSelectorView: View {
                         Image(systemName: "info.circle.fill").foregroundColor(.gray)
                         Spacer().frame(width: 8)
                         FirstResponderTextField(
-                            placeholder: viewModel.placeholderText,
+                            placeholder: viewModel.placeholderTitle,
                             text: $viewModel.toText,
                             isActive: $viewModel.isToTextActive,
                             activeBackgroundColor: viewModel.activeBackgroundColor,
@@ -201,7 +203,7 @@ struct ZoneSelectorView: View {
                             inactiveBackgroundColor: viewModel.inactiveBackgroundColor,
                             inactiveTextColor: viewModel.inactiveTextColor)
                         Spacer().frame(width: 8)
-                        TextOfEqualWidth(text: "Till", minTextWidth: $textMinWidth)
+                        TextOfEqualWidth(text: viewModel.toTitle, minTextWidth: $textMinWidth)
                             .font(.applicationFont(withWeight: .regular, andSize: 15))
                         Spacer().frame(width: 13)
                     }

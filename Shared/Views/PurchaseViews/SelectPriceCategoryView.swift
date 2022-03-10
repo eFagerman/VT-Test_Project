@@ -11,6 +11,11 @@ class SelectPriceCategoryViewModel: ObservableObject {
     
     @Published var shoppingCart: ShoppingCart
     
+    let ticketTypeTitle = "Biljettyp"
+    let zoneTitle = "Zon"
+    let priceClassTitle = "Prisklass"
+    let buyTicketTitle = "Köp biljett"
+    
     init(shoppingCart: ShoppingCart) {
         self.shoppingCart = shoppingCart
     }
@@ -27,7 +32,7 @@ struct SelectPriceCategoryView: View {
             ScrollView {
 
                 // TICKET TYPE HEADER
-                SectionHeaderView(title: "Biljettyp", changeButton: true)
+                SectionHeaderView(title: viewModel.ticketTypeTitle, changeButton: true)
 
                 // TICKET TYPE CELL
                 SimpleCell(title: viewModel.shoppingCart.productType.name)
@@ -36,7 +41,7 @@ struct SelectPriceCategoryView: View {
                 if let zone = viewModel.shoppingCart.productType.zone {
                     
                     // ZONE HEADER
-                    SectionHeaderView(title: "Zon", changeButton: true)
+                    SectionHeaderView(title: viewModel.zoneTitle, changeButton: true)
 
                     // ZONE CELL
                     SimpleCell(title: zone)
@@ -45,7 +50,7 @@ struct SelectPriceCategoryView: View {
                 
                 // PRICE CLASS
                 
-                SectionHeaderView(title: "Prisklass")
+                SectionHeaderView(title: viewModel.priceClassTitle)
                 
                 Spacer().frame(height: 8)
 
@@ -63,9 +68,9 @@ struct SelectPriceCategoryView: View {
             Spacer()
             
             let viewModel2 = PurchaseSummaryViewModel(shoppingCart: viewModel.shoppingCart)
-            NavigationLink("Köp biljett") {
+            NavigationLink(viewModel.buyTicketTitle) {
                 PurchaseSummaryView(viewModel: viewModel2)
-                    .navigationTitle("Köp biljett")
+                    .navigationTitle(viewModel.buyTicketTitle)
             }
            
         }

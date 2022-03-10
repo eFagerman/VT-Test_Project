@@ -21,6 +21,13 @@ class PurchaseSummaryViewModel: ObservableObject {
     
     var shoppingCart: ShoppingCart
     @Published var paymentMethods: [PaymentMethod] = [PaymentMethod(name: "Betalkort", image: Image(systemName: "creditcard")), PaymentMethod(name: "Swish", image: Image(systemName: "line.3.crossed.swirl.circle"))]
+    let yourTicketTitle = "Din biljett"
+    let footerTitle = "Footer text"
+    let sumTitle = "Summa:"
+    let vatTitle = "Moms"
+    let amountTitle = "42 kr"
+    let choosePaymentMethodTitle = ""
+    let payTitle = "Betala"
     
     init(shoppingCart: ShoppingCart) {
         self.shoppingCart = shoppingCart
@@ -42,10 +49,10 @@ struct PurchaseSummaryView: View {
             // TICKET
             List {
                 
-                Section(header: Text("Din biljett")
+                Section(header: Text(viewModel.yourTicketTitle)
                             .padding(.leading, -16)
                             .font(.applicationFont(withWeight: .bold, andSize: 13)),
-                        footer: Text("Foooooter")
+                        footer: Text(viewModel.footerTitle)
                             .padding(.leading, -16)
                             .font(.applicationFont(withWeight: .regular, andSize: 13))) {
                     
@@ -55,13 +62,13 @@ struct PurchaseSummaryView: View {
                     
                     HStack {
                         VStack(alignment: .leading) {
-                            Text("Summa:").font(.applicationFont(withWeight: .bold, andSize: 17))
-                            Text("Moms").font(.applicationFont(withWeight: .regular, andSize: 15))
+                            Text(viewModel.sumTitle).font(.applicationFont(withWeight: .bold, andSize: 17))
+                            Text(viewModel.vatTitle).font(.applicationFont(withWeight: .regular, andSize: 15))
                         }
                         Spacer()
                         VStack(alignment: .leading) {
                             Text(viewModel.shoppingCart.totalPriceWithCurrency).font(.applicationFont(withWeight: .bold, andSize: 17))
-                            Text("4,2 kr").font(.applicationFont(withWeight: .regular, andSize: 15))
+                            Text(viewModel.amountTitle).font(.applicationFont(withWeight: .regular, andSize: 15))
                         }
                     }
                 }
@@ -74,7 +81,7 @@ struct PurchaseSummaryView: View {
             // PAYMENT METHOD
             List {
                 
-                Section(header: Text("Välj betalmetod").font(.applicationFont(withWeight: .bold, andSize: 13))) {
+                Section(header: Text(viewModel.choosePaymentMethodTitle).font(.applicationFont(withWeight: .bold, andSize: 13))) {
                     
                     ForEach(viewModel.paymentMethods, id: \.self) { paymentMetod in
                         SelectableRow(image: paymentMetod.image, title: paymentMetod.name, item: paymentMetod, selectedItem: $selectablePaymentMethod)
@@ -85,7 +92,7 @@ struct PurchaseSummaryView: View {
             
             Spacer()
             
-            Button("Betala") {
+            Button(viewModel.payTitle) {
                 
             }
             
