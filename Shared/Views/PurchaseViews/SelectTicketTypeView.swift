@@ -62,7 +62,6 @@ struct SelectTicketTypeView: View {
                         label: {
                             VStack {
                                 Divider()
-                                
                                 HStack {
                                     Spacer().frame(width: 16)
                                     selectedOperator?.image
@@ -94,7 +93,6 @@ struct SelectTicketTypeView: View {
                                 arrowCell(title: productType.name)
                             }
                             .buttonStyle(PlainButtonStyle())
-                            
                         } else {
                             NavigationLink(destination: SelectPriceCategoryView(viewModel: SelectPriceCategoryViewModel(shoppingCart: shoppingCart))) {
                                 arrowCell(title: productType.name)
