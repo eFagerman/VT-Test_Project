@@ -72,13 +72,16 @@ struct PurchaseSummaryView: View {
                         }
                     }
                 }
+                
+                Text("THE PAYMENT METHOD PART IS IN THE MAIN PROJECT AS SWIFTUI CODE ALREADY ")
+
             }
             .listStyle(.automatic)
             .padding(.top)
             
             
-            
             // PAYMENT METHOD
+            /*
             List {
                 
                 Section(header: Text(viewModel.choosePaymentMethodTitle).font(.applicationFont(withWeight: .bold, andSize: 13))) {
@@ -89,6 +92,7 @@ struct PurchaseSummaryView: View {
                 }
             }
             .listStyle(.grouped)
+            */
             
             Spacer()
             
