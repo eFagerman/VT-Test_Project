@@ -148,7 +148,7 @@ struct ZoneSelectorView: View {
             Spacer()
             
             NavigationLink("Köp biljett") {
-                SelectPriceCategoryView(shoppingCart: viewModel.shoppingCart)
+                SelectPriceCategoryView(viewModel: SelectPriceCategoryViewModel(shoppingCart: viewModel.shoppingCart))
                     .navigationTitle("Köp biljett")
             }
             .font(.applicationFont(withWeight: .bold, andSize: 21))

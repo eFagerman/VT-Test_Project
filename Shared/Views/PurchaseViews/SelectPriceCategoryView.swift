@@ -7,9 +7,18 @@
 
 import SwiftUI
 
+class SelectPriceCategoryViewModel: ObservableObject {
+    
+    @Published var shoppingCart: ShoppingCart
+    
+    init(shoppingCart: ShoppingCart) {
+        self.shoppingCart = shoppingCart
+    }
+}
+
 struct SelectPriceCategoryView: View {
     
-    @ObservedObject var shoppingCart: ShoppingCart
+    @ObservedObject var viewModel: SelectPriceCategoryViewModel
     
     var body: some View {
         
@@ -21,10 +30,10 @@ struct SelectPriceCategoryView: View {
                 SectionHeaderView(title: "Biljettyp", changeButton: true)
 
                 // TICKET TYPE CELL
-                SimpleCell(title: shoppingCart.productType.name)
+                SimpleCell(title: viewModel.shoppingCart.productType.name)
                 
                 // ZONE
-                if let zone = shoppingCart.productType.zone {
+                if let zone = viewModel.shoppingCart.productType.zone {
                     
                     // ZONE HEADER
                     SectionHeaderView(title: "Zon", changeButton: true)
@@ -40,11 +49,11 @@ struct SelectPriceCategoryView: View {
                 
                 Spacer().frame(height: 8)
 
-                ForEach($shoppingCart.items) { $item in
+                ForEach($viewModel.shoppingCart.items) { $item in
                     DividerTight()
                     PriceClassRow(shoppingCartItem: $item)
                 }
-                if shoppingCart.items.count > 0 {
+                if viewModel.shoppingCart.items.count > 0 {
                     DividerTight()
                 }
 
@@ -53,14 +62,14 @@ struct SelectPriceCategoryView: View {
             
             Spacer()
             
-            let viewModel = PurchaseSummaryViewModel(shoppingCart: shoppingCart)
+            let viewModel2 = PurchaseSummaryViewModel(shoppingCart: viewModel.shoppingCart)
             NavigationLink("Köp biljett") {
-                PurchaseSummaryView(viewModel: viewModel)
+                PurchaseSummaryView(viewModel: viewModel2)
                     .navigationTitle("Köp biljett")
             }
            
         }
-        .navigationTitle(shoppingCart.ticketOperator.name)
+        .navigationTitle(viewModel.shoppingCart.ticketOperator.name)
         
     }
 }
@@ -68,8 +77,8 @@ struct SelectPriceCategoryView: View {
 struct SelectPriceCategoryView_Previews: PreviewProvider {
     static var previews: some View {
         let shoppingCart = ShoppingCart(ticketOperator: ProductsData.shared.slTicketOperator, productType: ProductsData.shared.slProduct1)
-        SelectPriceCategoryView(shoppingCart: shoppingCart)
+        SelectPriceCategoryView(viewModel: SelectPriceCategoryViewModel(shoppingCart: shoppingCart))
         let shoppingCart2 = ShoppingCart(ticketOperator: ProductsData.shared.slTicketOperator, productType: ProductsData.shared.slProduct2)
-        SelectPriceCategoryView(shoppingCart: shoppingCart2)
+        SelectPriceCategoryView(viewModel: SelectPriceCategoryViewModel(shoppingCart: shoppingCart2))
     }
 }
