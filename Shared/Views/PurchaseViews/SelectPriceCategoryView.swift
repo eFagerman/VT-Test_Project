@@ -37,6 +37,7 @@ struct SelectPriceCategoryView: View {
                 // PRICE CLASS
                 
                 SectionHeaderView(title: "Prisklass")
+                    .padding(.bottom)
 
                 ForEach($shoppingCart.items) { $item in
                     DividerTight()

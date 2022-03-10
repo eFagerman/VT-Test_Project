@@ -16,17 +16,26 @@ struct PriceClassRow: View  {
             
             VStack(alignment: .leading) {
                 Text(shoppingCartItem.priceGroup.name).font(.applicationFont(withWeight: .bold, andSize: 15))
+                    .foregroundColor(.white)
+                Spacer().frame(height: 4)
                 Text(shoppingCartItem.priceGroup.priceWithCurrency).font(.applicationFont(withWeight: .regular, andSize: 13))
+                    .foregroundColor(.gray)
             }
+            .padding()
             
             Spacer()
             
             Stepper(String(shoppingCartItem.number), value: $shoppingCartItem.number, in: 0...100)
-                .frame(width: 120, alignment: .leading)
+                .frame(width: 120)
                 .font(.applicationFont(withWeight: .bold, andSize: 17))
+                .accentColor(.green)
+                .foregroundColor(.white)
+                .padding()
+                .cornerRadius(6)
             
         }
-        .background(Color.clear)
+        .background(Color.blue)
+        
     }
 }
 
