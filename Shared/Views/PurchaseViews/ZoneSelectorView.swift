@@ -57,7 +57,7 @@ class ZoneSelectorViewModel: ObservableObject {
         let zoneB = ZoneCellModel(title: "Zon B", message: "Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ", selected: false, dimmed: true)
         let zoneC = ZoneCellModel(title: "Zon C", message: "Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ", selected: false, dimmed: false)
         let zoneAB = ZoneCellModel(title: "Zon AB", message: "Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ", selected: false, dimmed: false)
-        return [zoneA, zoneB, zoneC, zoneAB]
+        return [zoneA, zoneB, zoneC, zoneAB, zoneA, zoneA]
     }
     
     private static func getSearchSuggestionModelList() -> [SearchSuggestionModel] {
@@ -93,6 +93,9 @@ struct ZoneSelectorView: View {
     @State private var textMinWidth: CGFloat?
     
     var body: some View {
+        ZStack {
+            Color(UIColor(Color.red)).edgesIgnoringSafeArea(.all)
+
         VStack {
             
             ScrollView {
@@ -132,10 +135,12 @@ struct ZoneSelectorView: View {
                     }
                 }
                 
+                Spacer()
             }
             .padding(.top)
             .navigationTitle(viewModel.shoppingCart.ticketOperator.name)
             .navigationBarTitleDisplayMode(.inline)
+            .padding(.bottom, -8)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
@@ -145,15 +150,26 @@ struct ZoneSelectorView: View {
                     }
                 }
             }
-            .background(Color.gray)
+            .background(Color.red)
             
-            Spacer()
-            
-            NavigationLink(viewModel.buyTicketTitle) {
-                SelectPriceCategoryView(viewModel: SelectPriceCategoryViewModel(shoppingCart: viewModel.shoppingCart))
-                    .navigationTitle(viewModel.buyTicketTitle)
+            VStack {
+                    NavigationLink(destination: SelectPriceCategoryView(viewModel: SelectPriceCategoryViewModel(shoppingCart: viewModel.shoppingCart))) {
+                        HStack {
+                            Spacer()
+                            Text(viewModel.buyTicketTitle)
+                            Spacer()
+                        }
+                        .frame(height: 48)
+                    }
+                    .contentShape(Rectangle())
+                    .font(.applicationFont(withWeight: .bold, andSize: 21))
             }
-            .font(.applicationFont(withWeight: .bold, andSize: 21))
+            .background(Color.yellow)
+            .padding(EdgeInsets(top: -8, leading: 0, bottom: 0, trailing: 0))
+
+        }
+        .padding(EdgeInsets(top: 0, leading: 0, bottom: -12, trailing: 0))
+        .background(Color.green)
         }
     }
     
