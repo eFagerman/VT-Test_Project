@@ -27,7 +27,7 @@ class PurchaseSummaryViewModel: ObservableObject {
     let vatTitle = "Moms"
     let amountTitle = "42 kr"
     let choosePaymentMethodTitle = "Välj betalmetod"
-    let payTitle = "Betala"
+    let payTitle = "Betala 70 kr"
     
     init(shoppingCart: ShoppingCart) {
         self.shoppingCart = shoppingCart
@@ -91,9 +91,72 @@ struct PurchaseSummaryView: View {
 
             Spacer()
             
-            Button(viewModel.payTitle) {
+            
+            
+            
+            
+            
+            
+            
+            Button(action: {
+                print("Buy")
+            }, label: {
+                HStack {
+                    Spacer()
+                    Text(viewModel.payTitle)
+                        .font(.applicationFont(withWeight: .bold, andSize: 21))
+                        .foregroundColor(.black)
+                    Spacer()
+                }
+                .frame(height: 48)
+                .background(Color.green)
+                .padding(EdgeInsets(top: -8, leading: 0, bottom: -12, trailing: 0))
+
                 
+                
+                /*
+                
+                VStack {
+                    let viewModel2 = PurchaseSummaryViewModel(shoppingCart: viewModel.shoppingCart)
+                    NavigationLink(destination: PurchaseSummaryView(viewModel: viewModel2)
+                                    .navigationTitle(viewModel.buyTicketTitle)) {
+                        HStack {
+                            Spacer()
+                            Text(viewModel.buyTicketTitle)
+                            Spacer()
+                        }
+                        .frame(height: 48)
+                    }
+                    .contentShape(Rectangle())
+                    .font(.applicationFont(withWeight: .bold, andSize: 21))
+                }
+                .background(Color.yellow)
+*/
+            })
+            
+            /*
+            VStack {
+                let viewModel2 = PurchaseSummaryViewModel(shoppingCart: viewModel.shoppingCart)
+                NavigationLink(destination: PurchaseSummaryView(viewModel: viewModel2)
+                                .navigationTitle(viewModel.buyTicketTitle)) {
+                    HStack {
+                        Spacer()
+                        Text(viewModel.buyTicketTitle)
+                        Spacer()
+                    }
+                    .frame(height: 48)
+                }
+                .contentShape(Rectangle())
+                .font(.applicationFont(withWeight: .bold, andSize: 21))
             }
+            .background(Color.yellow)
+            .padding(EdgeInsets(top: -8, leading: 0, bottom: -12, trailing: 0))
+*/
+            
+            
+            
+            
+            
             
         }
     }

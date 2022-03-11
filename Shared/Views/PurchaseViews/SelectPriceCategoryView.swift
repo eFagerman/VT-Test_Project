@@ -67,11 +67,22 @@ struct SelectPriceCategoryView: View {
             
             Spacer()
             
-            let viewModel2 = PurchaseSummaryViewModel(shoppingCart: viewModel.shoppingCart)
-            NavigationLink(viewModel.buyTicketTitle) {
-                PurchaseSummaryView(viewModel: viewModel2)
-                    .navigationTitle(viewModel.buyTicketTitle)
+            VStack {
+                let viewModel2 = PurchaseSummaryViewModel(shoppingCart: viewModel.shoppingCart)
+                NavigationLink(destination: PurchaseSummaryView(viewModel: viewModel2)
+                                .navigationTitle(viewModel.buyTicketTitle)) {
+                    HStack {
+                        Spacer()
+                        Text(viewModel.buyTicketTitle)
+                        Spacer()
+                    }
+                    .frame(height: 48)
+                }
+                .contentShape(Rectangle())
+                .font(.applicationFont(withWeight: .bold, andSize: 21))
             }
+            .background(Color.yellow)
+            .padding(EdgeInsets(top: -8, leading: 0, bottom: -12, trailing: 0))
            
         }
         .navigationTitle(viewModel.shoppingCart.ticketOperator.name)
