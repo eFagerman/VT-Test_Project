@@ -95,64 +95,64 @@ struct ZoneSelectorView: View {
     var body: some View {
         ZStack {
             Color(UIColor(Color.red)).edgesIgnoringSafeArea(.all)
-
-        VStack {
-            
-            ScrollView {
-                
-                // TICKET TYPE
-                SectionHeaderView(title: viewModel.ticketTypeSectionTitle, changeButton: true)
-
-                SimpleCell(title: viewModel.shoppingCart.productType.name)
-
-                // ZONE SEARCH
-                zoneSearchView()
-                
-                // SEARCH SUGGESTIONS
-                ForEach(viewModel.searchSuggestionList, id: \.self) { searchSuggestion in
-                    StopCellView(viewModel: searchSuggestion)
-                        .onTapGesture {
-                            viewModel.tappedOnSearch(tappedIndex: viewModel.searchSuggestionList.firstIndex(of: searchSuggestion) ?? 0)
-                        }
-                    if viewModel.searchSuggestionList.firstIndex(of: searchSuggestion) ?? -1 < viewModel.searchSuggestionList.count - 1 {
-                        DividerTight()
-                    }
-
-                }
-                
-                // ZONE SELECTION HEADER
-                SectionHeaderView(title: viewModel.zoneSelectionSectionTitle)
-                    .padding(.bottom, 4)
-
-                // ZONE LIST
-                ForEach(viewModel.zoneList.indices) { i in
-                    VStack {
-                        ZoneCellView(viewModel: viewModel.zoneList[i])
-                            .onTapGesture {
-                                viewModel.tappedOnZone(tappedIndex: i)
-                            }
-                        DividerTight()
-                    }
-                }
-                
-                Spacer()
-            }
-            .padding(.top)
-            .navigationTitle(viewModel.shoppingCart.ticketOperator.name)
-            .navigationBarTitleDisplayMode(.inline)
-            .padding(.bottom, -8)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        print("Info was tapped")
-                    } label: {
-                        Image(systemName: "info.circle.fill")
-                    }
-                }
-            }
-            .background(Color.red)
             
             VStack {
+                
+                ScrollView {
+                    
+                    // TICKET TYPE
+                    SectionHeaderView(title: viewModel.ticketTypeSectionTitle, changeButton: true)
+                    
+                    SimpleCell(title: viewModel.shoppingCart.productType.name)
+                    
+                    // ZONE SEARCH
+                    zoneSearchView()
+                    
+                    // SEARCH SUGGESTIONS
+                    ForEach(viewModel.searchSuggestionList, id: \.self) { searchSuggestion in
+                        StopCellView(viewModel: searchSuggestion)
+                            .onTapGesture {
+                                viewModel.tappedOnSearch(tappedIndex: viewModel.searchSuggestionList.firstIndex(of: searchSuggestion) ?? 0)
+                            }
+                        if viewModel.searchSuggestionList.firstIndex(of: searchSuggestion) ?? -1 < viewModel.searchSuggestionList.count - 1 {
+                            DividerTight()
+                        }
+                        
+                    }
+                    
+                    // ZONE SELECTION HEADER
+                    SectionHeaderView(title: viewModel.zoneSelectionSectionTitle)
+                        .padding(.bottom, 4)
+                    
+                    // ZONE LIST
+                    ForEach(viewModel.zoneList.indices) { i in
+                        VStack {
+                            ZoneCellView(viewModel: viewModel.zoneList[i])
+                                .onTapGesture {
+                                    viewModel.tappedOnZone(tappedIndex: i)
+                                }
+                            DividerTight()
+                        }
+                    }
+                    
+                    Spacer()
+                }
+                .padding(.top)
+                .navigationTitle(viewModel.shoppingCart.ticketOperator.name)
+                .navigationBarTitleDisplayMode(.inline)
+                .padding(.bottom, -8)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button {
+                            print("Info was tapped")
+                        } label: {
+                            Image(systemName: "info.circle.fill")
+                        }
+                    }
+                }
+                .background(Color.red)
+                
+                VStack {
                     NavigationLink(destination: SelectPriceCategoryView(viewModel: SelectPriceCategoryViewModel(shoppingCart: viewModel.shoppingCart))) {
                         HStack {
                             Spacer()
@@ -163,13 +163,13 @@ struct ZoneSelectorView: View {
                     }
                     .contentShape(Rectangle())
                     .font(.applicationFont(withWeight: .bold, andSize: 21))
+                }
+                .background(Color.yellow)
+                .padding(EdgeInsets(top: -8, leading: 0, bottom: 0, trailing: 0))
+                
             }
-            .background(Color.yellow)
-            .padding(EdgeInsets(top: -8, leading: 0, bottom: 0, trailing: 0))
-
-        }
-        .padding(EdgeInsets(top: 0, leading: 0, bottom: -12, trailing: 0))
-        .background(Color.green)
+            .padding(EdgeInsets(top: 0, leading: 0, bottom: -12, trailing: 0))
+            .background(Color.green)
         }
     }
     
