@@ -145,7 +145,6 @@ struct SelectTicketTypeView: View {
         .foregroundColor(.white)
         .frame(height: 48)
         .background(Color(UIColor.gray))
-        .animation(.easeInOut)
     }
 
     private func historySectionView() -> some View {
