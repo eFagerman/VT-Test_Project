@@ -126,7 +126,7 @@ struct SelectTicketTypeView: View {
                 }
             }
             .onAppear {
-                if let ticketOperator = viewModel.ticketOperators.first {
+                if let ticketOperator = viewModel.ticketOperators.last { // tmp
                     self.selectedOperator = ticketOperator
                 }
             }
