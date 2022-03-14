@@ -24,7 +24,7 @@ extension TicketOperator: SelectableItem {
 struct SelectTicketTypeView: View {
     
     @ObservedObject var viewModel: SelectTicketTypeViewModel
-    @State private var isExpanded = false
+    @State private var isExpanded = true
     @State private var selectedOperator: TicketOperator? = nil
     @State private var selectedProduct: ProductType? = nil
     @State var pushActive = false
@@ -43,25 +43,39 @@ struct SelectTicketTypeView: View {
                 // OPERATOR HEADER
                 SectionHeaderView(title: viewModel.operatorSectionHeader)
                 
+                Spacer().frame(height: 8)
+                
                 // OPERATOR CELLS
+                Divider()
                 HStack {
                     DisclosureGroup(
                         isExpanded: $isExpanded,
                         content: {
+                            VStack {
+                            Divider()
                             ForEach(viewModel.ticketOperators) { ticketOperator in
                                 VStack {
                                     SelectableRow(image: ticketOperator.image, title: ticketOperator.name, item: ticketOperator, selectedItem: $selectedOperator)
                                         .frame(height: 46)
                                         .onChange(of: selectedOperator) { newValue in
-                                            isExpanded = false
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                                                withAnimation {
+                                                    isExpanded = false
+                                                }
+                                            }
                                         }
-                                    Divider()
+                                    if ticketOperator != viewModel.ticketOperators.last {
+                                        Divider()
+                                    }
                                 }
+                            }
                             }
                         },
                         label: {
                             VStack {
-                                Divider()
+                                Spacer()
+                                    .frame(height: 0)
+
                                 HStack {
                                     Spacer().frame(width: 16)
                                     selectedOperator?.image
@@ -72,12 +86,15 @@ struct SelectTicketTypeView: View {
                                     Text(selectedOperator?.name ?? "")
                                     Spacer()
                                 }
-                                .frame(height: 46)
-                                Divider()
+                                .frame(height: 36)
+                                
+                                Spacer()
                             }
                         })
+                        .accentColor(.black)
                     Spacer().frame(width: 23)
                 }
+                Divider()
                 
                 // PRODUCT
                 
@@ -131,6 +148,7 @@ struct SelectTicketTypeView: View {
                 }
             }
         }
+        .animation(.easeInOut)
     }
     
     private func arrowCell(title: String) -> some View {
