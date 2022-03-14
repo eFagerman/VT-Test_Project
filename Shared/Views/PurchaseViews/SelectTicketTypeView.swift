@@ -153,7 +153,7 @@ struct SelectTicketTypeView: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                 
-                HStack(spacing: 8) {
+                HStack(spacing: 4) {
                     
                     ForEach(viewModel.historicalTickets, id: \.ticketTypeName) { historicalTicket in
                         
@@ -168,7 +168,7 @@ struct SelectTicketTypeView: View {
                         }.hidden()
                     }
                 }
-                .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
+                .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 12))
             }
             .frame(height: 67, alignment: .leading)
         }
