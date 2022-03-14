@@ -52,23 +52,23 @@ struct SelectTicketTypeView: View {
                         isExpanded: $isExpanded,
                         content: {
                             VStack {
-                            Divider()
-                            ForEach(viewModel.ticketOperators) { ticketOperator in
-                                VStack {
-                                    SelectableRow(image: ticketOperator.image, title: ticketOperator.name, item: ticketOperator, selectedItem: $selectedOperator)
-                                        .frame(height: 46)
-                                        .onChange(of: selectedOperator) { newValue in
-                                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-                                                withAnimation {
-                                                    isExpanded = false
+                                Divider()
+                                ForEach(viewModel.ticketOperators) { ticketOperator in
+                                    VStack {
+                                        SelectableRow(image: ticketOperator.image, title: ticketOperator.name, item: ticketOperator, selectedItem: $selectedOperator)
+                                            .frame(height: 46)
+                                            .onChange(of: selectedOperator) { newValue in
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                                                    withAnimation {
+                                                        isExpanded = false
+                                                    }
                                                 }
                                             }
+                                        if ticketOperator != viewModel.ticketOperators.last {
+                                            Divider()
                                         }
-                                    if ticketOperator != viewModel.ticketOperators.last {
-                                        Divider()
                                     }
                                 }
-                            }
                             }
                         },
                         label: {
