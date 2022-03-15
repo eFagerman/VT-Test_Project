@@ -28,6 +28,7 @@ struct SelectTicketTypeView: View {
     @State private var selectedOperator: TicketOperator? = nil
     @State private var selectedProduct: ProductType? = nil
     @State var pushActive = false
+    let insetWidth = 97
     
     var body: some View {
         
@@ -52,12 +53,14 @@ struct SelectTicketTypeView: View {
                         isExpanded: $isExpanded,
                         content: {
                             VStack {
-                                DividerTight()
+                                DividerInset(inset: true, width: insetWidth, tight: true)
+                                    .foregroundColor(.gray)
                                 ForEach(viewModel.ticketOperators) { ticketOperator in
                                     VStack {
                                         HStack {
                                             Spacer().frame(width: 40)
                                             SelectableRow(hideRadioButtons: true, image: ticketOperator.image, title: ticketOperator.name, item: ticketOperator, selectedItem: $selectedOperator)
+                                                .foregroundColor(.white)
                                                 .onChange(of: selectedOperator) { newValue in
                                                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                                                         withAnimation {
@@ -68,7 +71,8 @@ struct SelectTicketTypeView: View {
                                         }
                                         .frame(height: 46)
                                         if ticketOperator != viewModel.ticketOperators.last {
-                                            DividerTight()
+                                            DividerInset(inset: true, width: insetWidth, tight: true)
+                                                .foregroundColor(.gray)
                                         }
                                     }
                                 }
@@ -89,10 +93,10 @@ struct SelectTicketTypeView: View {
                                 .frame(height: 36)
                                 
                         })
-                        .accentColor(.black)
+                        .accentColor(.white)
                     Spacer().frame(width: 23)
                 }
-                .background(Color.yellow)
+                .background(Color.blue)
                 DividerTight()
                 
                 // PRODUCT
