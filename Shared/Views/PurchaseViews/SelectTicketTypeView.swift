@@ -46,13 +46,13 @@ struct SelectTicketTypeView: View {
                 Spacer().frame(height: 8)
                 
                 // OPERATOR CELLS
-                Divider()
+                DividerTight()
                 HStack {
                     DisclosureGroup(
                         isExpanded: $isExpanded,
                         content: {
                             VStack {
-                                Divider()
+                                DividerTight()
                                 ForEach(viewModel.ticketOperators) { ticketOperator in
                                     VStack {
                                         HStack {
@@ -68,16 +68,13 @@ struct SelectTicketTypeView: View {
                                         }
                                         .frame(height: 46)
                                         if ticketOperator != viewModel.ticketOperators.last {
-                                            Divider()
+                                            DividerTight()
                                         }
                                     }
                                 }
                             }
                         },
                         label: {
-                            VStack {
-                                Spacer()
-                                    .frame(height: 0)
 
                                 HStack {
                                     Spacer().frame(width: 16)
@@ -91,13 +88,12 @@ struct SelectTicketTypeView: View {
                                 }
                                 .frame(height: 36)
                                 
-                                Spacer()
-                            }
                         })
                         .accentColor(.black)
                     Spacer().frame(width: 23)
                 }
-                Divider()
+                .background(Color.yellow)
+                DividerTight()
                 
                 // PRODUCT
                 
@@ -151,7 +147,6 @@ struct SelectTicketTypeView: View {
                 }
             }
         }
-        .animation(.easeInOut)
     }
     
     private func arrowCell(title: String) -> some View {
