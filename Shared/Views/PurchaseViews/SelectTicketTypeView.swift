@@ -62,10 +62,8 @@ struct SelectTicketTypeView: View {
                                             SelectableRow(hideRadioButtons: true, image: ticketOperator.image, title: ticketOperator.name, item: ticketOperator, selectedItem: $selectedOperator)
                                                 .foregroundColor(.white)
                                                 .onChange(of: selectedOperator) { newValue in
-                                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-                                                        withAnimation {
-                                                            isExpanded = false
-                                                        }
+                                                    withAnimation {
+                                                        isExpanded = false
                                                     }
                                                 }
                                         }
