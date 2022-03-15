@@ -11,6 +11,7 @@ protocol SelectableItem: Equatable {}
 
 struct SelectableRow<Model>: View where Model: SelectableItem {
     
+    var hideRadioButtons = false
     var image: Image?
     var title: String?
     
@@ -37,7 +38,8 @@ struct SelectableRow<Model>: View where Model: SelectableItem {
             
             Spacer()
             
-            if item == selectedItem {
+            if hideRadioButtons {}
+            else if item == selectedItem {
                 Image("checkboxesRadioChecked")
                     .frame(width: 18.0, height: 18.0)
             } else {

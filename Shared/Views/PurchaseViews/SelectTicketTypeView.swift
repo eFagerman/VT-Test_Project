@@ -55,7 +55,7 @@ struct SelectTicketTypeView: View {
                                 Divider()
                                 ForEach(viewModel.ticketOperators) { ticketOperator in
                                     VStack {
-                                        SelectableRow(image: ticketOperator.image, title: ticketOperator.name, item: ticketOperator, selectedItem: $selectedOperator)
+                                        SelectableRow(hideRadioButtons: true, image: ticketOperator.image, title: ticketOperator.name, item: ticketOperator, selectedItem: $selectedOperator)
                                             .frame(height: 46)
                                             .onChange(of: selectedOperator) { newValue in
                                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
