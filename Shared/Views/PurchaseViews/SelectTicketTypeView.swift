@@ -55,15 +55,18 @@ struct SelectTicketTypeView: View {
                                 Divider()
                                 ForEach(viewModel.ticketOperators) { ticketOperator in
                                     VStack {
-                                        SelectableRow(hideRadioButtons: true, image: ticketOperator.image, title: ticketOperator.name, item: ticketOperator, selectedItem: $selectedOperator)
-                                            .frame(height: 46)
-                                            .onChange(of: selectedOperator) { newValue in
-                                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-                                                    withAnimation {
-                                                        isExpanded = false
+                                        HStack {
+                                            Spacer().frame(width: 40)
+                                            SelectableRow(hideRadioButtons: true, image: ticketOperator.image, title: ticketOperator.name, item: ticketOperator, selectedItem: $selectedOperator)
+                                                .onChange(of: selectedOperator) { newValue in
+                                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                                                        withAnimation {
+                                                            isExpanded = false
+                                                        }
                                                     }
                                                 }
-                                            }
+                                        }
+                                        .frame(height: 46)
                                         if ticketOperator != viewModel.ticketOperators.last {
                                             Divider()
                                         }
