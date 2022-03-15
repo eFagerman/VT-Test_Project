@@ -54,7 +54,6 @@ struct SelectTicketTypeView: View {
                         content: {
                             VStack {
                                 DividerInset(inset: true, width: insetWidth, tight: true)
-                                    .foregroundColor(.gray)
                                 ForEach(viewModel.ticketOperators) { ticketOperator in
                                     VStack {
                                         HStack {
@@ -70,7 +69,6 @@ struct SelectTicketTypeView: View {
                                         .frame(height: 46)
                                         if ticketOperator != viewModel.ticketOperators.last {
                                             DividerInset(inset: true, width: insetWidth, tight: true)
-                                                .foregroundColor(.gray)
                                         }
                                     }
                                 }
