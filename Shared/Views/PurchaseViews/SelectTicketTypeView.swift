@@ -158,7 +158,7 @@ struct SelectTicketTypeView: View {
             Spacer().frame(width: 14)
         }
         .foregroundColor(.white)
-        .frame(height: 48)
+        .frame(height: 46)
         .background(Color(UIColor.gray))
     }
 
