@@ -28,7 +28,6 @@ struct SelectTicketTypeView: View {
     @State private var selectedOperator: TicketOperator? = nil
     @State private var selectedProduct: ProductType? = nil
     @State var pushActive = false
-    let insetWidth = 97
     
     var body: some View {
         
@@ -53,7 +52,7 @@ struct SelectTicketTypeView: View {
                         isExpanded: $isExpanded,
                         content: {
                             VStack {
-                                DividerInset(inset: true, width: insetWidth, tight: true)
+                                DividerInset(inset: false, tight: true)
                                 ForEach(viewModel.ticketOperators) { ticketOperator in
                                     VStack {
                                         HStack {
@@ -62,13 +61,13 @@ struct SelectTicketTypeView: View {
                                                 .foregroundColor(.white)
                                                 .onChange(of: selectedOperator) { newValue in
                                                     withAnimation {
-                                                        isExpanded = false
+                                                        isExpanded = true
                                                     }
                                                 }
                                         }
                                         .frame(height: 46)
                                         if ticketOperator != viewModel.ticketOperators.last {
-                                            DividerInset(inset: true, width: insetWidth, tight: true)
+                                            DividerInset(inset: true, width: 97, tight: true)
                                         }
                                     }
                                 }
