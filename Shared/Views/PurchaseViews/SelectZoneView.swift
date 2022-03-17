@@ -21,7 +21,7 @@ struct SearchSuggestionModel: Hashable {
     let areaName: String
 }
 
-class ZoneSelectorViewModel: ObservableObject {
+class SelectZoneViewModel: ObservableObject {
     
     let ticketTypeSectionTitle = "Biljettyp"
     let zoneSearchSectionTitle = "Sök zon"
@@ -48,8 +48,8 @@ class ZoneSelectorViewModel: ObservableObject {
         self.shoppingCart = shoppingCart
         self.fromText = ""
         self.toText = ""
-        self.zoneList = ZoneSelectorViewModel.getZoneCellModelList()
-        self.searchSuggestionList = ZoneSelectorViewModel.getSearchSuggestionModelList()
+        self.zoneList = SelectZoneViewModel.getZoneCellModelList()
+        self.searchSuggestionList = SelectZoneViewModel.getSearchSuggestionModelList()
     }
     
     private static func getZoneCellModelList() -> [ZoneCellModel] {
@@ -89,7 +89,7 @@ class ZoneSelectorViewModel: ObservableObject {
 
 struct SelectZoneView: View {
     
-    @ObservedObject var viewModel: ZoneSelectorViewModel
+    @ObservedObject var viewModel: SelectZoneViewModel
     @State private var textMinWidth: CGFloat?
     
     var body: some View {
@@ -252,6 +252,6 @@ struct SelectZoneView: View {
 
 struct ZoneSelectorView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectZoneView(viewModel: ZoneSelectorViewModel(shoppingCart: ShoppingCart(ticketOperator: ProductsData.shared.vtTicketOperator, productType: ProductsData.shared.vtTicketOperator.productTypes[0])))
+        SelectZoneView(viewModel: SelectZoneViewModel(shoppingCart: ShoppingCart(ticketOperator: ProductsData.shared.vtTicketOperator, productType: ProductsData.shared.vtTicketOperator.productTypes[0])))
     }
 }
