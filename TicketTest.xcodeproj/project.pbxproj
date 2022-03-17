@@ -29,8 +29,8 @@
 		4D1E1D6F27D91A0B005EE55B /* SimpleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1E1D6D27D91A0B005EE55B /* SimpleCell.swift */; };
 		4D1E1D7227DA11A6005EE55B /* CustomStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1E1D7127DA11A6005EE55B /* CustomStepper.swift */; };
 		4D1E1D7327DA11A6005EE55B /* CustomStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1E1D7127DA11A6005EE55B /* CustomStepper.swift */; };
-		4D2EC8F027CCD0FB004C95BF /* ZoneSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2EC8EF27CCD0FB004C95BF /* ZoneSelectorView.swift */; };
-		4D2EC8F127CCD0FB004C95BF /* ZoneSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2EC8EF27CCD0FB004C95BF /* ZoneSelectorView.swift */; };
+		4D2EC8F027CCD0FB004C95BF /* SelectZoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2EC8EF27CCD0FB004C95BF /* SelectZoneView.swift */; };
+		4D2EC8F127CCD0FB004C95BF /* SelectZoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2EC8EF27CCD0FB004C95BF /* SelectZoneView.swift */; };
 		4DBFE02F27D626B500F11E58 /* ZoneCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBFE02E27D626B500F11E58 /* ZoneCellView.swift */; };
 		4DBFE03027D626B500F11E58 /* ZoneCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBFE02E27D626B500F11E58 /* ZoneCellView.swift */; };
 		4DBFE03227D65EB800F11E58 /* StopCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBFE03127D65EB800F11E58 /* StopCellView.swift */; };
@@ -99,7 +99,7 @@
 		4D1E1D6A27D90135005EE55B /* FirstResponderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstResponderTextField.swift; sourceTree = "<group>"; };
 		4D1E1D6D27D91A0B005EE55B /* SimpleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleCell.swift; sourceTree = "<group>"; };
 		4D1E1D7127DA11A6005EE55B /* CustomStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStepper.swift; sourceTree = "<group>"; };
-		4D2EC8EF27CCD0FB004C95BF /* ZoneSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoneSelectorView.swift; sourceTree = "<group>"; };
+		4D2EC8EF27CCD0FB004C95BF /* SelectZoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectZoneView.swift; sourceTree = "<group>"; };
 		4DBFE02E27D626B500F11E58 /* ZoneCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoneCellView.swift; sourceTree = "<group>"; };
 		4DBFE03127D65EB800F11E58 /* StopCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopCellView.swift; sourceTree = "<group>"; };
 		E405E9B627BD99B10094BD01 /* Sk-Modernist-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sk-Modernist-Regular.otf"; sourceTree = "<group>"; };
@@ -167,7 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				E4DDB76F27C3EB0D00592912 /* SelectTicketTypeView.swift */,
-				4D2EC8EF27CCD0FB004C95BF /* ZoneSelectorView.swift */,
+				4D2EC8EF27CCD0FB004C95BF /* SelectZoneView.swift */,
 				E4CD0F6427C698FF00D6536F /* SelectPriceCategoryView.swift */,
 				E4CD0F6B27C7B9FF00D6536F /* PurchaseSummaryView.swift */,
 			);
@@ -396,7 +396,7 @@
 				4D1E1D6E27D91A0B005EE55B /* SimpleCell.swift in Sources */,
 				E4C4A8EF27BC53F2004CDDBD /* ActiveFlexTicketViewModel.swift in Sources */,
 				E4CD0F7527C8E53000D6536F /* TicketOperator.swift in Sources */,
-				4D2EC8F027CCD0FB004C95BF /* ZoneSelectorView.swift in Sources */,
+				4D2EC8F027CCD0FB004C95BF /* SelectZoneView.swift in Sources */,
 				E4DDB77327C3F52500592912 /* SelectTicketTypeViewModel.swift in Sources */,
 				E4CD0F6927C7B35500D6536F /* ShoppingCart.swift in Sources */,
 				4DBFE03227D65EB800F11E58 /* StopCellView.swift in Sources */,
@@ -437,7 +437,7 @@
 				4D1E1D6F27D91A0B005EE55B /* SimpleCell.swift in Sources */,
 				E4C4A8F027BC53F2004CDDBD /* ActiveFlexTicketViewModel.swift in Sources */,
 				E4CD0F7627C8E53000D6536F /* TicketOperator.swift in Sources */,
-				4D2EC8F127CCD0FB004C95BF /* ZoneSelectorView.swift in Sources */,
+				4D2EC8F127CCD0FB004C95BF /* SelectZoneView.swift in Sources */,
 				E4DDB77427C3F52500592912 /* SelectTicketTypeViewModel.swift in Sources */,
 				E4CD0F6A27C7B35500D6536F /* ShoppingCart.swift in Sources */,
 				4DBFE03327D65EB800F11E58 /* StopCellView.swift in Sources */,

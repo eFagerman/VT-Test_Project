@@ -87,7 +87,7 @@ class ZoneSelectorViewModel: ObservableObject {
 }
 
 
-struct ZoneSelectorView: View {
+struct SelectZoneView: View {
     
     @ObservedObject var viewModel: ZoneSelectorViewModel
     @State private var textMinWidth: CGFloat?
@@ -252,6 +252,6 @@ struct ZoneSelectorView: View {
 
 struct ZoneSelectorView_Previews: PreviewProvider {
     static var previews: some View {
-        ZoneSelectorView(viewModel: ZoneSelectorViewModel(shoppingCart: ShoppingCart(ticketOperator: ProductsData.shared.vtTicketOperator, productType: ProductsData.shared.vtTicketOperator.productTypes[0])))
+        SelectZoneView(viewModel: ZoneSelectorViewModel(shoppingCart: ShoppingCart(ticketOperator: ProductsData.shared.vtTicketOperator, productType: ProductsData.shared.vtTicketOperator.productTypes[0])))
     }
 }
