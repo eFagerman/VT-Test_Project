@@ -103,7 +103,7 @@ struct SelectZoneView: View {
                     // TICKET TYPE
                     SectionHeaderView(title: viewModel.ticketTypeSectionTitle, changeButton: true)
                     
-                    SimpleCell(title: viewModel.shoppingCart.productType.name)
+                    SimpleCell(title: viewModel.shoppingCart.product.title)
                     
                     // ZONE SEARCH
                     zoneSearchView()
@@ -138,7 +138,7 @@ struct SelectZoneView: View {
                     Spacer()
                 }
                 .padding(.top)
-                .navigationTitle(viewModel.shoppingCart.ticketOperator.name)
+                .navigationTitle(viewModel.shoppingCart.ticketOperator.title)
                 .navigationBarTitleDisplayMode(.inline)
                 .padding(.bottom, -8)
                 .toolbar {
@@ -252,6 +252,6 @@ struct SelectZoneView: View {
 
 struct ZoneSelectorView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectZoneView(viewModel: SelectZoneViewModel(shoppingCart: ShoppingCart(ticketOperator: ProductsData.shared.vtTicketOperator, productType: ProductsData.shared.vtTicketOperator.productTypes[0])))
+        SelectZoneView(viewModel: SelectZoneViewModel(shoppingCart: ShoppingCart(ticketOperator: ProductsData.shared.data.operators.first!, product: ProductsData.shared.data.operators.first!.products!.first!)))
     }
 }

@@ -52,7 +52,7 @@ struct PurchaseSummaryView: View {
             
             VStack {
                 // PRODUCT CELLS
-                ImageTextRow(image: viewModel.shoppingCart.ticketOperator.image, text: viewModel.shoppingCart.ticketOperator.name)
+                ImageTextRow(image: Image(systemName: "tortoise.fill"), text: viewModel.shoppingCart.ticketOperator.title)
                     .padding(.vertical)
                     .foregroundColor(.white)
                 DividerTight()
@@ -162,9 +162,9 @@ struct PurchaseSummaryView: View {
     }
 }
 
-struct PurchaseSummaryView_Previews: PreviewProvider {
-    static var previews: some View {
-        PurchaseSummaryView(viewModel: PurchaseSummaryViewModel(shoppingCart: ShoppingCart(ticketOperator: ProductsData.shared.vtTicketOperator, productType: ProductsData.shared.vtTicketOperator.productTypes[0])))
-    }
-}
+//struct PurchaseSummaryView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PurchaseSummaryView(viewModel: PurchaseSummaryViewModel(shoppingCart: ShoppingCart(ticketOperator: ProductsData.shared.vtTicketOperator, product: ProductsData.shared.vtTicketOperator.products[0])))
+//    }
+//}
 

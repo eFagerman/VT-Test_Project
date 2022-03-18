@@ -15,10 +15,10 @@ struct PriceClassRow: View  {
         HStack {
             
             VStack(alignment: .leading) {
-                Text(shoppingCartItem.priceGroup.name).font(.applicationFont(withWeight: .bold, andSize: 15))
+                Text(shoppingCartItem.priceGroup.title).font(.applicationFont(withWeight: .bold, andSize: 15))
                     .foregroundColor(.white)
                 Spacer().frame(height: 4)
-                Text(shoppingCartItem.priceGroup.priceWithCurrency).font(.applicationFont(withWeight: .regular, andSize: 13))
+                Text(String(shoppingCartItem.price.amountTotal!)).font(.applicationFont(withWeight: .regular, andSize: 13))
                     .foregroundColor(.gray)
             }
             .padding()
@@ -37,7 +37,8 @@ struct PriceClassRow: View  {
 
 struct PriceClassRow_Previews: PreviewProvider {
     static var previews: some View {
-        let shoppingCart = ShoppingCart(ticketOperator: ProductsData.shared.slTicketOperator, productType: ProductsData.shared.slProduct1)
+        let shoppingCart = ShoppingCart(ticketOperator: ProductsData.shared.data.operators.first!, product: ProductsData.shared.data.operators.first!.products!.first!)
+        
         if let item = shoppingCart.items.first {
             PriceClassRow(shoppingCartItem: .constant(item))
         }

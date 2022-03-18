@@ -23,16 +23,12 @@ class SelectTicketTypeViewModel: ObservableObject {
     var selectTicketTypeSectionHeader: String = "Välj biljettyp"
     
     @Published var historicalTickets: [TicketHistory]
-    @Published var ticketOperators: [TicketOperator]
-    @Published var selectedOperator: TicketOperator
+    @Published var ticketOperators: [ResponseOperator]
+    @Published var selectedOperator: ResponseOperator?
   
-    init(historicalTickets: [HistoricalTicket], ticketOperators: [TicketOperator]) {
+    init(historicalTickets: [HistoricalTicket], ticketOperators: [ResponseOperator]) {
         self.historicalTickets = historicalTickets
         self.ticketOperators = ticketOperators
-        if let ticketOperator = ticketOperators.first {
-            self.selectedOperator = ticketOperator
-        } else {
-            self.selectedOperator = TicketOperator(id: "", name: "", productTypes: [], zones: [], priceGroups: [], image: Image(""))
-        }
+        self.selectedOperator = ticketOperators.first
     }
 }

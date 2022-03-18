@@ -22,6 +22,6 @@ protocol SelectTicketData: ObservableObject {
     var selectTicketTypeSectionHeader: String { get }
     
     var historicalTickets: [TicketHistory] { get set }
-    var ticketOperators: [TicketOperator] { get set }
-    var selectedOperator: TicketOperator { get set }
+    var ticketOperators: [ResponseOperator] { get set }
+    var selectedOperator: ResponseOperator? { get set }
 }

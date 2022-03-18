@@ -7,6 +7,38 @@
 
 import SwiftUI
 
+
+class DefaultLocaleProvider {
+    
+    static let shared = DefaultLocaleProvider()
+    
+    let fallbackCode = "en"
+    let availableCodes = ["en", "sv"]
+    let code = "en"
+}
+
+typealias TranslationResources = [String: [String: String]]
+
+protocol ContainsTextResources {
+    var resources: TranslationResources? { get }
+}
+extension ContainsTextResources {
+    private var defaultCode: String { return DefaultLocaleProvider.shared.fallbackCode }
+    private var code: String {
+        guard DefaultLocaleProvider.shared.availableCodes.contains(DefaultLocaleProvider.shared.code),
+              resources?.keys.contains(DefaultLocaleProvider.shared.code) == true else {
+                  return defaultCode
+              }
+        return DefaultLocaleProvider.shared.code
+    }
+    func localization(for key: String) -> String? {
+        guard let localizationDictionary = resources?[code] else {
+            return nil
+        }
+        return localizationDictionary[key]
+    }
+}
+
 struct RadioButtonView: View {
 
     let isSelected: Bool

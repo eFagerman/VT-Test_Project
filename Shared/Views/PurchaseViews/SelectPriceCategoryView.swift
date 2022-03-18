@@ -35,18 +35,18 @@ struct SelectPriceCategoryView: View {
                 SectionHeaderView(title: viewModel.ticketTypeTitle, changeButton: true)
 
                 // TICKET TYPE CELL
-                SimpleCell(title: viewModel.shoppingCart.productType.name)
+                SimpleCell(title: viewModel.shoppingCart.product.title)
                 
-                // ZONE
-                if let zone = viewModel.shoppingCart.productType.zone {
-                    
-                    // ZONE HEADER
-                    SectionHeaderView(title: viewModel.zoneTitle, changeButton: true)
-
-                    // ZONE CELL
-                    SimpleCell(title: zone)
-                    
-                }
+//                // ZONE
+//                if let zone = viewModel.shoppingCart.productType.zones {
+//
+//                    // ZONE HEADER
+//                    SectionHeaderView(title: viewModel.zoneTitle, changeButton: true)
+//
+//                    // ZONE CELL
+//                    SimpleCell(title: zone)
+//
+//                }
                 
                 // PRICE CLASS
                 
@@ -85,16 +85,15 @@ struct SelectPriceCategoryView: View {
             .padding(EdgeInsets(top: -8, leading: 0, bottom: -12, trailing: 0))
            
         }
-        .navigationTitle(viewModel.shoppingCart.ticketOperator.name)
+        .navigationTitle(viewModel.shoppingCart.ticketOperator.title)
         
     }
 }
 
 struct SelectPriceCategoryView_Previews: PreviewProvider {
     static var previews: some View {
-        let shoppingCart = ShoppingCart(ticketOperator: ProductsData.shared.slTicketOperator, productType: ProductsData.shared.slProduct1)
+        
+        let shoppingCart = ShoppingCart(ticketOperator: ProductsData.shared.data.operators.first!, product: ProductsData.shared.data.operators.first!.products!.first!)
         SelectPriceCategoryView(viewModel: SelectPriceCategoryViewModel(shoppingCart: shoppingCart))
-        let shoppingCart2 = ShoppingCart(ticketOperator: ProductsData.shared.slTicketOperator, productType: ProductsData.shared.slProduct2)
-        SelectPriceCategoryView(viewModel: SelectPriceCategoryViewModel(shoppingCart: shoppingCart2))
     }
 }
