@@ -16,8 +16,6 @@ struct SelectTicketTypeView: View {
     
     @ObservedObject var viewModel: SelectTicketTypeViewModel
     @State private var isExpanded = true
-    @State private var selectedOperator: ResponseOperator? = nil
-    @State private var selectedProduct: ResponseOperatorProduct? = nil
     @State var pushActive = false
     
     var body: some View {
@@ -44,13 +42,15 @@ struct SelectTicketTypeView: View {
                         content: {
                             VStack {
                                 DividerInset(inset: false, tight: true)
+                               
+                                
                                 ForEach(viewModel.ticketOperators) { ticketOperator in
                                     VStack {
                                         HStack {
                                             Spacer().frame(width: 40)
-                                            SelectableRow(hideRadioButtons: true, image: ticketOperator.image, title: ticketOperator.title, item: ticketOperator, selectedItem: $selectedOperator)
+                                            SelectableRow(hideRadioButtons: true, image: ticketOperator.image, title: ticketOperator.title, item: ticketOperator, selectedItem: $viewModel.selectedOperator)
                                                 .foregroundColor(.white)
-                                                .onChange(of: selectedOperator) { newValue in
+                                                .onChange(of: viewModel.selectedOperator) { newValue in
                                                     withAnimation {
                                                         isExpanded = true
                                                     }
@@ -68,12 +68,12 @@ struct SelectTicketTypeView: View {
 
                                 HStack {
                                     Spacer().frame(width: 16)
-                                    selectedOperator?.image
+                                    viewModel.selectedOperator?.image
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(width: 24.0, height: 24.0)
                                     Spacer().frame(width: 16)
-                                    Text(selectedOperator?.title ?? "")
+                                    Text(viewModel.selectedOperator?.title ?? "")
                                     Spacer()
                                 }
                                 .frame(height: 36)
@@ -91,7 +91,7 @@ struct SelectTicketTypeView: View {
                 SectionHeaderView(title: viewModel.selectTicketTypeSectionHeader)
                 
                 // PRODUCT CELLS
-                if let selectedOperator = selectedOperator, let productTypes = selectedOperator.products {
+                if let selectedOperator = viewModel.selectedOperator, let productTypes = selectedOperator.products {
                     ForEach(productTypes) { productType in
                         let shoppingCart = ShoppingCart(ticketOperator: selectedOperator, product: productType)
                         if selectedOperator.zones?.count ?? 0 > 1 {
@@ -129,11 +129,6 @@ struct SelectTicketTypeView: View {
                     Button("Info") {
                         print("Help tapped")
                     }
-                }
-            }
-            .onAppear {
-                if let ticketOperator = viewModel.ticketOperators.last { // tmp
-                    self.selectedOperator = ticketOperator
                 }
             }
         }
@@ -184,7 +179,7 @@ struct SelectTicketTypeView: View {
 struct SelectTicketTypeView_Previews: PreviewProvider {
     static var previews: some View {
         
-        let viewModel = SelectTicketTypeViewModel(historicalTickets: [], ticketOperators: ProductsData.shared.data.operators)
+        let viewModel = SelectTicketTypeViewModel()
         SelectTicketTypeView(viewModel: viewModel)
     }
 }

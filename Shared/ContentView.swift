@@ -30,7 +30,7 @@ struct ContentView: View {
 //                }
         
         
-        let viewModel = SelectTicketTypeViewModel(historicalTickets: [], ticketOperators: ProductsData.shared.data.operators)
+        let viewModel = SelectTicketTypeViewModel()
         
         SelectTicketTypeView(viewModel: viewModel)
 
