@@ -9,6 +9,7 @@ import SwiftUI
 
 
 struct ZoneCellModel {
+    let id: String?
     let title: String
     let message: String
     var selected = false
@@ -42,22 +43,28 @@ class SelectZoneViewModel: ObservableObject {
     @Published var isFromTextActive = false
     @Published var isToTextActive = true
     @Published var zoneList: [ZoneCellModel]
+    public var zones: [ResponseOperatorZone]?
     @Published var searchSuggestionList: [SearchSuggestionModel]
 
-    init(shoppingCart: ShoppingCart) {
+    init(shoppingCart: ShoppingCart, zones: [ResponseOperatorZone]?) {
         self.shoppingCart = shoppingCart
         self.fromText = ""
         self.toText = ""
-        self.zoneList = SelectZoneViewModel.getZoneCellModelList()
+        self.zones = zones
+        self.zoneList = SelectZoneViewModel.getZoneCellModelList(zones: zones)
         self.searchSuggestionList = SelectZoneViewModel.getSearchSuggestionModelList()
     }
     
-    private static func getZoneCellModelList() -> [ZoneCellModel] {
-        let zoneA = ZoneCellModel(title: "Zon A", message: "Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ", selected: true, dimmed: false)
-        let zoneB = ZoneCellModel(title: "Zon B", message: "Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ", selected: false, dimmed: true)
-        let zoneC = ZoneCellModel(title: "Zon C", message: "Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ", selected: false, dimmed: false)
-        let zoneAB = ZoneCellModel(title: "Zon AB", message: "Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ", selected: false, dimmed: false)
-        return [zoneA, zoneB, zoneC, zoneAB, zoneA, zoneA]
+    private static func getZoneCellModelList(zones: [ResponseOperatorZone]?) -> [ZoneCellModel] {
+        guard var zones = zones else { return [] }
+        zones.sort(by: { $0.sort ?? 0 < $1.sort ?? 0 })
+        var zoneCellModelList = [ZoneCellModel]()
+        for zone in zones {
+            let selected = zone == zones.first
+            let zoneCellModel = ZoneCellModel(id: zone.id, title: zone.resources?["sv"]?["zone.title"] ?? "Zone", message: "Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ", selected: selected, dimmed: false)
+            zoneCellModelList.append(zoneCellModel)
+        }
+        return zoneCellModelList
     }
     
     private static func getSearchSuggestionModelList() -> [SearchSuggestionModel] {
@@ -252,6 +259,8 @@ struct SelectZoneView: View {
 
 struct ZoneSelectorView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectZoneView(viewModel: SelectZoneViewModel(shoppingCart: ShoppingCart(ticketOperator: ProductsData.shared.data.operators.first!, product: ProductsData.shared.data.operators.first!.products!.first!)))
+        let zoneA = ResponseOperatorZone(id: "vt_a", resources: ["sv" : ["zone.title" : "Zon A"], "en" : ["zone.title" : "Zone A"]], sort: 0)
+        let zoneB = ResponseOperatorZone(id: "vt_b", resources: ["sv" : ["zone.title" : "Zon B"], "en" : ["zone.title" : "Zone B"]], sort: 0)
+        SelectZoneView(viewModel: SelectZoneViewModel(shoppingCart: ShoppingCart(ticketOperator: ProductsData.shared.data.operators.first!, product: ProductsData.shared.data.operators.first!.products!.first!), zones: [zoneA, zoneB]))
     }
 }

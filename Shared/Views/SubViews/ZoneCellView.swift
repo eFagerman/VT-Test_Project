@@ -37,7 +37,7 @@ struct ZoneCellView: View {
 
 struct ZoneCellView_Previews: PreviewProvider {
     static var previews: some View {
-        let zoneA = ZoneCellModel(title: "Zon A", message: "Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ", selected: false, dimmed: false)
+        let zoneA = ZoneCellModel(id: "", title: "Zon A", message: "Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ", selected: false, dimmed: false)
         ZoneCellView(viewModel: zoneA)
     }
 }
