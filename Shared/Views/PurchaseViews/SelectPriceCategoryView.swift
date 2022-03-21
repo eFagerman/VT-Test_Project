@@ -39,16 +39,17 @@ struct SelectPriceCategoryView: View {
                 // TICKET TYPE CELL
                 SimpleCell(title: viewModel.shoppingCart.product.title)
                 
-//                // ZONE
-//                if let zone = viewModel.shoppingCart.productType.zones {
-//
-//                    // ZONE HEADER
-//                    SectionHeaderView(title: viewModel.zoneTitle, changeButton: true)
-//
-//                    // ZONE CELL
-//                    SimpleCell(title: zone)
-//
-//                }
+                // ZONE
+                if let zones = viewModel.shoppingCart.product.zones, zones.count > 0 {
+
+                    // ZONE HEADER
+                    SectionHeaderView(title: viewModel.zoneTitle, changeButton: true)
+
+                    // ZONE CELL
+                    ForEach(zones, id: \.id) { zone in
+                        SimpleCell(title: zone.resources?["sv"]?["zone.title"] ?? "")
+                    }
+                }
                 
                 // PRICE CLASS
                 
