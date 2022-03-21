@@ -162,9 +162,11 @@ struct PurchaseSummaryView: View {
     }
 }
 
-//struct PurchaseSummaryView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PurchaseSummaryView(viewModel: PurchaseSummaryViewModel(shoppingCart: ShoppingCart(ticketOperator: ProductsData.shared.vtTicketOperator, product: ProductsData.shared.vtTicketOperator.products[0])))
-//    }
-//}
+struct PurchaseSummaryView_Previews: PreviewProvider {
+    static var previews: some View {
+        let shoppingCart = ShoppingCart(ticketOperator: ProductsData.shared.data.operators.first!, product: ProductsData.shared.data.operators.first!.products!.first!)
+        let purchaseSummareyViewModel = PurchaseSummaryViewModel(shoppingCart: shoppingCart)
+        PurchaseSummaryView(viewModel: purchaseSummareyViewModel)
+    }
+}
 
