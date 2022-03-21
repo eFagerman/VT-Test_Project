@@ -163,10 +163,10 @@ struct SelectTicketTypeView: View {
                             .onTapGesture {
                                 pushActive = true
                             }
-//                        let shoppingCart = ShoppingCart(ticketOperator: ProductsData.shared.slTicketOperator, productType: ProductsData.shared.slProduct1)
-//                        let viewModel = PurchaseSummaryViewModel(shoppingCart: shoppingCart)
-//                        NavigationLink(destination: PurchaseSummaryView(viewModel: viewModel), isActive: $pushActive) {
-//                        }.hidden()
+                        let shoppingCart = ShoppingCart(ticketOperator: ProductsData.shared.data.operators.first!, product: ProductsData.shared.data.operators.first!.products!.first!)
+                        let purchaseSummareyViewModel = PurchaseSummaryViewModel(shoppingCart: shoppingCart)
+                        NavigationLink(destination: PurchaseSummaryView(viewModel: purchaseSummareyViewModel), isActive: $pushActive) {
+                        }.hidden()
                     }
                 }
                 .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 12))
