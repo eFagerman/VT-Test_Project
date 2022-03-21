@@ -75,7 +75,7 @@ struct SelectTicketTypeView: View {
             if let selectedOperator = viewModel.selectedOperator, let productTypes = selectedOperator.products {
                 ForEach(productTypes) { productType in
                     let shoppingCart = ShoppingCart(ticketOperator: selectedOperator, product: productType)
-                    if selectedOperator.zones?.count ?? 0 > 1 {
+                    if productType.zones?.count ?? 0 > 1 {
                         NavigationLink(destination: SelectZoneView(viewModel: SelectZoneViewModel(shoppingCart: shoppingCart))) {
                             arrowCell(title: productType.title)
                         }
