@@ -76,7 +76,7 @@ struct SelectTicketTypeView: View {
                 ForEach(productTypes) { productType in
                     let shoppingCart = ShoppingCart(ticketOperator: selectedOperator, product: productType)
                     if productType.zones?.count ?? 0 > 1 {
-                        NavigationLink(destination: SelectZoneView(viewModel: SelectZoneViewModel(shoppingCart: shoppingCart))) {
+                        NavigationLink(destination: SelectZoneView(viewModel: SelectZoneViewModel(shoppingCart: shoppingCart, zones: productType.zones))) {
                             arrowCell(title: productType.title)
                         }
                         .buttonStyle(PlainButtonStyle())
