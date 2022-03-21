@@ -47,8 +47,10 @@ struct SelectPriceCategoryView: View {
 
                     // ZONE CELL
                     ForEach(zones, id: \.id) { zone in
+                        DividerTight()
                         SimpleCell(title: zone.resources?["sv"]?["zone.title"] ?? "")
                     }
+                    DividerTight()
                 }
                 
                 // PRICE CLASS
