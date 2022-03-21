@@ -35,55 +35,7 @@ struct SelectTicketTypeView: View {
                 Spacer().frame(height: 8)
                 
                 // OPERATOR CELLS
-                DividerTight()
-                HStack {
-                    DisclosureGroup(
-                        isExpanded: $isExpanded,
-                        content: {
-                            VStack {
-                                DividerInset(inset: false, tight: true)
-                               
-                                
-                                ForEach(viewModel.ticketOperators) { ticketOperator in
-                                    VStack {
-                                        HStack {
-                                            Spacer().frame(width: 40)
-                                            SelectableRow(hideRadioButtons: true, image: ticketOperator.image, title: ticketOperator.title, item: ticketOperator, selectedItem: $viewModel.selectedOperator)
-                                                .foregroundColor(.white)
-                                                .onChange(of: viewModel.selectedOperator) { newValue in
-                                                    withAnimation {
-                                                        isExpanded = true
-                                                    }
-                                                }
-                                        }
-                                        .frame(height: 46)
-                                        if ticketOperator != viewModel.ticketOperators.last {
-                                            DividerInset(inset: true, width: 97, tight: true)
-                                        }
-                                    }
-                                }
-                            }
-                        },
-                        label: {
-
-                                HStack {
-                                    Spacer().frame(width: 16)
-                                    viewModel.selectedOperator?.image
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(width: 24.0, height: 24.0)
-                                    Spacer().frame(width: 16)
-                                    Text(viewModel.selectedOperator?.title ?? "")
-                                    Spacer()
-                                }
-                                .frame(height: 36)
-                                
-                        })
-                        .accentColor(.white)
-                    Spacer().frame(width: 23)
-                }
-                .background(Color.blue)
-                DividerTight()
+                operatorCells()
                 
                 // PRODUCT
                 
@@ -91,23 +43,7 @@ struct SelectTicketTypeView: View {
                 SectionHeaderView(title: viewModel.selectTicketTypeSectionHeader)
                 
                 // PRODUCT CELLS
-                if let selectedOperator = viewModel.selectedOperator, let productTypes = selectedOperator.products {
-                    ForEach(productTypes) { productType in
-                        let shoppingCart = ShoppingCart(ticketOperator: selectedOperator, product: productType)
-                        if selectedOperator.zones?.count ?? 0 > 1 {
-                            NavigationLink(destination: SelectZoneView(viewModel: SelectZoneViewModel(shoppingCart: shoppingCart))) {
-                                arrowCell(title: productType.title)
-                            }
-                            .buttonStyle(PlainButtonStyle())
-                        } else {
-                            NavigationLink(destination: SelectPriceCategoryView(viewModel: SelectPriceCategoryViewModel(shoppingCart: shoppingCart))) {
-                                arrowCell(title: productType.title)
-                            }
-                            .buttonStyle(PlainButtonStyle())
-                        }
-                        DividerTight()
-                    }
-                }
+                productCells()
             }
             .padding(.top)
             .navigationTitle(viewModel.title)
@@ -131,6 +67,82 @@ struct SelectTicketTypeView: View {
                     }
                 }
             }
+        }
+    }
+    
+    private func productCells() -> some View {
+        VStack {
+            if let selectedOperator = viewModel.selectedOperator, let productTypes = selectedOperator.products {
+                ForEach(productTypes) { productType in
+                    let shoppingCart = ShoppingCart(ticketOperator: selectedOperator, product: productType)
+                    if selectedOperator.zones?.count ?? 0 > 1 {
+                        NavigationLink(destination: SelectZoneView(viewModel: SelectZoneViewModel(shoppingCart: shoppingCart))) {
+                            arrowCell(title: productType.title)
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                    } else {
+                        NavigationLink(destination: SelectPriceCategoryView(viewModel: SelectPriceCategoryViewModel(shoppingCart: shoppingCart))) {
+                            arrowCell(title: productType.title)
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                    }
+                    DividerTight()
+                }
+            }
+        }
+    }
+        
+    private func operatorCells() -> some View {
+        VStack {
+            DividerTight()
+            HStack {
+                DisclosureGroup(
+                    isExpanded: $isExpanded,
+                    content: {
+                        VStack {
+                            DividerInset(inset: false, tight: true)
+                            
+                            
+                            ForEach(viewModel.ticketOperators) { ticketOperator in
+                                VStack {
+                                    HStack {
+                                        Spacer().frame(width: 40)
+                                        SelectableRow(hideRadioButtons: true, image: ticketOperator.image, title: ticketOperator.title, item: ticketOperator, selectedItem: $viewModel.selectedOperator)
+                                            .foregroundColor(.white)
+                                            .onChange(of: viewModel.selectedOperator) { newValue in
+                                                withAnimation {
+                                                    isExpanded = true
+                                                }
+                                            }
+                                    }
+                                    .frame(height: 46)
+                                    if ticketOperator != viewModel.ticketOperators.last {
+                                        DividerInset(inset: true, width: 97, tight: true)
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    label: {
+                        
+                        HStack {
+                            Spacer().frame(width: 16)
+                            viewModel.selectedOperator?.image
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 24.0, height: 24.0)
+                            Spacer().frame(width: 16)
+                            Text(viewModel.selectedOperator?.title ?? "")
+                            Spacer()
+                        }
+                        .frame(height: 36)
+                        
+                    })
+                    .accentColor(.white)
+                Spacer().frame(width: 23)
+            }
+            .background(Color.blue)
+            DividerTight()
         }
     }
     
