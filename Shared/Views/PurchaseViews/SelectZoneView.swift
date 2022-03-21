@@ -45,6 +45,7 @@ class SelectZoneViewModel: ObservableObject {
     @Published var zoneList: [ZoneCellModel]
     public var zones: [ResponseOperatorZone]?
     @Published var searchSuggestionList: [SearchSuggestionModel]
+    public var selectedZoneId: String? = nil
 
     init(shoppingCart: ShoppingCart, zones: [ResponseOperatorZone]?) {
         self.shoppingCart = shoppingCart
@@ -80,8 +81,12 @@ class SelectZoneViewModel: ObservableObject {
         for zoneListItem in self.zoneList {
             index += 1
             var newZoneListItem = zoneListItem
-            newZoneListItem.selected = tappedIndex == index
+            let selected = tappedIndex == index
+            newZoneListItem.selected = selected
             newZoneList.append(newZoneListItem)
+            if selected {
+                selectedZoneId = zoneListItem.id
+            }
         }
         self.zoneList = newZoneList
     }
@@ -160,7 +165,7 @@ struct SelectZoneView: View {
                 .background(Color.red)
                 
                 VStack {
-                    NavigationLink(destination: SelectPriceCategoryView(viewModel: SelectPriceCategoryViewModel(shoppingCart: viewModel.shoppingCart))) {
+                    NavigationLink(destination: SelectPriceCategoryView(viewModel: SelectPriceCategoryViewModel(shoppingCart: viewModel.shoppingCart, selectedZoneId: viewModel.selectedZoneId))) {
                         HStack {
                             Spacer()
                             Text(viewModel.buyTicketTitle)

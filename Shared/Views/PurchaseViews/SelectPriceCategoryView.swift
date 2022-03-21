@@ -10,14 +10,16 @@ import SwiftUI
 class SelectPriceCategoryViewModel: ObservableObject {
     
     @Published var shoppingCart: ShoppingCart
+    var selectedZoneId: String? = nil
     
     let ticketTypeTitle = "Biljettyp"
     let zoneTitle = "Zon"
     let priceClassTitle = "Prisklass"
     let buyTicketTitle = "Köp biljett"
     
-    init(shoppingCart: ShoppingCart) {
+    init(shoppingCart: ShoppingCart, selectedZoneId: String? = nil) {
         self.shoppingCart = shoppingCart
+        self.selectedZoneId = selectedZoneId
     }
 }
 
