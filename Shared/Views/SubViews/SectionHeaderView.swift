@@ -23,7 +23,8 @@ struct SectionHeaderView: View {
                 Button(changeTitle) {
                     presentation.wrappedValue.dismiss()
                 }
-                .font(.applicationFont(withWeight: .regular, andSize: 13))
+                .font(.applicationFont(withWeight: .bold, andSize: 13))
+                .foregroundColor(Color(UIColor.accentGreen))
             }
         }
         .padding(.horizontal)

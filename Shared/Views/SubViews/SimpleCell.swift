@@ -12,22 +12,24 @@ struct SimpleCell: View {
     
     var body: some View {
         VStack {
-            Divider().background(Color(UIColor.red))
+            Divider()
+                .background(Color(UIColor.General.divider))
                 .padding(.top, 1)
             Spacer().frame(height: 0)
             VStack {
                 HStack {
                     Spacer().frame(width: 16)
                     Text(title)
-                        .font(.applicationFont(withWeight: .bold, andSize: 15))
-                        .foregroundColor(.white)
+                        .font(.applicationFont(withWeight: .regular, andSize: 17))
+                        .foregroundColor(Color(UIColor.Popup.title))
                     Spacer()
                 }
             }
             .frame(height: 46)
-            .background(Color(UIColor.blue))
+            .background(Color(UIColor.General.secondComplementBackground))
             Spacer().frame(height: 0)
-            Divider().background(Color(UIColor.white))
+            Divider()
+                .background(Color(UIColor.General.divider))
         }
     }
 }
