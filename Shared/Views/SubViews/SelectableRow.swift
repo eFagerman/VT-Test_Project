@@ -34,6 +34,8 @@ struct SelectableRow<Model>: View where Model: SelectableItem {
 
             if let title = self.title {
                 Text(title)
+                    .foregroundColor(Color(UIColor.Popup.title))
+                    .font(.applicationFont(withWeight: .bold, andSize: 15))
             }
             
             Spacer()

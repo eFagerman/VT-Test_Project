@@ -87,6 +87,10 @@ extension UIColor {
         return UIColor(red: 173.0 / 255.0, green: 209.0 / 255.0, blue: 1.0, alpha: 0.2)
     }
     
+    @nonobjc class var darkSecondaryPowderBlue15: UIColor {
+        return UIColor(red: 173.0 / 255.0, green: 209.0 / 255.0, blue: 1.0, alpha: 0.15)
+    }
+
     @nonobjc class var darkModeOpaqueSelection: UIColor {
         return UIColor(red: 37 / 255.0, green: 49 / 255.0, blue: 67.0 / 255.0, alpha: 1.0)
     }
@@ -1328,6 +1332,18 @@ extension UIColor {
             }
         }
         
+    }
+    
+    // MARK:- Historical Ticket
+    
+    struct HistoricalTicket {
+        
+        static var boxBackgroundColor: UIColor {
+            switch Theme.current {
+            case .light:    return .white
+            case .dark:     return .darkSecondaryPowderBlue15
+            }
+        }
     }
     
     // MARK:- Ticket Bar

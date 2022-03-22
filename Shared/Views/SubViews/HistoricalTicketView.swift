@@ -24,8 +24,12 @@ struct HistoricalTicketView<TicketHistoryViewModel>: View where TicketHistoryVie
                         return d[HorizontalAlignment.leading]
                     })
                     .frame(width: 18, height: 18)
+                
+                Spacer().frame(width: 8)
+                
                 Text(viewModel.ticketTypeName)
                     .font(.applicationFont(withWeight: .bold, andSize: 15))
+                    .foregroundColor(Color(UIColor.Popup.title))
                 Spacer()
             }
             
@@ -36,6 +40,7 @@ struct HistoricalTicketView<TicketHistoryViewModel>: View where TicketHistoryVie
                 Spacer().frame(width: 14)
                 Text(viewModel.priceGroupName)
                     .font(.applicationFont(withWeight: .regular, andSize: 15))
+                    .foregroundColor(Color(UIColor.Text.label))
                 Spacer()
             }
             
@@ -43,7 +48,7 @@ struct HistoricalTicketView<TicketHistoryViewModel>: View where TicketHistoryVie
 
         }
         .frame(width: 132, height: 67)
-        .background(Color.green)
+        .background(Color(UIColor.HistoricalTicket.boxBackgroundColor))
         .cornerRadius(9)
     }
 }

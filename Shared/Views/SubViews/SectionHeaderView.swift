@@ -17,6 +17,7 @@ struct SectionHeaderView: View {
         HStack {
             Text(title)
                 .font(.applicationFont(withWeight: .bold, andSize: 13))
+                .foregroundColor(Color(UIColor.Text.label))
             Spacer()
             if changeButton {
                 Button(changeTitle) {

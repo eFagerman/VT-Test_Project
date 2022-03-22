@@ -19,7 +19,8 @@ extension ResponseOperator: ContainsTextResources, Identifiable {
     }
     
     var image: Image {
-        return Image(systemName: "tortoise.fill")
+        // TODO: fetch this logo from the backend
+        return Image(code).renderingMode(.original)
     }
 }
 

@@ -108,7 +108,7 @@ struct SelectZoneView: View {
     
     var body: some View {
         ZStack {
-            Color(UIColor(Color.red)).edgesIgnoringSafeArea(.all)
+            Color(UIColor.General.backgroundTwo).edgesIgnoringSafeArea(.all)
             
             VStack {
                 

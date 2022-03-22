@@ -9,9 +9,12 @@ import SwiftUI
 
 struct DividerTight: View {
     var body: some View {
-        Spacer().frame(height: 0)
-        Divider().background(Color(UIColor.black))
-        Spacer().frame(height: 0)
+        Spacer()
+            .frame(height: 0)
+        Divider()
+            .background(Color(UIColor.General.divider))
+        Spacer()
+            .frame(height: 0)
     }
 }
 

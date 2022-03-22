@@ -11,62 +11,77 @@ extension ResponseOperatorProduct: SelectableItem { }
 
 extension ResponseOperator: SelectableItem { }
 
-//struct SelectTicketTypeView<SelectTicketViewModel>: View where SelectTicketViewModel: SelectTicketData {
 struct SelectTicketTypeView: View {
     
     @ObservedObject var viewModel: SelectTicketTypeViewModel
-    @State private var isExpanded = true
+    @State private var isExpanded = false
     @State var pushActive = false
     
     var body: some View {
         
         NavigationView {
-            
-            ScrollView {
+            ZStack {
                 
-                // HISTORY
-                historySectionView()
+                Color(UIColor.General.backgroundTwo).edgesIgnoringSafeArea(.all)
                 
-                // OPERATOR
-                
-                // OPERATOR HEADER
-                SectionHeaderView(title: viewModel.operatorSectionHeader)
-                
-                Spacer().frame(height: 8)
-                
-                // OPERATOR CELLS
-                operatorCells()
-                
-                // PRODUCT
-                
-                // PRODUCT HEADER
-                SectionHeaderView(title: viewModel.selectTicketTypeSectionHeader)
-                
-                // PRODUCT CELLS
-                productCells()
-            }
-            .padding(.top)
-            .navigationTitle(viewModel.title)
-            .navigationBarBackButtonHidden(true)
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button {
-                        print("Close")
-                    } label: {
-                        Image(systemName: "xmark")
-                            .frame(width: 24, height: 24)
-                    }
+                ScrollView {
+                    
+                    // HISTORY
+                    historySectionView()
+                    
+                    // OPERATOR
+                    
+                    // OPERATOR HEADER
+                    SectionHeaderView(title: viewModel.operatorSectionHeader)
+                    
+                    Spacer().frame(height: 8)
+                    
+                    // OPERATOR CELLS
+                    operatorCells()
+                    
+                    // PRODUCT
+                    
+                    // PRODUCT HEADER
+                    SectionHeaderView(title: viewModel.selectTicketTypeSectionHeader)
+                    
+                    Spacer().frame(height: 8)
+
+                    // PRODUCT CELLS
+                    productCells()
                 }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        print("Info")
-                    } label: {
-                        Image(systemName: "info.circle.fill")
-                            .frame(width: 24, height: 24)
+                .padding(.top)
+                .navigationBarBackButtonHidden(true)
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button {
+                            // få till att den stänger här
+                        } label: {
+                            Image("close")
+                                .renderingMode(.template)
+                                .foregroundColor(Color(UIColor.General.accentColor))
+                                .frame(width: 24, height: 24)
+                        }
                     }
-                    Button("Info") {
-                        print("Help tapped")
+                    ToolbarItem(placement: .principal) {
+                        HStack {
+                            Text(viewModel.title)
+                                .foregroundColor(Color(UIColor.Popup.title))
+                                .font(.applicationFont(withWeight: .bold, andSize: 17))
+                        }
+                    }
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button {
+                            print("Info")
+                        } label: {
+                            Image("icons24SystemInfo")
+                                .renderingMode(.template)
+                                .foregroundColor(Color(UIColor.General.accentColor))
+                                .frame(width: 24, height: 24)
+                        }
+                        Button("Info") {
+                            print("Help tapped")
+                        }
                     }
                 }
             }
@@ -76,6 +91,7 @@ struct SelectTicketTypeView: View {
     private func productCells() -> some View {
         VStack {
             if let selectedOperator = viewModel.selectedOperator, let productTypes = selectedOperator.products {
+                DividerTight()
                 ForEach(productTypes) { productType in
                     let shoppingCart = ShoppingCart(ticketOperator: selectedOperator, product: productType)
                     if productType.zones?.count ?? 0 > 1 {
@@ -89,7 +105,11 @@ struct SelectTicketTypeView: View {
                         }
                         .buttonStyle(PlainButtonStyle())
                     }
-                    DividerTight()
+                    if productType == productTypes.last {
+                        DividerTight()
+                    } else {
+                        DividerInset(inset: true, width: 16, tight: true)
+                    }
                 }
             }
         }
@@ -104,17 +124,14 @@ struct SelectTicketTypeView: View {
                     content: {
                         VStack {
                             DividerInset(inset: false, tight: true)
-                            
-                            
                             ForEach(viewModel.ticketOperators) { ticketOperator in
                                 VStack {
                                     HStack {
                                         Spacer().frame(width: 40)
                                         SelectableRow(hideRadioButtons: true, image: ticketOperator.image, title: ticketOperator.title, item: ticketOperator, selectedItem: $viewModel.selectedOperator)
-                                            .foregroundColor(.white)
                                             .onChange(of: viewModel.selectedOperator) { newValue in
                                                 withAnimation {
-                                                    isExpanded = true
+                                                    isExpanded = false
                                                 }
                                             }
                                     }
@@ -136,15 +153,17 @@ struct SelectTicketTypeView: View {
                                 .frame(width: 24.0, height: 24.0)
                             Spacer().frame(width: 16)
                             Text(viewModel.selectedOperator?.title ?? "")
+                                .foregroundColor(Color(UIColor.Popup.title))
+                                .font(.applicationFont(withWeight: .bold, andSize: 15))
                             Spacer()
                         }
                         .frame(height: 36)
                         
                     })
-                    .accentColor(.white)
+                    .accentColor(Color(UIColor.Text.label))
                 Spacer().frame(width: 23)
             }
-            .background(Color.blue)
+            .background(Color(UIColor.General.secondComplementBackground))
             DividerTight()
         }
     }
@@ -153,14 +172,15 @@ struct SelectTicketTypeView: View {
         HStack {
             Spacer().frame(width: 16)
             Text(title)
-                .font(.applicationFont(withWeight: .regular, andSize: 17))
+                .font(.applicationFont(withWeight: .bold, andSize: 15))
             Spacer()
-            Image(systemName: "chevron.compact.right")
+            Image("ic_chevron")
+                .foregroundColor(Color(UIColor.Text.label))
             Spacer().frame(width: 14)
         }
-        .foregroundColor(.white)
+        .foregroundColor(Color(UIColor.Popup.title))
         .frame(height: 46)
-        .background(Color(UIColor.gray))
+        .background(Color(UIColor.General.secondComplementBackground))
     }
 
     private func historySectionView() -> some View {
@@ -171,6 +191,7 @@ struct SelectTicketTypeView: View {
                 
                 HStack(spacing: 4) {
                     
+                    // TODO: change \.ticketTypeName to some kind of id that we get from the server
                     ForEach(viewModel.historicalTickets, id: \.ticketTypeName) { historicalTicket in
                         
                         let viewModel = HistoricalTicket(operatorImage: historicalTicket.operatorImage, ticketTypeName: historicalTicket.ticketTypeName, priceGroupName: historicalTicket.priceGroupName)

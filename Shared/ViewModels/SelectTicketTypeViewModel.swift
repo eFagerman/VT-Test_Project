@@ -70,7 +70,9 @@ struct HistoricalTicket: TicketHistory {
                 isLoading = true
                 ticketOperators = try await operatorsService.loadOperators()
                 selectedOperator = ticketOperators.first
-                historicalTickets = [HistoricalTicket(operatorImage: Image(systemName: "heart.fill"), ticketTypeName: "Enkelbiljett", priceGroupName: "Vuxen"), HistoricalTicket(operatorImage: Image(systemName: "heart.fill"), ticketTypeName: "Enkelbiljett", priceGroupName: "Vuxen")]
+                // TODO: fetch historicalTickets
+                // TODO: don't use Image("se_vt")
+                historicalTickets = [HistoricalTicket(operatorImage: Image("se_vt"), ticketTypeName: "Enkelbiljett", priceGroupName: "Vuxen"), HistoricalTicket(operatorImage: Image("se_sl"), ticketTypeName: "Enkelbiljett", priceGroupName: "Barn"), HistoricalTicket(operatorImage: Image("se_sl"), ticketTypeName: "Enkelbiljett", priceGroupName: "Barn"), HistoricalTicket(operatorImage: Image("se_sl"), ticketTypeName: "Enkelbiljett", priceGroupName: "Barn"), HistoricalTicket(operatorImage: Image("se_sl"), ticketTypeName: "Enkelbiljett", priceGroupName: "Barn"), HistoricalTicket(operatorImage: Image("se_sl"), ticketTypeName: "Enkelbiljett", priceGroupName: "Barn")]
                 isLoading = false
                 
             } catch {
