@@ -44,6 +44,8 @@ class SelectPriceCategoryViewModel: ObservableObject {
 
 struct SelectPriceCategoryView: View {
     
+    @Environment(\.presentationMode) var presentation
+
     @ObservedObject var viewModel: SelectPriceCategoryViewModel
     
     var body: some View {
@@ -128,6 +130,19 @@ struct SelectPriceCategoryView: View {
            
         }
         .navigationTitle(viewModel.shoppingCart.ticketOperator.title)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarTitleDisplayMode(.inline)
+        .padding(.bottom, -8)
+        .toolbar {
+            ToolbarItem (placement: .navigation)  {
+                Image(systemName: "arrow.left")
+                    .foregroundColor(.blue)
+                    .onTapGesture {
+                        // code to dismiss the view
+                        self.presentation.wrappedValue.dismiss()
+                    }
+            }
+        }
         
     }
 }

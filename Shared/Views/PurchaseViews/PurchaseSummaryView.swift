@@ -37,6 +37,8 @@ class PurchaseSummaryViewModel: ObservableObject {
 
 struct PurchaseSummaryView: View {
     
+    @Environment(\.presentationMode) var presentation
+
     @ObservedObject var viewModel: PurchaseSummaryViewModel
     
     @State var selectablePaymentMethod: PaymentMethod? = nil
@@ -159,6 +161,20 @@ struct PurchaseSummaryView: View {
             
             
         }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarTitleDisplayMode(.inline)
+        .padding(.bottom, -8)
+        .toolbar {
+            ToolbarItem (placement: .navigation)  {
+                Image(systemName: "arrow.left")
+                    .foregroundColor(.blue)
+                    .onTapGesture {
+                        // code to dismiss the view
+                        self.presentation.wrappedValue.dismiss()
+                    }
+            }
+        }
+
     }
 }
 

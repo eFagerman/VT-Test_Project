@@ -47,6 +47,7 @@ struct SelectTicketTypeView: View {
             }
             .padding(.top)
             .navigationTitle(viewModel.title)
+            .navigationBarBackButtonHidden(true)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
