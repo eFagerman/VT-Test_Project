@@ -21,6 +21,7 @@ class PurchaseSummaryViewModel: ObservableObject {
     
     var shoppingCart: ShoppingCart
     @Published var paymentMethods: [PaymentMethod] = [PaymentMethod(name: "Betalkort", image: Image(systemName: "creditcard")), PaymentMethod(name: "Swish", image: Image(systemName: "line.3.crossed.swirl.circle"))]
+    let title = "Köp biljett"
     let yourTicketTitle = "Din biljett"
     let footerTitle = "Footer text. Footer text. Footer text. Footer text. Footer text. Footer text. Footer text. Footer text."
     let sumTitle = "Summa:"
@@ -120,11 +121,11 @@ struct PurchaseSummaryView: View {
                         self.presentation.wrappedValue.dismiss()
                     }
             }
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-                    print("Info was tapped")
-                } label: {
-                    Image(systemName: "info.circle.fill")
+            ToolbarItem(placement: .principal) {
+                HStack {
+                    Text(viewModel.title)
+                        .foregroundColor(Color(UIColor.Popup.title))
+                        .font(.applicationFont(withWeight: .bold, andSize: 17))
                 }
             }
         }

@@ -70,6 +70,19 @@ struct SelectTicketTypeView: View {
                                 .font(.applicationFont(withWeight: .bold, andSize: 17))
                         }
                     }
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button {
+                            print("Info")
+                        } label: {
+                            Image("icons24SystemInfo")
+                                .renderingMode(.template)
+                                .foregroundColor(Color(UIColor.General.accentColor))
+                                .frame(width: 24, height: 24)
+                        }
+                        Button("Info") {
+                            print("Help tapped")
+                        }
+                    }
                 }
             }
         }
