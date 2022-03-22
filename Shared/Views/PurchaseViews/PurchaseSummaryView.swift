@@ -47,8 +47,6 @@ struct PurchaseSummaryView: View {
         
         VStack {
             
-            
-            
             // PRODUCT HEADER
             SectionHeaderView(title: viewModel.yourTicketTitle)
             
@@ -92,14 +90,7 @@ struct PurchaseSummaryView: View {
             Text("THE PAYMENT METHOD PART IS IN THE MAIN PROJECT AS SWIFTUI CODE ALREADY ")
 
             Spacer()
-            
-            
-            
-            
-            
-            
-            
-            
+
             Button(action: {
                 print("Buy")
             }, label: {
@@ -114,51 +105,7 @@ struct PurchaseSummaryView: View {
                 .background(Color.green)
                 .padding(EdgeInsets(top: -8, leading: 0, bottom: -12, trailing: 0))
 
-                
-                
-                /*
-                
-                VStack {
-                    let viewModel2 = PurchaseSummaryViewModel(shoppingCart: viewModel.shoppingCart)
-                    NavigationLink(destination: PurchaseSummaryView(viewModel: viewModel2)
-                                    .navigationTitle(viewModel.buyTicketTitle)) {
-                        HStack {
-                            Spacer()
-                            Text(viewModel.buyTicketTitle)
-                            Spacer()
-                        }
-                        .frame(height: 48)
-                    }
-                    .contentShape(Rectangle())
-                    .font(.applicationFont(withWeight: .bold, andSize: 21))
-                }
-                .background(Color.yellow)
-*/
             })
-            
-            /*
-            VStack {
-                let viewModel2 = PurchaseSummaryViewModel(shoppingCart: viewModel.shoppingCart)
-                NavigationLink(destination: PurchaseSummaryView(viewModel: viewModel2)
-                                .navigationTitle(viewModel.buyTicketTitle)) {
-                    HStack {
-                        Spacer()
-                        Text(viewModel.buyTicketTitle)
-                        Spacer()
-                    }
-                    .frame(height: 48)
-                }
-                .contentShape(Rectangle())
-                .font(.applicationFont(withWeight: .bold, andSize: 21))
-            }
-            .background(Color.yellow)
-            .padding(EdgeInsets(top: -8, leading: 0, bottom: -12, trailing: 0))
-*/
-            
-            
-            
-            
-            
             
         }
         .navigationBarBackButtonHidden(true)
@@ -174,7 +121,6 @@ struct PurchaseSummaryView: View {
                     }
             }
         }
-
     }
 }
 
