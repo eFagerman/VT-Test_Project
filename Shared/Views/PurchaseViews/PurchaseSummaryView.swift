@@ -46,6 +46,10 @@ struct PurchaseSummaryView: View {
     
     var body: some View {
         
+        ZStack {
+            
+            Color(UIColor.General.backgroundTwo).edgesIgnoringSafeArea(.all)
+
         VStack {
             
             // PRODUCT HEADER
@@ -129,6 +133,7 @@ struct PurchaseSummaryView: View {
                 }
             }
         }
+    }
     }
 }
 
