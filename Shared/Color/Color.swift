@@ -90,6 +90,10 @@ extension UIColor {
     @nonobjc class var darkSecondaryPowderBlue15: UIColor {
         return UIColor(red: 173.0 / 255.0, green: 209.0 / 255.0, blue: 1.0, alpha: 0.15)
     }
+    
+    @nonobjc class var asDarkSecondaryPowderBlue15: UIColor {
+        return UIColor(red: 27.0 / 255.0, green: 57.0 / 255.0, blue: 96.0 / 255.0, alpha: 1.0)
+    }
 
     @nonobjc class var darkModeOpaqueSelection: UIColor {
         return UIColor(red: 37 / 255.0, green: 49 / 255.0, blue: 67.0 / 255.0, alpha: 1.0)
@@ -867,7 +871,39 @@ extension UIColor {
             case .dark:   return .paleGreyTwo
             }
         }
+        
+        
+        static var transportIconColor: UIColor {
+            switch Theme.current {
+            case .light:  return .navyThree
+            case .dark:   return .darkSecondaryLavenderBlue
+            }
+        }
+        
+        static var inactiveSearchBackgroundColor: UIColor {
+            switch Theme.current {
+            case .light:    return .lightSecondaryGrey80
+            case .dark:     return .asDarkSecondaryPowderBlue15
+            }
+        }
+        
+        static var activeSearchBackgroundColor: UIColor {
+            switch Theme.current {
+            case .light:    return .white
+            case .dark:     return .paleGrey
+            }
+        }
 
+
+        static var activeSearchTextColor: UIColor {
+            switch Theme.current {
+            case .light:  return .baseBlack
+            case .dark:   return .navy
+            }
+        }
+
+
+        
         static var expired: UIColor {
             return UIColor(red: 191.0/255.0, green: 198.0/255.0, blue: 208.0/255.0, alpha: 1.0)
         }
