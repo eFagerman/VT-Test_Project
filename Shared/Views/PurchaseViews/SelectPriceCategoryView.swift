@@ -61,109 +61,109 @@ struct SelectPriceCategoryView: View {
         ZStack {
             
             Color(UIColor.General.backgroundTwo).edgesIgnoringSafeArea(.all)
-        
-        VStack {
-            
-            ScrollView {
-
-                // TICKET TYPE HEADER
-                SectionHeaderView(title: viewModel.ticketTypeTitle, changeButton: true)
-
-                // TICKET TYPE CELL
-                SimpleCell(title: viewModel.shoppingCart.product.title)
-                
-                // ZONE
-                if let zones = viewModel.shoppingCart.product.zones, zones.count > 0 {
-
-                    // ZONE HEADER
-                    SectionHeaderView(title: viewModel.zoneTitle, changeButton: true)
-
-                    Spacer().frame(height: 8)
-
-                    // ZONE CELL
-                    ForEach(zones, id: \.id) { zone in
-                        SimpleCell(title: zone.resources?["sv"]?["zone.title"] ?? "")
-                    }
-                    DividerTight()
-                }
-                
-                // PRICE CLASS
-                
-                SectionHeaderView(title: viewModel.priceClassTitle)
-                
-                Spacer().frame(height: 8)
-
-                ForEach($viewModel.shoppingCart.items) { $item in
-                    DividerTight()
-                    PriceClassRow(shoppingCartItem: $item)
-                }
-                if viewModel.shoppingCart.items.count > 0 {
-                    DividerTight()
-                }
-                
-                // SEGMENTED CONTROL FOR VALIDITY DURATION
-                
-                if viewModel.validityPeriodSeconds.count > 0 {
-                    VStack {
-                        SectionHeaderView(title: viewModel.validityDurationTitle)
-                        Spacer().frame(height: 8)
-                        Picker("", selection: $viewModel.selectedValidityPeriodTitle) {
-                            ForEach(viewModel.validityPeriodTitles, id: \.self) {
-                                Text($0)
-                                    .foregroundColor(.green)
-                            }
-                        }
-                        .accentColor(.yellow)
-                        .padding(.horizontal)
-                        .pickerStyle(.segmented)
-                    }
-                }
-
-            }
-            .padding(.top)
-            
-            Spacer()
             
             VStack {
-                let viewModel2 = PurchaseSummaryViewModel(shoppingCart: viewModel.shoppingCart)
-                NavigationLink(destination: PurchaseSummaryView(viewModel: viewModel2)
-                                .navigationTitle(viewModel.buyTicketTitle)) {
+                
+                ScrollView {
+                    
+                    // TICKET TYPE HEADER
+                    SectionHeaderView(title: viewModel.ticketTypeTitle, changeButton: true)
+                    
+                    // TICKET TYPE CELL
+                    SimpleCell(title: viewModel.shoppingCart.product.title)
+                    
+                    // ZONE
+                    if let zones = viewModel.shoppingCart.product.zones, zones.count > 0 {
+                        
+                        // ZONE HEADER
+                        SectionHeaderView(title: viewModel.zoneTitle, changeButton: true)
+                        
+                        Spacer().frame(height: 8)
+                        
+                        // ZONE CELL
+                        ForEach(zones, id: \.id) { zone in
+                            SimpleCell(title: zone.resources?["sv"]?["zone.title"] ?? "")
+                        }
+                        DividerTight()
+                    }
+                    
+                    // PRICE CLASS
+                    
+                    SectionHeaderView(title: viewModel.priceClassTitle)
+                    
+                    Spacer().frame(height: 8)
+                    
+                    ForEach($viewModel.shoppingCart.items) { $item in
+                        DividerTight()
+                        PriceClassRow(shoppingCartItem: $item)
+                    }
+                    if viewModel.shoppingCart.items.count > 0 {
+                        DividerTight()
+                    }
+                    
+                    // SEGMENTED CONTROL FOR VALIDITY DURATION
+                    
+                    if viewModel.validityPeriodSeconds.count > 0 {
+                        VStack {
+                            SectionHeaderView(title: viewModel.validityDurationTitle)
+                            Spacer().frame(height: 8)
+                            Picker("", selection: $viewModel.selectedValidityPeriodTitle) {
+                                ForEach(viewModel.validityPeriodTitles, id: \.self) {
+                                    Text($0)
+                                        .foregroundColor(.green)
+                                }
+                            }
+                            .accentColor(.yellow)
+                            .padding(.horizontal)
+                            .pickerStyle(.segmented)
+                        }
+                    }
+                    
+                }
+                .padding(.top)
+                
+                Spacer()
+                
+                VStack {
+                    let viewModel2 = PurchaseSummaryViewModel(shoppingCart: viewModel.shoppingCart)
+                    NavigationLink(destination: PurchaseSummaryView(viewModel: viewModel2)
+                                    .navigationTitle(viewModel.buyTicketTitle)) {
+                        HStack {
+                            Spacer()
+                            Text(viewModel.buyTicketTitle)
+                                .foregroundColor(Color(UIColor.General.secondComplementBackground))
+                            Spacer()
+                        }
+                        .frame(height: 48)
+                    }
+                                    .contentShape(Rectangle())
+                                    .font(.applicationFont(withWeight: .bold, andSize: 21))
+                }
+                .background(Color(UIColor.Popup.okeyActionButtonBackground))
+                .padding(EdgeInsets(top: -8, leading: 0, bottom: -12, trailing: 0))
+                
+            }
+            .navigationBarBackButtonHidden(true)
+            .navigationBarTitleDisplayMode(.inline)
+            .padding(.bottom, -8)
+            .toolbar {
+                ToolbarItem(placement: .navigation)  {
+                    Image(systemName: "arrow.left")
+                        .renderingMode(.template)
+                        .foregroundColor(Color(UIColor.General.accentColor))
+                        .onTapGesture {
+                            // code to dismiss the view
+                            self.presentation.wrappedValue.dismiss()
+                        }
+                }
+                ToolbarItem(placement: .principal) {
                     HStack {
-                        Spacer()
-                        Text(viewModel.buyTicketTitle)
-                            .foregroundColor(Color(UIColor.General.secondComplementBackground))
-                        Spacer()
+                        Text(viewModel.shoppingCart.ticketOperator.title)
+                            .foregroundColor(Color(UIColor.Popup.title))
+                            .font(.applicationFont(withWeight: .bold, andSize: 17))
                     }
-                    .frame(height: 48)
-                }
-                .contentShape(Rectangle())
-                .font(.applicationFont(withWeight: .bold, andSize: 21))
-            }
-            .background(Color(UIColor.Popup.okeyActionButtonBackground))
-            .padding(EdgeInsets(top: -8, leading: 0, bottom: -12, trailing: 0))
-           
-        }
-        .navigationBarBackButtonHidden(true)
-        .navigationBarTitleDisplayMode(.inline)
-        .padding(.bottom, -8)
-        .toolbar {
-            ToolbarItem(placement: .navigation)  {
-                Image(systemName: "arrow.left")
-                    .renderingMode(.template)
-                    .foregroundColor(Color(UIColor.General.accentColor))
-                    .onTapGesture {
-                        // code to dismiss the view
-                        self.presentation.wrappedValue.dismiss()
-                    }
-            }
-            ToolbarItem(placement: .principal) {
-                HStack {
-                    Text(viewModel.shoppingCart.ticketOperator.title)
-                        .foregroundColor(Color(UIColor.Popup.title))
-                        .font(.applicationFont(withWeight: .bold, andSize: 17))
                 }
             }
-        }
         }
     }
 }
