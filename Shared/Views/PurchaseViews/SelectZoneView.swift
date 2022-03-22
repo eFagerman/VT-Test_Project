@@ -157,9 +157,10 @@ struct SelectZoneView: View {
                 .navigationBarTitleDisplayMode(.inline)
                 .padding(.bottom, -8)
                 .toolbar {
-                    ToolbarItem (placement: .navigation)  {
+                    ToolbarItem(placement: .navigation)  {
                         Image(systemName: "arrow.left")
-                            .foregroundColor(.white)
+                            .renderingMode(.template)
+                            .foregroundColor(Color(UIColor.General.accentColor))
                             .onTapGesture {
                                 // code to dismiss the view
                                 self.presentation.wrappedValue.dismiss()

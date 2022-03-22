@@ -111,13 +111,21 @@ struct PurchaseSummaryView: View {
         .navigationBarTitleDisplayMode(.inline)
         .padding(.bottom, -8)
         .toolbar {
-            ToolbarItem (placement: .navigation)  {
+            ToolbarItem(placement: .navigation)  {
                 Image(systemName: "arrow.left")
-                    .foregroundColor(.blue)
+                    .renderingMode(.template)
+                    .foregroundColor(Color(UIColor.General.accentColor))
                     .onTapGesture {
                         // code to dismiss the view
                         self.presentation.wrappedValue.dismiss()
                     }
+            }
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    print("Info was tapped")
+                } label: {
+                    Image(systemName: "info.circle.fill")
+                }
             }
         }
     }
