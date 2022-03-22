@@ -68,7 +68,7 @@ struct DividerInset: View {
             Spacer().frame(height: 0)
         }
         Divider()
-            .background(Color(UIColor.black))
+            .background(Color(UIColor.General.divider))
             .padding(EdgeInsets(top: 0, leading: inset ? CGFloat(width) : 0, bottom: 0, trailing: 0))
         if tight {
             Spacer().frame(height: 0)
