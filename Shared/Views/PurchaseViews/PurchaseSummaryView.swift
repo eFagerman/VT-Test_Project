@@ -76,7 +76,6 @@ struct PurchaseSummaryView: View {
             .cornerRadius(7.5)
             .padding(.horizontal, 12)
 
-            
             HStack {
                 Text(viewModel.footerTitle)
                     .font(.applicationFont(withWeight: .regular, andSize: 15))
