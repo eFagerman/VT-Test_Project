@@ -49,91 +49,91 @@ struct PurchaseSummaryView: View {
         ZStack {
             
             Color(UIColor.General.backgroundTwo).edgesIgnoringSafeArea(.all)
-
-        VStack {
-            
-            // PRODUCT HEADER
-            SectionHeaderView(title: viewModel.yourTicketTitle)
             
             VStack {
-                // PRODUCT CELLS
-                ImageTextRow(image: Image(systemName: "tortoise.fill"), text: viewModel.shoppingCart.ticketOperator.title)
-                    .padding(.vertical)
-                    .foregroundColor(.white)
-                DividerTight()
-                TicketInfoView(shoppingCartItems: viewModel.shoppingCart.items)
+                
+                // PRODUCT HEADER
+                SectionHeaderView(title: viewModel.yourTicketTitle)
+                
+                VStack {
+                    // PRODUCT CELLS
+                    ImageTextRow(image: Image(systemName: "tortoise.fill"), text: viewModel.shoppingCart.ticketOperator.title)
+                        .padding(.vertical)
+                        .foregroundColor(.white)
+                    DividerTight()
+                    TicketInfoView(shoppingCartItems: viewModel.shoppingCart.items)
+                        .padding()
+                    DividerTight()
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text(viewModel.sumTitle).font(.applicationFont(withWeight: .bold, andSize: 17))
+                            Text(viewModel.vatTitle).font(.applicationFont(withWeight: .regular, andSize: 15))
+                        }
+                        Spacer()
+                        VStack(alignment: .trailing) {
+                            Text(viewModel.shoppingCart.totalPriceWithCurrency).font(.applicationFont(withWeight: .bold, andSize: 17))
+                            Text(viewModel.amountTitle).font(.applicationFont(withWeight: .regular, andSize: 15))
+                        }
+                    }
                     .padding()
-                DividerTight()
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text(viewModel.sumTitle).font(.applicationFont(withWeight: .bold, andSize: 17))
-                        Text(viewModel.vatTitle).font(.applicationFont(withWeight: .regular, andSize: 15))
-                    }
-                    Spacer()
-                    VStack(alignment: .trailing) {
-                        Text(viewModel.shoppingCart.totalPriceWithCurrency).font(.applicationFont(withWeight: .bold, andSize: 17))
-                        Text(viewModel.amountTitle).font(.applicationFont(withWeight: .regular, andSize: 15))
-                    }
                 }
-                .padding()
-            }
-            .background(Color(UIColor.gray))
-            .cornerRadius(7.5)
-            .padding(.horizontal, 12)
-
-            HStack {
-                Text(viewModel.footerTitle)
-                    .font(.applicationFont(withWeight: .regular, andSize: 15))
+                .background(Color(UIColor.gray))
+                .cornerRadius(7.5)
+                .padding(.horizontal, 12)
+                
+                HStack {
+                    Text(viewModel.footerTitle)
+                        .font(.applicationFont(withWeight: .regular, andSize: 15))
+                    Spacer()
+                }
+                .padding(.horizontal)
+                .padding(.bottom, 1)
+                
                 Spacer()
-            }
-            .padding(.horizontal)
-            .padding(.bottom, 1)
-
-            Spacer()
-            
-            Text("THE PAYMENT METHOD PART IS IN THE MAIN PROJECT AS SWIFTUI CODE ALREADY ")
-
-            Spacer()
-
-            Button(action: {
-                print("Buy")
-            }, label: {
-                HStack {
-                    Spacer()
-                    Text(viewModel.payTitle)
-                        .font(.applicationFont(withWeight: .bold, andSize: 21))
-                        .foregroundColor(.black)
-                    Spacer()
-                }
-                .frame(height: 48)
-                .background(Color.green)
-                .padding(EdgeInsets(top: -8, leading: 0, bottom: -12, trailing: 0))
-
-            })
-            
-        }
-        .navigationBarBackButtonHidden(true)
-        .navigationBarTitleDisplayMode(.inline)
-        .padding(.bottom, -8)
-        .toolbar {
-            ToolbarItem(placement: .navigation)  {
-                Image(systemName: "arrow.left")
-                    .renderingMode(.template)
-                    .foregroundColor(Color(UIColor.General.accentColor))
-                    .onTapGesture {
-                        // code to dismiss the view
-                        self.presentation.wrappedValue.dismiss()
+                
+                Text("THE PAYMENT METHOD PART IS IN THE MAIN PROJECT AS SWIFTUI CODE ALREADY ")
+                
+                Spacer()
+                
+                Button(action: {
+                    print("Buy")
+                }, label: {
+                    HStack {
+                        Spacer()
+                        Text(viewModel.payTitle)
+                            .font(.applicationFont(withWeight: .bold, andSize: 21))
+                            .foregroundColor(.black)
+                        Spacer()
                     }
+                    .frame(height: 48)
+                    .background(Color.green)
+                    .padding(EdgeInsets(top: -8, leading: 0, bottom: -12, trailing: 0))
+                    
+                })
+                
             }
-            ToolbarItem(placement: .principal) {
-                HStack {
-                    Text(viewModel.title)
-                        .foregroundColor(Color(UIColor.Popup.title))
-                        .font(.applicationFont(withWeight: .bold, andSize: 17))
+            .navigationBarBackButtonHidden(true)
+            .navigationBarTitleDisplayMode(.inline)
+            .padding(.bottom, -8)
+            .toolbar {
+                ToolbarItem(placement: .navigation)  {
+                    Image(systemName: "arrow.left")
+                        .renderingMode(.template)
+                        .foregroundColor(Color(UIColor.General.accentColor))
+                        .onTapGesture {
+                            // code to dismiss the view
+                            self.presentation.wrappedValue.dismiss()
+                        }
+                }
+                ToolbarItem(placement: .principal) {
+                    HStack {
+                        Text(viewModel.title)
+                            .foregroundColor(Color(UIColor.Popup.title))
+                            .font(.applicationFont(withWeight: .bold, andSize: 17))
+                    }
                 }
             }
         }
-    }
     }
 }
 
