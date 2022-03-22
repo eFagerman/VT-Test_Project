@@ -12,14 +12,33 @@ class SelectPriceCategoryViewModel: ObservableObject {
     @Published var shoppingCart: ShoppingCart
     var selectedZoneId: String? = nil
     
+    @Published var selectedValidityPeriodTitle: String
+    let validityPeriodSeconds: [Int64]
+    let validityPeriodTitles: [String]
+
     let ticketTypeTitle = "Biljettyp"
     let zoneTitle = "Zon"
     let priceClassTitle = "Prisklass"
     let buyTicketTitle = "Köp biljett"
     
+    let validityDurationTitle = "Giltighetsperiod"
+    
     init(shoppingCart: ShoppingCart, selectedZoneId: String? = nil) {
         self.shoppingCart = shoppingCart
         self.selectedZoneId = selectedZoneId
+        var tmpValidityPeriodSeconds = [Int64]()
+        var tmpValidityPeriodTitles = [String]()
+        if let prices = shoppingCart.product.prices {
+            for price in prices {
+                tmpValidityPeriodSeconds.append(price.validityDuration ?? 0)
+                let minutes = String((price.validityDuration ?? 0) / 60)
+                let tmpValidityPeriodTitle = minutes + " minuter"
+                tmpValidityPeriodTitles.append(tmpValidityPeriodTitle)
+            }
+        }
+        self.validityPeriodSeconds = tmpValidityPeriodSeconds
+        self.validityPeriodTitles = tmpValidityPeriodTitles
+        self.selectedValidityPeriodTitle = tmpValidityPeriodTitles.first ?? ""
     }
 }
 
@@ -45,6 +64,8 @@ struct SelectPriceCategoryView: View {
                     // ZONE HEADER
                     SectionHeaderView(title: viewModel.zoneTitle, changeButton: true)
 
+                    Spacer().frame(height: 8)
+
                     // ZONE CELL
                     ForEach(zones, id: \.id) { zone in
                         DividerTight()
@@ -65,6 +86,22 @@ struct SelectPriceCategoryView: View {
                 }
                 if viewModel.shoppingCart.items.count > 0 {
                     DividerTight()
+                }
+                
+                // SEGMENTED CONTROL FOR VALIDITY DURATION
+                
+                if viewModel.validityPeriodSeconds.count > 0 {
+                    VStack {
+                        SectionHeaderView(title: viewModel.validityDurationTitle)
+                        Spacer().frame(height: 8)
+                        Picker("", selection: $viewModel.selectedValidityPeriodTitle) {
+                            ForEach(viewModel.validityPeriodTitles, id: \.self) {
+                                Text($0)
+                            }
+                        }
+                        .padding(.horizontal)
+                        .pickerStyle(.segmented)
+                    }
                 }
 
             }
