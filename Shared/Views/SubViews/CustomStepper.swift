@@ -9,10 +9,9 @@ import SwiftUI
 
 struct CustomStepper : View {
     @Binding var value: Int
-    var textColor = Color.black
-    var accentColor = Color.green
-    var dividerColor = Color.gray
-    var inactiveColor = Color.gray
+    var textColor = Color(UIColor.Popup.title)
+    var accentColor = Color(UIColor.Ticket.active)
+    var inactiveColor = Color(UIColor.darkSecondaryPowderBlue25)
     var range = 0...100
     var isAboveLowerBound: Bool {
         value > range.lowerBound
@@ -47,7 +46,7 @@ struct CustomStepper : View {
                 Spacer()
 
                 Divider()
-                    .background(dividerColor)
+                    .background(inactiveColor)
                     .frame(height: 21)
                 
                 Spacer()

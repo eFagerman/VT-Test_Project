@@ -48,7 +48,19 @@ struct SelectPriceCategoryView: View {
 
     @ObservedObject var viewModel: SelectPriceCategoryViewModel
     
+    init(viewModel: SelectPriceCategoryViewModel) {
+        self.viewModel = viewModel
+        // TODO: check if this changes UISegmentedControl in main project. Maybe we can unite the colors between them.
+        UISegmentedControl.appearance().selectedSegmentTintColor = UIColor.Popup.okeyActionButtonBackground
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.General.secondComplementBackground], for: .selected)
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.Popup.okeyActionButtonBackground], for: .normal)
+    }
+    
     var body: some View {
+        
+        ZStack {
+            
+            Color(UIColor.General.backgroundTwo).edgesIgnoringSafeArea(.all)
         
         VStack {
             
@@ -70,7 +82,6 @@ struct SelectPriceCategoryView: View {
 
                     // ZONE CELL
                     ForEach(zones, id: \.id) { zone in
-                        DividerTight()
                         SimpleCell(title: zone.resources?["sv"]?["zone.title"] ?? "")
                     }
                     DividerTight()
@@ -99,8 +110,10 @@ struct SelectPriceCategoryView: View {
                         Picker("", selection: $viewModel.selectedValidityPeriodTitle) {
                             ForEach(viewModel.validityPeriodTitles, id: \.self) {
                                 Text($0)
+                                    .foregroundColor(.green)
                             }
                         }
+                        .accentColor(.yellow)
                         .padding(.horizontal)
                         .pickerStyle(.segmented)
                     }
@@ -118,6 +131,7 @@ struct SelectPriceCategoryView: View {
                     HStack {
                         Spacer()
                         Text(viewModel.buyTicketTitle)
+                            .foregroundColor(Color(UIColor.General.secondComplementBackground))
                         Spacer()
                     }
                     .frame(height: 48)
@@ -125,25 +139,32 @@ struct SelectPriceCategoryView: View {
                 .contentShape(Rectangle())
                 .font(.applicationFont(withWeight: .bold, andSize: 21))
             }
-            .background(Color.yellow)
+            .background(Color(UIColor.Popup.okeyActionButtonBackground))
             .padding(EdgeInsets(top: -8, leading: 0, bottom: -12, trailing: 0))
            
         }
-        .navigationTitle(viewModel.shoppingCart.ticketOperator.title)
         .navigationBarBackButtonHidden(true)
         .navigationBarTitleDisplayMode(.inline)
         .padding(.bottom, -8)
         .toolbar {
-            ToolbarItem (placement: .navigation)  {
+            ToolbarItem(placement: .navigation)  {
                 Image(systemName: "arrow.left")
-                    .foregroundColor(.blue)
+                    .renderingMode(.template)
+                    .foregroundColor(Color(UIColor.General.accentColor))
                     .onTapGesture {
                         // code to dismiss the view
                         self.presentation.wrappedValue.dismiss()
                     }
             }
+            ToolbarItem(placement: .principal) {
+                HStack {
+                    Text(viewModel.shoppingCart.ticketOperator.title)
+                        .foregroundColor(Color(UIColor.Popup.title))
+                        .font(.applicationFont(withWeight: .bold, andSize: 17))
+                }
+            }
         }
-        
+        }
     }
 }
 

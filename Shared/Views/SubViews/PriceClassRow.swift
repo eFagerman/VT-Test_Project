@@ -16,10 +16,10 @@ struct PriceClassRow: View  {
             
             VStack(alignment: .leading) {
                 Text(shoppingCartItem.priceGroup.title).font(.applicationFont(withWeight: .bold, andSize: 15))
-                    .foregroundColor(.white)
+                    .foregroundColor(Color(UIColor.Popup.title))
                 Spacer().frame(height: 4)
                 Text(String(shoppingCartItem.price.amountTotal!)).font(.applicationFont(withWeight: .regular, andSize: 13))
-                    .foregroundColor(.gray)
+                    .foregroundColor(Color(UIColor.Text.label))
             }
             .padding()
             
@@ -27,11 +27,8 @@ struct PriceClassRow: View  {
             
             CustomStepper(value: $shoppingCartItem.number, range: 0...100)
                 .font(.applicationFont(withWeight: .bold, andSize: 17))
-                .accentColor(.green)
-                .foregroundColor(.white)
         }
-        .background(Color.blue)
-        
+        .background(Color(UIColor.General.secondComplementBackground))
     }
 }
 
