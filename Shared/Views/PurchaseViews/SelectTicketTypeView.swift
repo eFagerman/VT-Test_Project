@@ -54,6 +54,7 @@ struct SelectTicketTypeView: View {
                         print("Close")
                     } label: {
                         Image(systemName: "xmark")
+                            .frame(width: 24, height: 24)
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -61,6 +62,7 @@ struct SelectTicketTypeView: View {
                         print("Info")
                     } label: {
                         Image(systemName: "info.circle.fill")
+                            .frame(width: 24, height: 24)
                     }
                     Button("Info") {
                         print("Help tapped")
