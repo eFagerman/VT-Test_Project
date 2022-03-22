@@ -18,9 +18,11 @@ struct ImageTextRow: View {
             Spacer().frame(width: 16)
             image
                 .frame(width: 24, height: 24)
+                .foregroundColor(Color(UIColor.Popup.title))
             Spacer().frame(width: 8)
             Text(text)
                 .font(.applicationFont(withWeight: .bold, andSize: 15))
+                .foregroundColor(Color(UIColor.Popup.title))
             Spacer()
         }
     }

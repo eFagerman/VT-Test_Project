@@ -57,33 +57,38 @@ struct PurchaseSummaryView: View {
                 
                 VStack {
                     // PRODUCT CELLS
-                    ImageTextRow(image: Image(systemName: "tortoise.fill"), text: viewModel.shoppingCart.ticketOperator.title)
+                    ImageTextRow(image: Image(viewModel.shoppingCart.ticketOperator.code), text: viewModel.shoppingCart.ticketOperator.resources?["sv"]?["operator.title"] ?? "Operator")
                         .padding(.vertical)
-                        .foregroundColor(.white)
                     DividerTight()
                     TicketInfoView(shoppingCartItems: viewModel.shoppingCart.items)
                         .padding()
+                        .foregroundColor(Color(UIColor.Popup.title))
                     DividerTight()
                     HStack {
                         VStack(alignment: .leading) {
                             Text(viewModel.sumTitle).font(.applicationFont(withWeight: .bold, andSize: 17))
+                                .foregroundColor(Color(UIColor.Popup.title))
                             Text(viewModel.vatTitle).font(.applicationFont(withWeight: .regular, andSize: 15))
+                                .foregroundColor(Color(UIColor.Popup.title))
                         }
                         Spacer()
                         VStack(alignment: .trailing) {
                             Text(viewModel.shoppingCart.totalPriceWithCurrency).font(.applicationFont(withWeight: .bold, andSize: 17))
+                                .foregroundColor(Color(UIColor.Popup.title))
                             Text(viewModel.amountTitle).font(.applicationFont(withWeight: .regular, andSize: 15))
+                                .foregroundColor(Color(UIColor.Popup.title))
                         }
                     }
                     .padding()
                 }
-                .background(Color(UIColor.gray))
+                .background(Color(UIColor.HistoricalTicket.boxBackgroundColor))
                 .cornerRadius(7.5)
                 .padding(.horizontal, 12)
                 
                 HStack {
                     Text(viewModel.footerTitle)
                         .font(.applicationFont(withWeight: .regular, andSize: 15))
+                        .foregroundColor(Color(UIColor.Text.label))
                     Spacer()
                 }
                 .padding(.horizontal)
@@ -92,6 +97,7 @@ struct PurchaseSummaryView: View {
                 Spacer()
                 
                 Text("THE PAYMENT METHOD PART IS IN THE MAIN PROJECT AS SWIFTUI CODE ALREADY ")
+                    .foregroundColor(Color(UIColor.Popup.title))
                 
                 Spacer()
                 
@@ -102,11 +108,11 @@ struct PurchaseSummaryView: View {
                         Spacer()
                         Text(viewModel.payTitle)
                             .font(.applicationFont(withWeight: .bold, andSize: 21))
-                            .foregroundColor(.black)
+                            .foregroundColor(Color(UIColor.baseBlack))
                         Spacer()
                     }
                     .frame(height: 48)
-                    .background(Color.green)
+                    .background(Color(UIColor.accentGreen))
                     .padding(EdgeInsets(top: -8, leading: 0, bottom: -12, trailing: 0))
                     
                 })
