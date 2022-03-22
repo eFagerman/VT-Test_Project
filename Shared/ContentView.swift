@@ -15,8 +15,9 @@ struct ContentView: View {
     let activeFlexTicketViewModel = ActiveFlexTicketViewModel(ticketModel: TicketModel())
     
     
-    @State private var showingSheet = false
-    
+//    @State private var showingSheet = false
+    @State private var showingBuyTicketSheet = true
+
     var body: some View {
         
 //        let ticketsViewModel = TicketsTabViewModel(ticketViewModels: [inactiveTicketViewModel, inactiveFlexTicketViewModel, activeTicketViewModel, activeFlexTicketViewModel])
@@ -29,10 +30,13 @@ struct ContentView: View {
 //
 //                }
         
-        
-        let viewModel = SelectTicketTypeViewModel()
-        
-        SelectTicketTypeView(viewModel: viewModel)
+        Button("Buy ticket") {
+            showingBuyTicketSheet.toggle()
+        }
+        .sheet(isPresented: $showingBuyTicketSheet) {
+            let viewModel = SelectTicketTypeViewModel()
+            SelectTicketTypeView(viewModel: viewModel)
+        }
 
     }
 }
