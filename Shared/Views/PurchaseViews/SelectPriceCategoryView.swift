@@ -140,7 +140,7 @@ struct SelectPriceCategoryView: View {
                                     .font(.applicationFont(withWeight: .bold, andSize: 21))
                 }
                 .background(Color(UIColor.Popup.okeyActionButtonBackground))
-                .padding(EdgeInsets(top: -8, leading: 0, bottom: -12, trailing: 0))
+                .padding(EdgeInsets(top: -8, leading: 0, bottom: 0, trailing: 0))
                 
             }
             .navigationBarBackButtonHidden(true)

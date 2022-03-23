@@ -113,7 +113,7 @@ struct PurchaseSummaryView: View {
                     }
                     .frame(height: 48)
                     .background(Color(UIColor.accentGreen))
-                    .padding(EdgeInsets(top: -8, leading: 0, bottom: -12, trailing: 0))
+                    .padding(EdgeInsets(top: -8, leading: 0, bottom: 0, trailing: 0))
                     
                 })
                 
