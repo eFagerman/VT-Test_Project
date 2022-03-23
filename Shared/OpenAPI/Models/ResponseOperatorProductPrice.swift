@@ -20,6 +20,10 @@ public struct ResponseOperatorProductPrice: Codable, JSONEncodable, Hashable {
     public var currency: String?
     /** PriceGroupID is a reference to the Price Group object within the operator */
     public var priceGroupId: String?
+    /** ProductID is a reference to the Product object within the Operators Product Types */
+    public var productId: String?
+    /** ProductOrderID is a unique identifier that is used to order */
+    public var productOrderId: String?
     /** ValiditiyDuration is the length of validity in seconds */
     public var validityDuration: Int64?
     /** VatAmount is the amount of VAT included in the products price */
@@ -29,11 +33,13 @@ public struct ResponseOperatorProductPrice: Codable, JSONEncodable, Hashable {
     /** ZoneID is a reference to the Zone object within the operator */
     public var zoneId: String?
 
-    public init(amount: Int64? = nil, amountTotal: Int64? = nil, currency: String? = nil, priceGroupId: String? = nil, validityDuration: Int64? = nil, vatAmount: Int64? = nil, vatPercent: Int64? = nil, zoneId: String? = nil) {
+    public init(amount: Int64? = nil, amountTotal: Int64? = nil, currency: String? = nil, priceGroupId: String? = nil, productId: String? = nil, productOrderId: String? = nil, validityDuration: Int64? = nil, vatAmount: Int64? = nil, vatPercent: Int64? = nil, zoneId: String? = nil) {
         self.amount = amount
         self.amountTotal = amountTotal
         self.currency = currency
         self.priceGroupId = priceGroupId
+        self.productId = productId
+        self.productOrderId = productOrderId
         self.validityDuration = validityDuration
         self.vatAmount = vatAmount
         self.vatPercent = vatPercent
@@ -45,6 +51,8 @@ public struct ResponseOperatorProductPrice: Codable, JSONEncodable, Hashable {
         case amountTotal = "amount_total"
         case currency
         case priceGroupId = "price_group_id"
+        case productId = "product_id"
+        case productOrderId = "product_order_id"
         case validityDuration = "validity_duration"
         case vatAmount = "vat_amount"
         case vatPercent = "vat_percent"
@@ -59,6 +67,8 @@ public struct ResponseOperatorProductPrice: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(amountTotal, forKey: .amountTotal)
         try container.encodeIfPresent(currency, forKey: .currency)
         try container.encodeIfPresent(priceGroupId, forKey: .priceGroupId)
+        try container.encodeIfPresent(productId, forKey: .productId)
+        try container.encodeIfPresent(productOrderId, forKey: .productOrderId)
         try container.encodeIfPresent(validityDuration, forKey: .validityDuration)
         try container.encodeIfPresent(vatAmount, forKey: .vatAmount)
         try container.encodeIfPresent(vatPercent, forKey: .vatPercent)

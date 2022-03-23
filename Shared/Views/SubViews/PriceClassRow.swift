@@ -34,7 +34,7 @@ struct PriceClassRow: View  {
 
 struct PriceClassRow_Previews: PreviewProvider {
     static var previews: some View {
-        let shoppingCart = ShoppingCart(ticketOperator: ProductsData.shared.data.operators.first!, product: ProductsData.shared.data.operators.first!.products!.first!)
+        let shoppingCart = ShoppingCart(ticketOperator: ProductsData.shared.data.operators.first!, product: ProductsData.shared.data.operators.first!.productTypes!.first!)
         
         if let item = shoppingCart.items.first {
             PriceClassRow(shoppingCartItem: .constant(item))

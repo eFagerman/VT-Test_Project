@@ -336,6 +336,6 @@ struct ZoneSelectorView_Previews: PreviewProvider {
     static var previews: some View {
         let zoneA = ResponseOperatorZone(id: "vt_a", resources: ["sv" : ["zone.title" : "Zon A"], "en" : ["zone.title" : "Zone A"]], sort: 0)
         let zoneB = ResponseOperatorZone(id: "vt_b", resources: ["sv" : ["zone.title" : "Zon B"], "en" : ["zone.title" : "Zone B"]], sort: 0)
-        SelectZoneView(viewModel: SelectZoneViewModel(shoppingCart: ShoppingCart(ticketOperator: ProductsData.shared.data.operators.first!, product: ProductsData.shared.data.operators.first!.products!.first!), zones: [zoneA, zoneB]))
+        SelectZoneView(viewModel: SelectZoneViewModel(shoppingCart: ShoppingCart(ticketOperator: ProductsData.shared.data.operators.first!, product: ProductsData.shared.data.operators.first!.productTypes!.first!), zones: [zoneA, zoneB]))
     }
 }

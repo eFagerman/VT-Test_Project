@@ -145,7 +145,7 @@ struct PurchaseSummaryView: View {
 
 struct PurchaseSummaryView_Previews: PreviewProvider {
     static var previews: some View {
-        let shoppingCart = ShoppingCart(ticketOperator: ProductsData.shared.data.operators.first!, product: ProductsData.shared.data.operators.first!.products!.first!)
+        let shoppingCart = ShoppingCart(ticketOperator: ProductsData.shared.data.operators.first!, product: ProductsData.shared.data.operators.first!.productTypes!.first!)
         let purchaseSummareyViewModel = PurchaseSummaryViewModel(shoppingCart: shoppingCart)
         PurchaseSummaryView(viewModel: purchaseSummareyViewModel)
     }

@@ -24,10 +24,10 @@ extension ResponseOperator: ContainsTextResources, Identifiable {
     }
 }
 
-extension ResponseOperatorProduct: ContainsTextResources, Identifiable {
+extension ResponseOperatorProductType: ContainsTextResources, Identifiable {
     
     var title: String {
-        return localization(for: "product.title") ?? ""
+        return localization(for: "producttype.title") ?? ""
     }
 }
 

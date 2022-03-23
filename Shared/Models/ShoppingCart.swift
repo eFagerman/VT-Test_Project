@@ -11,7 +11,7 @@ import SwiftUI
 struct ShoppingCartItem: Hashable, Identifiable {
     var id: Self { self }
     var ticketOperator: ResponseOperator
-    var product: ResponseOperatorProduct
+    var product: ResponseOperatorProductType
     var priceGroup: ResponseOperatorPriceGroup
     var price: ResponseOperatorProductPrice
     var number: Int
@@ -21,7 +21,7 @@ class ShoppingCart: ObservableObject {
 
     @Published var items = [ShoppingCartItem]()
     private (set) var ticketOperator: ResponseOperator
-    private (set) var product: ResponseOperatorProduct
+    private (set) var product: ResponseOperatorProductType
     
     var totalPrice: Int {
         return items.map({$0.number * Int($0.price.amountTotal ?? 0)}).reduce(0, +)
@@ -35,7 +35,7 @@ class ShoppingCart: ObservableObject {
         self.items.append(item)
     }
     
-    init(ticketOperator: ResponseOperator, product: ResponseOperatorProduct) {
+    init(ticketOperator: ResponseOperator, product: ResponseOperatorProductType) {
         self.ticketOperator = ticketOperator
         self.product = product
 

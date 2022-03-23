@@ -83,8 +83,6 @@
 		E48D372B27E4DFBB004DACD7 /* ResponseOperatorProductPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48D372427E4DFBB004DACD7 /* ResponseOperatorProductPrice.swift */; };
 		E48D372C27E4DFBB004DACD7 /* ResponseOperatorProductSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48D372527E4DFBB004DACD7 /* ResponseOperatorProductSettings.swift */; };
 		E48D372D27E4DFBB004DACD7 /* ResponseOperatorProductSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48D372527E4DFBB004DACD7 /* ResponseOperatorProductSettings.swift */; };
-		E48D372E27E4DFBB004DACD7 /* ResponseOperatorProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48D372627E4DFBB004DACD7 /* ResponseOperatorProduct.swift */; };
-		E48D372F27E4DFBB004DACD7 /* ResponseOperatorProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48D372627E4DFBB004DACD7 /* ResponseOperatorProduct.swift */; };
 		E48D373027E4DFBB004DACD7 /* ResponseOperatorZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48D372727E4DFBB004DACD7 /* ResponseOperatorZone.swift */; };
 		E48D373127E4DFBB004DACD7 /* ResponseOperatorZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48D372727E4DFBB004DACD7 /* ResponseOperatorZone.swift */; };
 		E48D373227E4DFBB004DACD7 /* ResponseOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48D372827E4DFBB004DACD7 /* ResponseOperator.swift */; };
@@ -97,6 +95,12 @@
 		E48D373C27E4FC8E004DACD7 /* OpenISO8601DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48D373A27E4FC8E004DACD7 /* OpenISO8601DateFormatter.swift */; };
 		E48D374027E531D5004DACD7 /* ProductsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48D373F27E531D5004DACD7 /* ProductsData.swift */; };
 		E48D374127E531D5004DACD7 /* ProductsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48D373F27E531D5004DACD7 /* ProductsData.swift */; };
+		E48D375327EB2F38004DACD7 /* ResponseOperatorProductTypeProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48D375027EB2F38004DACD7 /* ResponseOperatorProductTypeProduct.swift */; };
+		E48D375427EB2F38004DACD7 /* ResponseOperatorProductTypeProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48D375027EB2F38004DACD7 /* ResponseOperatorProductTypeProduct.swift */; };
+		E48D375527EB2F38004DACD7 /* ResponseOperatorLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48D375127EB2F38004DACD7 /* ResponseOperatorLocation.swift */; };
+		E48D375627EB2F38004DACD7 /* ResponseOperatorLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48D375127EB2F38004DACD7 /* ResponseOperatorLocation.swift */; };
+		E48D375727EB2F38004DACD7 /* ResponseOperatorProductType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48D375227EB2F38004DACD7 /* ResponseOperatorProductType.swift */; };
+		E48D375827EB2F38004DACD7 /* ResponseOperatorProductType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48D375227EB2F38004DACD7 /* ResponseOperatorProductType.swift */; };
 		E4C4A8DF27BC2D67004CDDBD /* InactiveTicketSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4A8DE27BC2D67004CDDBD /* InactiveTicketSwiftUIView.swift */; };
 		E4C4A8E027BC2D67004CDDBD /* InactiveTicketSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4A8DE27BC2D67004CDDBD /* InactiveTicketSwiftUIView.swift */; };
 		E4C4A8E227BC2E3B004CDDBD /* InactiveTicketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4A8E127BC2E3B004CDDBD /* InactiveTicketViewModel.swift */; };
@@ -166,13 +170,15 @@
 		E48D371E27E48ECA004DACD7 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		E48D372427E4DFBB004DACD7 /* ResponseOperatorProductPrice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseOperatorProductPrice.swift; sourceTree = "<group>"; };
 		E48D372527E4DFBB004DACD7 /* ResponseOperatorProductSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseOperatorProductSettings.swift; sourceTree = "<group>"; };
-		E48D372627E4DFBB004DACD7 /* ResponseOperatorProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseOperatorProduct.swift; sourceTree = "<group>"; };
 		E48D372727E4DFBB004DACD7 /* ResponseOperatorZone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseOperatorZone.swift; sourceTree = "<group>"; };
 		E48D372827E4DFBB004DACD7 /* ResponseOperator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseOperator.swift; sourceTree = "<group>"; };
 		E48D372927E4DFBB004DACD7 /* ResponseOperatorPriceGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseOperatorPriceGroup.swift; sourceTree = "<group>"; };
 		E48D373727E4EA08004DACD7 /* DataModelExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModelExtensions.swift; sourceTree = "<group>"; };
 		E48D373A27E4FC8E004DACD7 /* OpenISO8601DateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenISO8601DateFormatter.swift; sourceTree = "<group>"; };
 		E48D373F27E531D5004DACD7 /* ProductsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsData.swift; sourceTree = "<group>"; };
+		E48D375027EB2F38004DACD7 /* ResponseOperatorProductTypeProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseOperatorProductTypeProduct.swift; sourceTree = "<group>"; };
+		E48D375127EB2F38004DACD7 /* ResponseOperatorLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseOperatorLocation.swift; sourceTree = "<group>"; };
+		E48D375227EB2F38004DACD7 /* ResponseOperatorProductType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseOperatorProductType.swift; sourceTree = "<group>"; };
 		E4C4A8DE27BC2D67004CDDBD /* InactiveTicketSwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InactiveTicketSwiftUIView.swift; sourceTree = "<group>"; };
 		E4C4A8E127BC2E3B004CDDBD /* InactiveTicketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InactiveTicketViewModel.swift; sourceTree = "<group>"; };
 		E4C4A8E727BC3E58004CDDBD /* ActiveFlexTicketSwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveFlexTicketSwiftUIView.swift; sourceTree = "<group>"; };
@@ -343,9 +349,11 @@
 		E48D373E27E53076004DACD7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E48D375127EB2F38004DACD7 /* ResponseOperatorLocation.swift */,
+				E48D375227EB2F38004DACD7 /* ResponseOperatorProductType.swift */,
+				E48D375027EB2F38004DACD7 /* ResponseOperatorProductTypeProduct.swift */,
 				E48D372827E4DFBB004DACD7 /* ResponseOperator.swift */,
 				E48D372927E4DFBB004DACD7 /* ResponseOperatorPriceGroup.swift */,
-				E48D372627E4DFBB004DACD7 /* ResponseOperatorProduct.swift */,
 				E48D372427E4DFBB004DACD7 /* ResponseOperatorProductPrice.swift */,
 				E48D372527E4DFBB004DACD7 /* ResponseOperatorProductSettings.swift */,
 				E48D372727E4DFBB004DACD7 /* ResponseOperatorZone.swift */,
@@ -500,6 +508,7 @@
 				E48D374027E531D5004DACD7 /* ProductsData.swift in Sources */,
 				E44FA2CA27B5AA3F008912CC /* ActiveTicketSwiftUIView.swift in Sources */,
 				E48D373827E4EA08004DACD7 /* DataModelExtensions.swift in Sources */,
+				E48D375527EB2F38004DACD7 /* ResponseOperatorLocation.swift in Sources */,
 				E4C4A8E227BC2E3B004CDDBD /* InactiveTicketViewModel.swift in Sources */,
 				E4C4A8DF27BC2D67004CDDBD /* InactiveTicketSwiftUIView.swift in Sources */,
 				E48D371F27E48ECA004DACD7 /* Models.swift in Sources */,
@@ -534,7 +543,6 @@
 				4D252B8127E8872C001D1767 /* Theme.swift in Sources */,
 				4D1E1D5627D7B890005EE55B /* PriceClassRow.swift in Sources */,
 				E48D373027E4DFBB004DACD7 /* ResponseOperatorZone.swift in Sources */,
-				E48D372E27E4DFBB004DACD7 /* ResponseOperatorProduct.swift in Sources */,
 				4D1E1D5C27D7BA4B005EE55B /* TicketInfoView.swift in Sources */,
 				E4DDB77027C3EB0D00592912 /* SelectTicketTypeView.swift in Sources */,
 				4D1E1D5227D7B603005EE55B /* TmpFromMainProject.swift in Sources */,
@@ -546,7 +554,9 @@
 				4D1E1D5F27D8F1CC005EE55B /* HistoricalTicketView.swift in Sources */,
 				E4CD0F6027C5936100D6536F /* SelectableRow.swift in Sources */,
 				E4C4A8E827BC3E58004CDDBD /* ActiveFlexTicketSwiftUIView.swift in Sources */,
+				E48D375727EB2F38004DACD7 /* ResponseOperatorProductType.swift in Sources */,
 				E48D371627E483FA004DACD7 /* CodableHelper.swift in Sources */,
+				E48D375327EB2F38004DACD7 /* ResponseOperatorProductTypeProduct.swift in Sources */,
 				E48D372A27E4DFBB004DACD7 /* ResponseOperatorProductPrice.swift in Sources */,
 				E4CD0F6C27C7B9FF00D6536F /* PurchaseSummaryView.swift in Sources */,
 			);
@@ -561,14 +571,15 @@
 				E4C4A8E327BC2E3B004CDDBD /* InactiveTicketViewModel.swift in Sources */,
 				E4C4A8E027BC2D67004CDDBD /* InactiveTicketSwiftUIView.swift in Sources */,
 				E44FA2D427B68126008912CC /* InactiveFlexTicketSwiftUIView.swift in Sources */,
-				E48D372F27E4DFBB004DACD7 /* ResponseOperatorProduct.swift in Sources */,
 				E4CD0F6627C698FF00D6536F /* SelectPriceCategoryView.swift in Sources */,
 				E48D372B27E4DFBB004DACD7 /* ResponseOperatorProductPrice.swift in Sources */,
 				E44FA2DA27B9A7C2008912CC /* ActiveTicketViewModel.swift in Sources */,
 				E44FA2D127B68099008912CC /* TicketsTabView.swift in Sources */,
 				4D1E1D5A27D7BA07005EE55B /* TextOfEqualWidth.swift in Sources */,
+				E48D375627EB2F38004DACD7 /* ResponseOperatorLocation.swift in Sources */,
 				E48D373927E4EA08004DACD7 /* DataModelExtensions.swift in Sources */,
 				4D1E1D7327DA11A6005EE55B /* CustomStepper.swift in Sources */,
+				E48D375827EB2F38004DACD7 /* ResponseOperatorProductType.swift in Sources */,
 				E48D373527E4DFBB004DACD7 /* ResponseOperatorPriceGroup.swift in Sources */,
 				E48D371527E483FA004DACD7 /* Configuration.swift in Sources */,
 				E44FA2BD27B54463008912CC /* ContentView.swift in Sources */,
@@ -598,6 +609,7 @@
 				4D1E1D5727D7B890005EE55B /* PriceClassRow.swift in Sources */,
 				4D1E1D5D27D7BA4B005EE55B /* TicketInfoView.swift in Sources */,
 				E4DDB77127C3EB0D00592912 /* SelectTicketTypeView.swift in Sources */,
+				E48D375427EB2F38004DACD7 /* ResponseOperatorProductTypeProduct.swift in Sources */,
 				4D1E1D5327D7B603005EE55B /* TmpFromMainProject.swift in Sources */,
 				4D1E1D6327D8F304005EE55B /* Protocols.swift in Sources */,
 				4D1E1D6C27D90135005EE55B /* FirstResponderTextField.swift in Sources */,

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension ResponseOperatorProduct: SelectableItem { }
+extension ResponseOperatorProductType: SelectableItem { }
 
 extension ResponseOperator: SelectableItem { }
 
@@ -90,7 +90,7 @@ struct SelectTicketTypeView: View {
     
     private func productCells() -> some View {
         VStack {
-            if let selectedOperator = viewModel.selectedOperator, let productTypes = selectedOperator.products {
+            if let selectedOperator = viewModel.selectedOperator, let productTypes = selectedOperator.productTypes {
                 DividerTight()
                 ForEach(productTypes) { productType in
                     let shoppingCart = ShoppingCart(ticketOperator: selectedOperator, product: productType)
@@ -199,7 +199,7 @@ struct SelectTicketTypeView: View {
                             .onTapGesture {
                                 pushActive = true
                             }
-                        let shoppingCart = ShoppingCart(ticketOperator: ProductsData.shared.data.operators.first!, product: ProductsData.shared.data.operators.first!.products!.first!)
+                        let shoppingCart = ShoppingCart(ticketOperator: ProductsData.shared.data.operators.first!, product: ProductsData.shared.data.operators.first!.productTypes!.first!)
                         let purchaseSummareyViewModel = PurchaseSummaryViewModel(shoppingCart: shoppingCart)
                         NavigationLink(destination: PurchaseSummaryView(viewModel: purchaseSummareyViewModel), isActive: $pushActive) {
                         }.hidden()

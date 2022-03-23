@@ -171,7 +171,7 @@ struct SelectPriceCategoryView: View {
 struct SelectPriceCategoryView_Previews: PreviewProvider {
     static var previews: some View {
         
-        let shoppingCart = ShoppingCart(ticketOperator: ProductsData.shared.data.operators.first!, product: ProductsData.shared.data.operators.first!.products!.first!)
+        let shoppingCart = ShoppingCart(ticketOperator: ProductsData.shared.data.operators.first!, product: ProductsData.shared.data.operators.first!.productTypes!.first!)
         SelectPriceCategoryView(viewModel: SelectPriceCategoryViewModel(shoppingCart: shoppingCart))
     }
 }
