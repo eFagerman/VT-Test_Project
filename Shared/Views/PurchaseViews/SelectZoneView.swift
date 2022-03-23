@@ -120,9 +120,10 @@ struct SelectZoneView: View {
                     SimpleCell(title: viewModel.shoppingCart.product.title)
                     
                     // ZONE SEARCH
-                    zoneSearchView()
+                    // zoneSearchView()
                     
                     // SEARCH SUGGESTIONS
+                    /*
                     ForEach(viewModel.searchSuggestionList, id: \.self) { searchSuggestion in
                         StopCellView(viewModel: searchSuggestion)
                             .onTapGesture {
@@ -133,6 +134,7 @@ struct SelectZoneView: View {
                         }
                         
                     }
+                    */
                     
                     // ZONE SELECTION HEADER
                     SectionHeaderView(title: viewModel.zoneSelectionSectionTitle)

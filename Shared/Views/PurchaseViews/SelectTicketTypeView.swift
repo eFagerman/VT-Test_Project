@@ -27,7 +27,7 @@ struct SelectTicketTypeView: View {
                 ScrollView {
                     
                     // HISTORY
-                    historySectionView()
+                    // historySectionView()
                     
                     // OPERATOR
                     
