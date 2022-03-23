@@ -214,11 +214,31 @@ struct SelectZoneView: View {
                 
                 VStack {
                     
-                    fromZoneSearchView(viewModel: viewModel)
+                    if viewModel.isFromTextActive {
+                        if Theme.current == .light {
+                            fromZoneSearchView(viewModel: viewModel)
+                                .shadow(color: Color(UIColor.Ticket.activeTextFieldShadowColor), radius: 12, x: 0, y: 6)
+                        } else {
+                            fromZoneSearchView(viewModel: viewModel)
+                                .shadow(color: Color(UIColor.Ticket.activeTextFieldShadowColor), radius: 20, x: 0, y: 10)
+                        }
+                    } else {
+                        fromZoneSearchView(viewModel: viewModel)
+                    }
                     
                     Spacer().frame(height: 4)
                     
-                    toZoneSearchView(viewModel: viewModel)
+                    if viewModel.isToTextActive {
+                        if Theme.current == .light {
+                            toZoneSearchView(viewModel: viewModel)
+                                .shadow(color: Color(UIColor.Ticket.activeTextFieldShadowColor), radius: 12, x: 0, y: 6)
+                        } else {
+                            toZoneSearchView(viewModel: viewModel)
+                                .shadow(color: Color(UIColor.Ticket.activeTextFieldShadowColor), radius: 20, x: 0, y: 10)
+                        }
+                    } else {
+                        toZoneSearchView(viewModel: viewModel)
+                    }
                     
                 }
                 Button(action: {
@@ -231,8 +251,7 @@ struct SelectZoneView: View {
                 }) {
                     HStack {
                         Spacer()
-                        Image(systemName: "info.circle.fill").foregroundColor(.gray)
-                            .frame(width: 26)
+                        getChangeRouteImage()
                         Spacer().frame(width: 15 + 8 + CGFloat(textMinWidth ?? 0)/2 - CGFloat(26)/2)
                     }
                 }
@@ -240,10 +259,20 @@ struct SelectZoneView: View {
         }
     }
     
+    private func getChangeRouteImage() -> some View {
+        let imageName = Theme.current == .light ? "change route Light" : "change route Dark"
+        return Image(imageName).frame(width: 26)
+    }
+    
     private func fromZoneSearchView(viewModel: SelectZoneViewModel) -> some View {
         HStack {
             Spacer().frame(width: 8)
-            Image(systemName: "info.circle.fill").foregroundColor(.gray)
+            VStack {
+                Spacer()
+                Image("circle-from-long")
+                    .renderingMode(.template)
+                    .foregroundColor(viewModel.isFromTextActive ? Color(UIColor.baseBlack) : Color(UIColor.General.locationIconTintColor))
+            }
             Spacer().frame(width: 8)
             FirstResponderTextField(
                 placeholder: viewModel.placeholderTitle,
@@ -255,7 +284,8 @@ struct SelectZoneView: View {
                 inactiveTextColor: viewModel.inactiveTextColor)
             Spacer().frame(width: 8)
             TextOfEqualWidth(text: viewModel.fromTitle, minTextWidth: $textMinWidth)
-                .font(.applicationFont(withWeight: .regular, andSize: 13))
+                .font(.applicationFont(withWeight: .mono, andSize: 13))
+                .foregroundColor(Color(UIColor.Ticket.fromToTextColor))
             Spacer().frame(width: 15)
         }
         .frame(height: 45)
@@ -270,7 +300,12 @@ struct SelectZoneView: View {
         
         HStack {
             Spacer().frame(width: 8)
-            Image(systemName: "info.circle.fill").foregroundColor(.gray)
+            VStack {
+                Image("circle-to-long")
+                    .renderingMode(.template)
+                    .foregroundColor(viewModel.isToTextActive ? Color(UIColor.baseBlack) : Color(UIColor.General.locationIconTintColor))
+                Spacer()
+            }
             Spacer().frame(width: 8)
             FirstResponderTextField(
                 placeholder: viewModel.placeholderTitle,
@@ -282,7 +317,8 @@ struct SelectZoneView: View {
                 inactiveTextColor: viewModel.inactiveTextColor)
             Spacer().frame(width: 8)
             TextOfEqualWidth(text: viewModel.toTitle, minTextWidth: $textMinWidth)
-                .font(.applicationFont(withWeight: .regular, andSize: 15))
+                .font(.applicationFont(withWeight: .mono, andSize: 13))
+                .foregroundColor(Color(UIColor.Ticket.fromToTextColor))
             Spacer().frame(width: 13)
         }
         .frame(height: 45)

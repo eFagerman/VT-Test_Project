@@ -33,12 +33,20 @@ struct FirstResponderTextField: UIViewRepresentable {
             parent.isActive = true
             textField.backgroundColor = parent.activeBackgroundColor
             textField.textColor = parent.activeTextColor
+            textField.attributedPlaceholder = NSAttributedString(
+                string: parent.placeholder,
+                attributes: [NSAttributedString.Key.foregroundColor: UIColor.Text.searchFieldActivePlaceholder]
+            )
         }
         
         func textFieldDidEndEditing(_ textField: UITextField) {
             parent.isActive = false
             textField.backgroundColor = parent.inactiveBackgroundColor
             textField.textColor = parent.inactiveTextColor
+            textField.attributedPlaceholder = NSAttributedString(
+                string: parent.placeholder,
+                attributes: [NSAttributedString.Key.foregroundColor: UIColor.Text.searchFieldInactivePlaceholder]
+            )
         }
     }
     
@@ -49,7 +57,6 @@ struct FirstResponderTextField: UIViewRepresentable {
     func makeUIView(context: Context) -> some UIView {
         let textField = UITextField()
         textField.delegate = context.coordinator
-        textField.placeholder = placeholder
         textField.text = text
         textField.clearButtonMode = .always
         textField.font = UIFont(name: "Sk-Modernist-Regular", size: 17.0)
@@ -58,8 +65,14 @@ struct FirstResponderTextField: UIViewRepresentable {
         textField.textColor = getTextColor()
         textField.attributedPlaceholder = NSAttributedString(
             string: placeholder,
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor.General.placeholderColor]
+            attributes: [NSAttributedString.Key.foregroundColor: isActive ? UIColor.Text.searchFieldActivePlaceholder : UIColor.Text.searchFieldInactivePlaceholder]
         )
+        textField.tintColor = UIColor.baseMidnight
+        if let clearButton = textField.value(forKey: "_clearButton") as? UIButton {
+            let templateImage = clearButton.imageView?.image?.withRenderingMode(.alwaysTemplate)
+            clearButton.setImage(templateImage, for: .normal)
+            clearButton.tintColor = UIColor.General.locationIconTintColor
+        }
         return textField
     }
     

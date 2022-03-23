@@ -43,6 +43,10 @@ extension UIColor {
         return UIColor(red: 0.0, green: 30.0 / 255.0, blue: 68.0 / 255.0, alpha: 1.0)
     }
     
+    @nonobjc class var darkNavyBlue16: UIColor {
+        return UIColor(red: 0.0, green: 6.0 / 255.0, blue: 13.0 / 255.0, alpha: 0.16)
+    }
+
     @nonobjc class var darkPrimaryGreen: UIColor {
         return UIColor(red: 0.0, green: 1.0, blue: 140.0 / 255.0, alpha: 1.0)
     }
@@ -872,7 +876,6 @@ extension UIColor {
             }
         }
         
-        
         static var transportIconColor: UIColor {
             switch Theme.current {
             case .light:  return .navyThree
@@ -894,11 +897,24 @@ extension UIColor {
             }
         }
 
-
         static var activeSearchTextColor: UIColor {
             switch Theme.current {
             case .light:  return .baseBlack
             case .dark:   return .navy
+            }
+        }
+        
+        static var fromToTextColor: UIColor {
+            switch Theme.current {
+            case .light:  return .lightSecondaryGrey500
+            case .dark:   return .darkSecondaryPigeonBlue
+            }
+        }
+
+        static var activeTextFieldShadowColor: UIColor {
+            switch Theme.current {
+            case .light:  return .darkNavyBlue16
+            case .dark:   return .baseMidnight
             }
         }
 
