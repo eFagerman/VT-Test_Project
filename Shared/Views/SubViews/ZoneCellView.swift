@@ -18,17 +18,18 @@ struct ZoneCellView: View {
             VStack(alignment: .leading) {
                 Spacer().frame(height: 12)
                 Text(viewModel.title)
-                    .foregroundColor(.black)
                     .font(.applicationFont(withWeight: .bold, andSize: 15))
+                    .foregroundColor(Color(UIColor.Popup.title))
                 Spacer().frame(height: 4)
-                Text(viewModel.message)                                            .foregroundColor(.blue)
+                Text(viewModel.message)
+                    .foregroundColor(Color(UIColor.Text.label))
                     .font(.applicationFont(withWeight: .regular, andSize: 13))
                 Spacer().frame(height: 12)
             }
             Spacer()
             RadioButtonView(isSelected: viewModel.selected)
         }
-        .background(Color(UIColor.gray))
+        .background(Color(UIColor.General.secondComplementBackground))
         .opacity(viewModel.dimmed ? 0.5 : 1)
         .animation(.easeInOut)
         

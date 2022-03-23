@@ -45,14 +45,14 @@ struct RadioButtonView: View {
 
     var body: some View {
         if isSelected {
-            Image(systemName: "circle.circle")
+            Image("checked")
                 .renderingMode(.template)
-                .foregroundColor(Color(UIColor.green))
+                .foregroundColor(Color(UIColor.accentGreen))
                 .padding(.horizontal, 16)
         } else {
-            Image(systemName: "circle")
+            Image("unchecked")
                 .renderingMode(.template)
-                .foregroundColor(Color(UIColor.white))
+                .foregroundColor(Color(UIColor.darkSecondaryPowderBlue50))
                 .padding(.horizontal, 16)
         }
     }

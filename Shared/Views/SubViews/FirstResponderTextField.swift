@@ -53,12 +53,12 @@ struct FirstResponderTextField: UIViewRepresentable {
         textField.text = text
         textField.clearButtonMode = .always
         textField.font = UIFont(name: "Sk-Modernist-Regular", size: 17.0)
-        textField.tintColor = UIColor.blue // UIColor.General.accentColor
+        textField.tintColor = UIColor.General.accentColor
         textField.backgroundColor = getBackgroundColor()
         textField.textColor = getTextColor()
         textField.attributedPlaceholder = NSAttributedString(
             string: placeholder,
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray /*UIColor.General.placeholderColor*/]
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.General.placeholderColor]
         )
         return textField
     }
@@ -74,7 +74,7 @@ struct FirstResponderTextField: UIViewRepresentable {
     }
 
     func getTextColor() -> UIColor {
-        var textColor = UIColor.black // UIColor.Text.primary
+        var textColor = UIColor.Text.primary
         if isActive, let activeTextColor = activeTextColor  {
             textColor = activeTextColor
         } else if !isActive, let inactiveTextColor = inactiveTextColor  {

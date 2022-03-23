@@ -32,10 +32,10 @@ class SelectZoneViewModel: ObservableObject {
     let fromTitle = "Från"
     let toTitle = "Till"
     
-    let activeBackgroundColor = UIColor.white
-    let activeTextColor = UIColor.black
-    let inactiveBackgroundColor = UIColor.blue
-    let inactiveTextColor = UIColor.white
+    let activeBackgroundColor = UIColor.Ticket.activeSearchBackgroundColor
+    let activeTextColor = UIColor.Ticket.activeSearchTextColor
+    let inactiveBackgroundColor = UIColor.Ticket.inactiveSearchBackgroundColor
+    let inactiveTextColor = UIColor.Popup.title
 
     @Published var shoppingCart: ShoppingCart
     @Published var fromText: String
@@ -152,7 +152,6 @@ struct SelectZoneView: View {
                     Spacer()
                 }
                 .padding(.top)
-                .navigationTitle(viewModel.shoppingCart.ticketOperator.title)
                 .navigationBarBackButtonHidden(true)
                 .navigationBarTitleDisplayMode(.inline)
                 .padding(.bottom, -8)
@@ -166,21 +165,32 @@ struct SelectZoneView: View {
                                 self.presentation.wrappedValue.dismiss()
                             }
                     }
+                    ToolbarItem(placement: .principal) {
+                        HStack {
+                            Text(viewModel.shoppingCart.ticketOperator.title)
+                                .foregroundColor(Color(UIColor.Popup.title))
+                                .font(.applicationFont(withWeight: .bold, andSize: 17))
+                        }
+                    }
+                    
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button {
                             print("Info was tapped")
                         } label: {
-                            Image(systemName: "info.circle.fill")
+                            Image("icons24SystemInfo")
+                                .renderingMode(.template)
+                                .foregroundColor(Color(UIColor.General.accentColor))
+                                .frame(width: 24, height: 24)
                         }
                     }
                 }
-                .background(Color.red)
                 
                 VStack {
                     NavigationLink(destination: SelectPriceCategoryView(viewModel: SelectPriceCategoryViewModel(shoppingCart: viewModel.shoppingCart, selectedZoneId: viewModel.selectedZoneId))) {
                         HStack {
                             Spacer()
                             Text(viewModel.buyTicketTitle)
+                                .foregroundColor(Color(UIColor.General.secondComplementBackground))
                             Spacer()
                         }
                         .frame(height: 48)
@@ -188,12 +198,11 @@ struct SelectZoneView: View {
                     .contentShape(Rectangle())
                     .font(.applicationFont(withWeight: .bold, andSize: 21))
                 }
-                .background(Color.yellow)
+                .background(Color(UIColor.Popup.okeyActionButtonBackground))
                 .padding(EdgeInsets(top: -8, leading: 0, bottom: 0, trailing: 0))
                 
             }
             .padding(EdgeInsets(top: 0, leading: 0, bottom: -12, trailing: 0))
-            .background(Color.green)
         }
     }
     
@@ -205,53 +214,12 @@ struct SelectZoneView: View {
                 
                 VStack {
                     
-                    HStack {
-                        Spacer().frame(width: 8)
-                        Image(systemName: "info.circle.fill").foregroundColor(.gray)
-                        Spacer().frame(width: 8)
-                        FirstResponderTextField(
-                            placeholder: viewModel.placeholderTitle,
-                            text: $viewModel.fromText,
-                            isActive: $viewModel.isFromTextActive,
-                            activeBackgroundColor: viewModel.activeBackgroundColor,
-                            activeTextColor: viewModel.activeTextColor,
-                            inactiveBackgroundColor: viewModel.inactiveBackgroundColor,
-                            inactiveTextColor: viewModel.inactiveTextColor)
-                        Spacer().frame(width: 8)
-                        TextOfEqualWidth(text: viewModel.fromTitle, minTextWidth: $textMinWidth)
-                            .font(.applicationFont(withWeight: .regular, andSize: 13))
-                        Spacer().frame(width: 15)
-                    }
-                    .frame(height: 45)
-                    .background(viewModel.isFromTextActive ? Color(UIColor.white) : Color(UIColor.blue))
-                    .cornerRadius(20, corners: [.topLeft, .topRight])
-                    .cornerRadius(3, corners: [.bottomLeft, .bottomRight])
-                    .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
+                    fromZoneSearchView(viewModel: viewModel)
                     
                     Spacer().frame(height: 4)
                     
-                    HStack {
-                        Spacer().frame(width: 8)
-                        Image(systemName: "info.circle.fill").foregroundColor(.gray)
-                        Spacer().frame(width: 8)
-                        FirstResponderTextField(
-                            placeholder: viewModel.placeholderTitle,
-                            text: $viewModel.toText,
-                            isActive: $viewModel.isToTextActive,
-                            activeBackgroundColor: viewModel.activeBackgroundColor,
-                            activeTextColor: viewModel.activeTextColor,
-                            inactiveBackgroundColor: viewModel.inactiveBackgroundColor,
-                            inactiveTextColor: viewModel.inactiveTextColor)
-                        Spacer().frame(width: 8)
-                        TextOfEqualWidth(text: viewModel.toTitle, minTextWidth: $textMinWidth)
-                            .font(.applicationFont(withWeight: .regular, andSize: 15))
-                        Spacer().frame(width: 13)
-                    }
-                    .frame(height: 45)
-                    .background(viewModel.isToTextActive ? Color(UIColor.white) : Color(UIColor.blue))
-                    .cornerRadius(3, corners: [.topLeft, .topRight])
-                    .cornerRadius(20, corners: [.bottomLeft, .bottomRight])
-                    .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
+                    toZoneSearchView(viewModel: viewModel)
+                    
                 }
                 Button(action: {
                     self.viewModel.isFromTextActive.toggle()
@@ -271,6 +239,60 @@ struct SelectZoneView: View {
             }
         }
     }
+    
+    private func fromZoneSearchView(viewModel: SelectZoneViewModel) -> some View {
+        HStack {
+            Spacer().frame(width: 8)
+            Image(systemName: "info.circle.fill").foregroundColor(.gray)
+            Spacer().frame(width: 8)
+            FirstResponderTextField(
+                placeholder: viewModel.placeholderTitle,
+                text: $viewModel.fromText,
+                isActive: $viewModel.isFromTextActive,
+                activeBackgroundColor: viewModel.activeBackgroundColor,
+                activeTextColor: viewModel.activeTextColor,
+                inactiveBackgroundColor: viewModel.inactiveBackgroundColor,
+                inactiveTextColor: viewModel.inactiveTextColor)
+            Spacer().frame(width: 8)
+            TextOfEqualWidth(text: viewModel.fromTitle, minTextWidth: $textMinWidth)
+                .font(.applicationFont(withWeight: .regular, andSize: 13))
+            Spacer().frame(width: 15)
+        }
+        .frame(height: 45)
+        .background(viewModel.isFromTextActive ? Color(viewModel.activeBackgroundColor) : Color(viewModel.inactiveBackgroundColor))
+        .cornerRadius(20, corners: [.topLeft, .topRight])
+        .cornerRadius(3, corners: [.bottomLeft, .bottomRight])
+        .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
+
+    }
+    
+    private func toZoneSearchView(viewModel: SelectZoneViewModel) -> some View {
+        
+        HStack {
+            Spacer().frame(width: 8)
+            Image(systemName: "info.circle.fill").foregroundColor(.gray)
+            Spacer().frame(width: 8)
+            FirstResponderTextField(
+                placeholder: viewModel.placeholderTitle,
+                text: $viewModel.toText,
+                isActive: $viewModel.isToTextActive,
+                activeBackgroundColor: viewModel.activeBackgroundColor,
+                activeTextColor: viewModel.activeTextColor,
+                inactiveBackgroundColor: viewModel.inactiveBackgroundColor,
+                inactiveTextColor: viewModel.inactiveTextColor)
+            Spacer().frame(width: 8)
+            TextOfEqualWidth(text: viewModel.toTitle, minTextWidth: $textMinWidth)
+                .font(.applicationFont(withWeight: .regular, andSize: 15))
+            Spacer().frame(width: 13)
+        }
+        .frame(height: 45)
+        .background(viewModel.isToTextActive ? Color(viewModel.activeBackgroundColor) : Color(viewModel.inactiveBackgroundColor))
+        .cornerRadius(3, corners: [.topLeft, .topRight])
+        .cornerRadius(20, corners: [.bottomLeft, .bottomRight])
+        .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
+
+    }
+    
 
 }
 

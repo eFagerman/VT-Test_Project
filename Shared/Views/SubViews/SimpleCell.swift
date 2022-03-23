@@ -20,7 +20,7 @@ struct SimpleCell: View {
                 HStack {
                     Spacer().frame(width: 16)
                     Text(title)
-                        .font(.applicationFont(withWeight: .bold, andSize: 17))
+                        .font(.applicationFont(withWeight: .bold, andSize: 15))
                         .foregroundColor(Color(UIColor.Popup.title))
                     Spacer()
                 }

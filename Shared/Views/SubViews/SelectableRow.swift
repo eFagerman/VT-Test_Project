@@ -42,11 +42,13 @@ struct SelectableRow<Model>: View where Model: SelectableItem {
             
             if hideRadioButtons {}
             else if item == selectedItem {
-                Image("checkboxesRadioChecked")
+                Image("checked")
                     .frame(width: 18.0, height: 18.0)
+                    .foregroundColor(Color(UIColor.accentGreen))
             } else {
-                Image("checkboxesIosUnchecked")
+                Image("unchecked")
                     .frame(width: 18.0, height: 18.0)
+                    .foregroundColor(Color(UIColor.darkSecondaryPowderBlue50))
             }
         }
         .contentShape(Rectangle())
