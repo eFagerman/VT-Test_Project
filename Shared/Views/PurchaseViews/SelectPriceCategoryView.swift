@@ -58,9 +58,16 @@ struct SelectPriceCategoryView: View {
     
     var body: some View {
         
+        let buttonHeight = CGFloat(48)
+        
         ZStack {
             
-            Color(UIColor.General.backgroundTwo).edgesIgnoringSafeArea(.all)
+            VStack {
+                Color(UIColor.General.backgroundTwo)
+                Color(UIColor.Popup.okeyActionButtonBackground)
+                    .frame(height: buttonHeight-10) // the height is to cover the bottom area on iPhone 10+ models and at the same time to not be visible above the bottom button on older models with straight bottom
+            }
+            .edgesIgnoringSafeArea(.all)
             
             VStack {
                 
@@ -134,18 +141,15 @@ struct SelectPriceCategoryView: View {
                                 .foregroundColor(Color(UIColor.General.secondComplementBackground))
                             Spacer()
                         }
-                        .frame(height: 48)
+                        .frame(height: buttonHeight)
                     }
                                     .contentShape(Rectangle())
                                     .font(.applicationFont(withWeight: .bold, andSize: 21))
                 }
                 .background(Color(UIColor.Popup.okeyActionButtonBackground))
-                .padding(EdgeInsets(top: -8, leading: 0, bottom: 0, trailing: 0))
-                
             }
             .navigationBarBackButtonHidden(true)
             .navigationBarTitleDisplayMode(.inline)
-            .padding(.bottom, -8)
             .toolbar {
                 ToolbarItem(placement: .navigation)  {
                     Image(systemName: "arrow.left")

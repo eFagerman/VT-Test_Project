@@ -107,8 +107,17 @@ struct SelectZoneView: View {
     @State private var textMinWidth: CGFloat?
     
     var body: some View {
+        
+        let buttonHeight = CGFloat(48)
+
         ZStack {
-            Color(UIColor.General.backgroundTwo).edgesIgnoringSafeArea(.all)
+
+            VStack {
+                Color(UIColor.General.backgroundTwo)
+                Color(UIColor.Popup.okeyActionButtonBackground)
+                    .frame(height: buttonHeight-10) // the height is to cover the bottom area on iPhone 10+ models but not go over the bottom button on older models with straight bottom
+            }
+            .edgesIgnoringSafeArea(.all)
             
             VStack {
                 
@@ -195,16 +204,13 @@ struct SelectZoneView: View {
                                 .foregroundColor(Color(UIColor.General.secondComplementBackground))
                             Spacer()
                         }
-                        .frame(height: 48)
+                        .frame(height: buttonHeight)
                     }
                     .contentShape(Rectangle())
                     .font(.applicationFont(withWeight: .bold, andSize: 21))
                 }
                 .background(Color(UIColor.Popup.okeyActionButtonBackground))
-                .padding(EdgeInsets(top: -8, leading: 0, bottom: 0, trailing: 0))
-                
             }
-            .padding(EdgeInsets(top: 0, leading: 0, bottom: -12, trailing: 0))
         }
     }
     

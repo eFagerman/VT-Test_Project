@@ -46,10 +46,17 @@ struct PurchaseSummaryView: View {
     
     var body: some View {
         
+        let buttonHeight = CGFloat(48)
+
         ZStack {
             
-            Color(UIColor.General.backgroundTwo).edgesIgnoringSafeArea(.all)
-            
+            VStack {
+                Color(UIColor.General.backgroundTwo)
+                Color(UIColor.accentGreen)
+                    .frame(height: buttonHeight-10) // the height is to cover the bottom area on iPhone 10+ models and at the same time to not be visible above the bottom button on older models with straight bottom
+            }
+            .edgesIgnoringSafeArea(.all)
+
             VStack {
                 
                 // PRODUCT HEADER
@@ -111,16 +118,13 @@ struct PurchaseSummaryView: View {
                             .foregroundColor(Color(UIColor.baseBlack))
                         Spacer()
                     }
-                    .frame(height: 48)
+                    .frame(height: buttonHeight)
                     .background(Color(UIColor.accentGreen))
-                    .padding(EdgeInsets(top: -8, leading: 0, bottom: 0, trailing: 0))
-                    
                 })
                 
             }
             .navigationBarBackButtonHidden(true)
             .navigationBarTitleDisplayMode(.inline)
-            .padding(.bottom, -8)
             .toolbar {
                 ToolbarItem(placement: .navigation)  {
                     Image(systemName: "arrow.left")
