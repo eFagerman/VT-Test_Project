@@ -9,6 +9,15 @@
           "revision": "22f302d4c048aafcda09a4ab5b8c0b03855316fb",
           "version": "0.6.3"
         }
+      },
+      {
+        "package": "SBPAsyncImage",
+        "repositoryURL": "https://github.com/yutailang0119/SBPAsyncImage.git",
+        "state": {
+          "branch": null,
+          "revision": "b1fd0fa16eaa58ae29f728160020ef1b78de740d",
+          "version": "0.2.0"
+        }
       }
     ]
   },

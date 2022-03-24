@@ -18,10 +18,6 @@ extension ResponseOperator: ContainsTextResources, Identifiable {
         return localization(for: "operator.title") ?? ""
     }
     
-    var image: Image {
-        // TODO: fetch this logo from the backend
-        return Image(code).renderingMode(.original)
-    }
 }
 
 extension ResponseOperatorProductType: ContainsTextResources, Identifiable {

@@ -101,6 +101,7 @@
 		E48D375627EB2F38004DACD7 /* ResponseOperatorLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48D375127EB2F38004DACD7 /* ResponseOperatorLocation.swift */; };
 		E48D375727EB2F38004DACD7 /* ResponseOperatorProductType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48D375227EB2F38004DACD7 /* ResponseOperatorProductType.swift */; };
 		E48D375827EB2F38004DACD7 /* ResponseOperatorProductType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48D375227EB2F38004DACD7 /* ResponseOperatorProductType.swift */; };
+		E48D375D27EC7ED7004DACD7 /* SBPAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = E48D375C27EC7ED7004DACD7 /* SBPAsyncImage */; };
 		E4C4A8DF27BC2D67004CDDBD /* InactiveTicketSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4A8DE27BC2D67004CDDBD /* InactiveTicketSwiftUIView.swift */; };
 		E4C4A8E027BC2D67004CDDBD /* InactiveTicketSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4A8DE27BC2D67004CDDBD /* InactiveTicketSwiftUIView.swift */; };
 		E4C4A8E227BC2E3B004CDDBD /* InactiveTicketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4A8E127BC2E3B004CDDBD /* InactiveTicketViewModel.swift */; };
@@ -199,6 +200,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E48D371D27E48D9D004DACD7 /* AnyCodable in Frameworks */,
+				E48D375D27EC7ED7004DACD7 /* SBPAsyncImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +413,7 @@
 			name = "TicketTest (iOS)";
 			packageProductDependencies = (
 				E48D371C27E48D9D004DACD7 /* AnyCodable */,
+				E48D375C27EC7ED7004DACD7 /* SBPAsyncImage */,
 			);
 			productName = "TicketTest (iOS)";
 			productReference = E44FA2B127B54463008912CC /* TicketTest.app */;
@@ -462,6 +465,7 @@
 			mainGroup = E44FA2A427B54461008912CC;
 			packageReferences = (
 				E48D371B27E48D9D004DACD7 /* XCRemoteSwiftPackageReference "AnyCodable" */,
+				E48D375B27EC7ED7004DACD7 /* XCRemoteSwiftPackageReference "SBPAsyncImage" */,
 			);
 			productRefGroup = E44FA2B227B54463008912CC /* Products */;
 			projectDirPath = "";
@@ -896,6 +900,14 @@
 				minimumVersion = 0.6.3;
 			};
 		};
+		E48D375B27EC7ED7004DACD7 /* XCRemoteSwiftPackageReference "SBPAsyncImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/yutailang0119/SBPAsyncImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -903,6 +915,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E48D371B27E48D9D004DACD7 /* XCRemoteSwiftPackageReference "AnyCodable" */;
 			productName = AnyCodable;
+		};
+		E48D375C27EC7ED7004DACD7 /* SBPAsyncImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E48D375B27EC7ED7004DACD7 /* XCRemoteSwiftPackageReference "SBPAsyncImage" */;
+			productName = SBPAsyncImage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

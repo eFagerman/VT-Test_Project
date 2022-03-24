@@ -57,7 +57,7 @@ struct PurchaseSummaryView: View {
                 
                 VStack {
                     // PRODUCT CELLS
-                    ImageTextRow(image: Image(viewModel.shoppingCart.ticketOperator.code), text: viewModel.shoppingCart.ticketOperator.resources?["sv"]?["operator.title"] ?? "Operator")
+                    ImageTextRow(imageUrlString: viewModel.shoppingCart.ticketOperator.iconUrl, text: viewModel.shoppingCart.ticketOperator.resources?["sv"]?["operator.title"] ?? "Operator")
                         .padding(.vertical)
                     DividerTight()
                     TicketInfoView(shoppingCartItems: viewModel.shoppingCart.items)

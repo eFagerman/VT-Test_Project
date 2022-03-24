@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SBPAsyncImage
 
 extension ResponseOperatorProductType: SelectableItem { }
 
@@ -128,7 +129,7 @@ struct SelectTicketTypeView: View {
                                 VStack {
                                     HStack {
                                         Spacer().frame(width: 40)
-                                        SelectableRow(hideRadioButtons: true, image: ticketOperator.image, title: ticketOperator.title, item: ticketOperator, selectedItem: $viewModel.selectedOperator)
+                                        SelectableRow(hideRadioButtons: true, imageUrlString: ticketOperator.iconUrl, title: ticketOperator.title, item: ticketOperator, selectedItem: $viewModel.selectedOperator)
                                             .onChange(of: viewModel.selectedOperator) { newValue in
                                                 withAnimation {
                                                     isExpanded = false
@@ -147,11 +148,17 @@ struct SelectTicketTypeView: View {
                         
                         HStack {
                             Spacer().frame(width: 16)
-                            viewModel.selectedOperator?.image
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 24.0, height: 24.0)
-                            Spacer().frame(width: 16)
+                            
+                            if let iconUrl = viewModel.selectedOperator?.iconUrl {
+                                BackportAsyncImage(url: URL(string: iconUrl)) { image in
+                                            image.resizable()
+                                        } placeholder: {
+                                            ProgressView()
+                                        }
+                                        .frame(width: 24.0, height: 24.0)
+                                Spacer().frame(width: 16)
+                            }
+                            
                             Text(viewModel.selectedOperator?.title ?? "")
                                 .foregroundColor(Color(UIColor.Popup.title))
                                 .font(.applicationFont(withWeight: .bold, andSize: 15))

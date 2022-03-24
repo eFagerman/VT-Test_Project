@@ -6,23 +6,33 @@
 //
 
 import SwiftUI
+import SBPAsyncImage
 
 struct ImageTextRow: View {
     
-    var image: Image
+    var imageUrlString: String?
     var text: String
     
     var body: some View {
         
         HStack {
             Spacer().frame(width: 16)
-            image
-                .frame(width: 24, height: 24)
-                .foregroundColor(Color(UIColor.Popup.title))
-            Spacer().frame(width: 8)
+            
+            if let imageUrlString = imageUrlString {
+                BackportAsyncImage(url: URL(string: imageUrlString)) { image in
+                            image.resizable()
+                        } placeholder: {
+                            ProgressView()
+                        }
+                        .frame(width: 24.0, height: 24.0)
+                        .foregroundColor(Color(UIColor.Popup.title))
+                Spacer().frame(width: 8)
+            }
+            
             Text(text)
                 .font(.applicationFont(withWeight: .bold, andSize: 15))
                 .foregroundColor(Color(UIColor.Popup.title))
+            
             Spacer()
         }
     }
@@ -30,7 +40,7 @@ struct ImageTextRow: View {
 
 struct ImageTextRow_Previews: PreviewProvider {
     static var previews: some View {
-        ImageTextRow(image: Image(systemName: "bus"), text: "Bus")
+        ImageTextRow(imageUrlString: "", text: "Bus")
             .background(Color.red)
     }
 }
