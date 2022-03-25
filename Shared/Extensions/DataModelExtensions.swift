@@ -27,6 +27,13 @@ extension ResponseOperatorProductType: ContainsTextResources, Identifiable {
     }
 }
 
+extension ResponseOperatorProductTypeProduct: ContainsTextResources, Identifiable {
+    
+    var title: String {
+        return localization(for: "product.title") ?? ""
+    }
+}
+
 extension ResponseOperatorPriceGroup: ContainsTextResources {
     
     var title: String {

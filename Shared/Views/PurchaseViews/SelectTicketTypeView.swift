@@ -15,11 +15,7 @@ extension ResponseOperator: SelectableItem { }
 struct SelectTicketTypeView: View {
     
     @ObservedObject var viewModel: SelectTicketTypeViewModel
-    @StateObject var shoppingCart = ShoppingCart()
     @State private var isExpanded = false
-    @State var pushActive = false
-    @State private var isShowingDetailView = false
-    
     
     var body: some View {
         
@@ -92,7 +88,7 @@ struct SelectTicketTypeView: View {
                     }
                 }
             }
-        }.environmentObject(shoppingCart)
+        }
     }
     
     private func productCells() -> some View {
@@ -107,24 +103,19 @@ struct SelectTicketTypeView: View {
 
                     if productType.zones?.count ?? 0 > 1 {
                         
-                        NavigationLink(destination: SelectZoneView(viewModel: SelectZoneViewModel()), isActive: $isShowingDetailView) {
-                            arrowCell(title: productType.title).onTapGesture {
-                                shoppingCart.productType = productType
-                                shoppingCart.ticketOperator = selectedOperator
-                                isShowingDetailView = true
-                            }
+                        let viewModel = SelectZoneViewModel(selectedOperator: selectedOperator, selectedProductType: productType)
+                        
+                        NavigationLink(destination: SelectZoneView(viewModel: viewModel)) {
+                            arrowCell(title: productType.title)
                         }
                         .buttonStyle(PlainButtonStyle())
 
-                    }
-                    else {
+                    } else if let firstZone = productType.zones?.first, let firstProduct = productType.products?.first {
                         
-                        NavigationLink(destination: SelectPriceCategoryView(viewModel: SelectPriceCategoryViewModel()), isActive: $isShowingDetailView) {
-                            arrowCell(title: productType.title).onTapGesture {
-                                shoppingCart.productType = productType
-                                shoppingCart.ticketOperator = selectedOperator
-                                isShowingDetailView = true
-                            }
+                        let viewModel = SelectPriceCategoryViewModel(selectedOperator: selectedOperator, selectedProductType: productType, selectedZone: firstZone, selectedProduct: firstProduct)
+                        
+                        NavigationLink(destination: SelectPriceCategoryView(viewModel: viewModel)) {
+                            arrowCell(title: productType.title)
                         }
                         .buttonStyle(PlainButtonStyle())
                     }

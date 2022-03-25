@@ -46,15 +46,26 @@ class SelectZoneViewModel: ObservableObject {
     @Published var isFromTextActive = false
     @Published var isToTextActive = true
     //@Published var searchSuggestionList: [SearchSuggestionModel]
-    //@Published var selectedZone: ResponseOperatorZone? = nil
     
-//    let selectedOperator: ResponseOperator
-//    let selectedProductType: ResponseOperatorProductType
-//
-//    init(selectedOperator: ResponseOperator, selectedProductType: ResponseOperatorProductType) {
-//        self.selectedOperator = selectedOperator
-//        self.selectedProductType = selectedProductType
+    
+    @Published var selectedProduct: ResponseOperatorProductTypeProduct?
+    @Published var selectedZone: ResponseOperatorZone?
+    
+    let selectedOperator: ResponseOperator
+    let selectedProductType: ResponseOperatorProductType
+    
+    
+//    var zones: [ResponseOperatorZone]? {
+//        return selectedProductType.zones?.sorted { $0.sort ?? 999 < $1.sort ?? 999 }
 //    }
+
+    init(selectedOperator: ResponseOperator, selectedProductType: ResponseOperatorProductType) {
+        self.selectedOperator = selectedOperator
+        self.selectedProductType = selectedProductType
+        self.selectedProduct = selectedProductType.products?.sorted { $0.sort ?? 999 < $1.sort ?? 999 }.first
+        self.selectedZone = selectedProductType.zones?.sorted { $0.sort ?? 999 < $1.sort ?? 999 }.first
+        
+    }
 
     
 //    private static func getZoneCellModelList(zones: [ResponseOperatorZone]?) -> [ZoneCellModel] {
@@ -104,7 +115,7 @@ struct SelectZoneView: View {
     
     @Environment(\.presentationMode) var presentation
     
-    @EnvironmentObject var shoppingCart: ShoppingCart
+    //@EnvironmentObject var shoppingCart: ShoppingCart
 
     @ObservedObject var viewModel: SelectZoneViewModel
     @State private var textMinWidth: CGFloat?
@@ -129,7 +140,7 @@ struct SelectZoneView: View {
                     // TICKET TYPE
                     SectionHeaderView(title: viewModel.ticketTypeSectionTitle, changeButton: true)
                     
-                    SimpleCell(title: shoppingCart.productType?.title ?? "")
+                    SimpleCell(title: viewModel.selectedProductType.title)
                     
                     // ZONE SEARCH
                     // zoneSearchView()
@@ -155,11 +166,11 @@ struct SelectZoneView: View {
                     
                     
                     // ZONE LIST
-                    ForEach(shoppingCart.productType?.zones ?? []) { zone in
+                    ForEach(viewModel.selectedProductType.zones ?? []) { zone in
                         VStack {
-                            ZoneCellView(zone: zone, selectedZone: $shoppingCart.zone)
+                            ZoneCellView(zone: zone, selectedZone: $viewModel.selectedZone)
                                 .onTapGesture {
-                                    shoppingCart.zone = zone
+                                    viewModel.selectedZone = zone
                                 }
                             DividerTight()
                         }
@@ -183,7 +194,7 @@ struct SelectZoneView: View {
                     }
                     ToolbarItem(placement: .principal) {
                         HStack {
-                            Text(shoppingCart.ticketOperator?.title ?? "")
+                            Text(viewModel.selectedOperator.title)
                                 .foregroundColor(Color(UIColor.Popup.title))
                                 .font(.applicationFont(withWeight: .bold, andSize: 17))
                         }
@@ -203,17 +214,19 @@ struct SelectZoneView: View {
                 
                 VStack {
                     
-                    NavigationLink(destination: SelectPriceCategoryView(viewModel: SelectPriceCategoryViewModel())) {
-                        HStack {
-                            Spacer()
-                            Text(viewModel.buyTicketTitle)
-                                .foregroundColor(Color(UIColor.General.secondComplementBackground))
-                            Spacer()
+                    if let selectedZone = viewModel.selectedZone, let product = viewModel.selectedProduct {
+                        NavigationLink(destination: SelectPriceCategoryView(viewModel: SelectPriceCategoryViewModel(selectedOperator: viewModel.selectedOperator, selectedProductType: viewModel.selectedProductType, selectedZone: selectedZone, selectedProduct: product))) {
+                            HStack {
+                                Spacer()
+                                Text(viewModel.buyTicketTitle)
+                                    .foregroundColor(Color(UIColor.General.secondComplementBackground))
+                                Spacer()
+                            }
+                            .frame(height: buttonHeight)
                         }
-                        .frame(height: buttonHeight)
+                        .contentShape(Rectangle())
+                        .font(.applicationFont(withWeight: .bold, andSize: 21))
                     }
-                    .contentShape(Rectangle())
-                    .font(.applicationFont(withWeight: .bold, andSize: 21))
                     
                 }
                 .background(Color(UIColor.Popup.okeyActionButtonBackground))

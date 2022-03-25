@@ -9,37 +9,32 @@ import SwiftUI
 
 class SelectPriceCategoryViewModel: ObservableObject {
     
-    //@Published var shoppingCart: ShoppingCart
-    //var selectedZoneId: String? = nil
+    @Published var shoppingCart = ShoppingCart()
+    @Published var selectedProduct: ResponseOperatorProductTypeProduct
     
-    @Published var selectedValidityPeriodTitle: String = ""
-    let validityPeriodSeconds: [Int64] = [1]
-    let validityPeriodTitles: [String] = []
-
     let ticketTypeTitle = "Biljettyp"
     let zoneTitle = "Zon"
     let priceClassTitle = "Prisklass"
     let buyTicketTitle = "Köp biljett"
     let validityDurationTitle = "Giltighetsperiod"
     
-    
-//    init(shoppingCart: ShoppingCart, selectedZoneId: String? = nil) {
-//        self.shoppingCart = shoppingCart
-//        self.selectedZoneId = selectedZoneId
-//        var tmpValidityPeriodSeconds = [Int64]()
-//        var tmpValidityPeriodTitles = [String]()
-//        if let prices = shoppingCart.product.prices {
-//            for price in prices {
-//                tmpValidityPeriodSeconds.append(price.validityDuration ?? 0)
-//                let minutes = String((price.validityDuration ?? 0) / 60)
-//                let tmpValidityPeriodTitle = minutes + " minuter"
-//                tmpValidityPeriodTitles.append(tmpValidityPeriodTitle)
-//            }
-//        }
-//        self.validityPeriodSeconds = tmpValidityPeriodSeconds
-//        self.validityPeriodTitles = tmpValidityPeriodTitles
-//        self.selectedValidityPeriodTitle = tmpValidityPeriodTitles.first ?? ""
-//    }
+    let selectedOperator: ResponseOperator
+    let selectedProductType: ResponseOperatorProductType
+    let selectedZone: ResponseOperatorZone
+
+    init(selectedOperator: ResponseOperator,
+         selectedProductType: ResponseOperatorProductType,
+         selectedZone: ResponseOperatorZone, selectedProduct: ResponseOperatorProductTypeProduct) {
+        self.selectedOperator = selectedOperator
+        self.selectedProductType = selectedProductType
+        self.selectedZone = selectedZone
+        self.selectedProduct = selectedProduct
+        
+        shoppingCart.productType = selectedProductType
+        shoppingCart.ticketOperator = selectedOperator
+        shoppingCart.zone = selectedZone
+        shoppingCart.product = selectedProduct
+    }
 }
 
 struct SelectPriceCategoryView: View {
@@ -47,7 +42,7 @@ struct SelectPriceCategoryView: View {
     @Environment(\.presentationMode) var presentation
 
     @ObservedObject var viewModel: SelectPriceCategoryViewModel
-    @EnvironmentObject var shoppingCart: ShoppingCart
+    //@EnvironmentObject var shoppingCart: ShoppingCart
     
     init(viewModel: SelectPriceCategoryViewModel) {
         self.viewModel = viewModel
@@ -78,10 +73,10 @@ struct SelectPriceCategoryView: View {
                     SectionHeaderView(title: viewModel.ticketTypeTitle, changeButton: true)
                     
                     // TICKET TYPE CELL
-                    SimpleCell(title: shoppingCart.productType?.title ?? "")
+                    SimpleCell(title: viewModel.selectedProductType.title)
                     
                     // ZONE
-                    if let zones = shoppingCart.productType?.zones, zones.count > 1 {
+                    if let zones = viewModel.selectedProductType.zones, zones.count > 1 {
                         
                         // ZONE HEADER
                         SectionHeaderView(title: viewModel.zoneTitle, changeButton: true)
@@ -89,7 +84,7 @@ struct SelectPriceCategoryView: View {
                         Spacer().frame(height: 8)
                         
                         // ZONE CELL
-                        SimpleCell(title: shoppingCart.zone?.title ?? "")
+                        SimpleCell(title: viewModel.selectedZone.title)
                        
                         DividerTight()
                     }
@@ -100,23 +95,24 @@ struct SelectPriceCategoryView: View {
                     
                     Spacer().frame(height: 8)
                     
-                    ForEach($shoppingCart.selectableItems) { $item in
+                    ForEach($viewModel.shoppingCart.selectableItems) { $item in
                         DividerTight()
                         PriceClassRow(shoppingCartItem: $item)
                     }
-                    if shoppingCart.selectableItems.count > 0 {
+                    if $viewModel.shoppingCart.selectableItems.count > 0 {
                         DividerTight()
                     }
                     
                     // SEGMENTED CONTROL FOR VALIDITY DURATION
                     
-                    if viewModel.validityPeriodSeconds.count > 0 {
+                    if viewModel.selectedProductType.products?.count ?? 0 > 1 {
                         VStack {
                             SectionHeaderView(title: viewModel.validityDurationTitle)
                             Spacer().frame(height: 8)
-                            Picker("", selection: $viewModel.selectedValidityPeriodTitle) {
-                                ForEach(viewModel.validityPeriodTitles, id: \.self) {
-                                    Text($0)
+                            Picker("", selection: $viewModel.selectedProduct) {
+                                
+                                ForEach(viewModel.selectedProductType.products ?? []) { product in
+                                    Text(product.title)
                                         .foregroundColor(.green)
                                 }
                             }
@@ -132,7 +128,7 @@ struct SelectPriceCategoryView: View {
                 Spacer()
                 
                 VStack {
-                    let viewModel2 = PurchaseSummaryViewModel(shoppingCart: shoppingCart)
+                    let viewModel2 = PurchaseSummaryViewModel(shoppingCart: viewModel.shoppingCart)
                     NavigationLink(destination: PurchaseSummaryView(viewModel: viewModel2)
                                     .navigationTitle(viewModel.buyTicketTitle)) {
                         HStack {
@@ -162,7 +158,7 @@ struct SelectPriceCategoryView: View {
                 }
                 ToolbarItem(placement: .principal) {
                     HStack {
-                        Text(shoppingCart.ticketOperator?.title ?? "")
+                        Text(viewModel.selectedOperator.title)
                             .foregroundColor(Color(UIColor.Popup.title))
                             .font(.applicationFont(withWeight: .bold, andSize: 17))
                     }
