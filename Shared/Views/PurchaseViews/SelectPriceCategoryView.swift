@@ -10,7 +10,11 @@ import SwiftUI
 class SelectPriceCategoryViewModel: ObservableObject {
     
     @Published var shoppingCart = ShoppingCart()
-    @Published var selectedProduct: ResponseOperatorProductTypeProduct
+    @Published var selectedProduct: ResponseOperatorProductTypeProduct {
+        didSet {
+           setupShoppingCart()
+        }
+    }
     
     let ticketTypeTitle = "Biljettyp"
     let zoneTitle = "Zon"
@@ -21,7 +25,7 @@ class SelectPriceCategoryViewModel: ObservableObject {
     let selectedOperator: ResponseOperator
     let selectedProductType: ResponseOperatorProductType
     let selectedZone: ResponseOperatorZone
-
+    
     init(selectedOperator: ResponseOperator,
          selectedProductType: ResponseOperatorProductType,
          selectedZone: ResponseOperatorZone, selectedProduct: ResponseOperatorProductTypeProduct) {
@@ -29,6 +33,11 @@ class SelectPriceCategoryViewModel: ObservableObject {
         self.selectedProductType = selectedProductType
         self.selectedZone = selectedZone
         self.selectedProduct = selectedProduct
+        
+        setupShoppingCart()
+    }
+    
+    private func setupShoppingCart() {
         
         shoppingCart.productType = selectedProductType
         shoppingCart.ticketOperator = selectedOperator
@@ -40,9 +49,8 @@ class SelectPriceCategoryViewModel: ObservableObject {
 struct SelectPriceCategoryView: View {
     
     @Environment(\.presentationMode) var presentation
-
+    
     @ObservedObject var viewModel: SelectPriceCategoryViewModel
-    //@EnvironmentObject var shoppingCart: ShoppingCart
     
     init(viewModel: SelectPriceCategoryViewModel) {
         self.viewModel = viewModel
@@ -85,7 +93,7 @@ struct SelectPriceCategoryView: View {
                         
                         // ZONE CELL
                         SimpleCell(title: viewModel.selectedZone.title)
-                       
+                        
                         DividerTight()
                     }
                     
@@ -109,10 +117,11 @@ struct SelectPriceCategoryView: View {
                         VStack {
                             SectionHeaderView(title: viewModel.validityDurationTitle)
                             Spacer().frame(height: 8)
+                            
                             Picker("", selection: $viewModel.selectedProduct) {
                                 
                                 ForEach(viewModel.selectedProductType.products ?? []) { product in
-                                    Text(product.title)
+                                    Text(product.title).tag(product)
                                         .foregroundColor(.green)
                                 }
                             }
