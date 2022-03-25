@@ -10,7 +10,7 @@ import SwiftUI
 extension ShoppingCartItem {
     
     var description: String {
-        return String(number) + " " + priceGroup.title + " " + product.title
+        return String(number) + " " + priceGroup.title + " " + productType.title
     }
 }
 

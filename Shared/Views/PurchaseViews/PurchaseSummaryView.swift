@@ -64,10 +64,10 @@ struct PurchaseSummaryView: View {
                 
                 VStack {
                     // PRODUCT CELLS
-                    ImageTextRow(imageUrlString: viewModel.shoppingCart.ticketOperator.iconUrl, text: viewModel.shoppingCart.ticketOperator.resources?["sv"]?["operator.title"] ?? "Operator")
+                    ImageTextRow(imageUrlString: viewModel.shoppingCart.ticketOperator?.iconUrl, text: viewModel.shoppingCart.ticketOperator?.resources?["sv"]?["operator.title"] ?? "Operator")
                         .padding(.vertical)
                     DividerTight()
-                    TicketInfoView(shoppingCartItems: viewModel.shoppingCart.items)
+                    TicketInfoView(shoppingCartItems: viewModel.shoppingCart.selectableItems)
                         .padding()
                         .foregroundColor(Color(UIColor.Popup.title))
                     DividerTight()
@@ -147,11 +147,11 @@ struct PurchaseSummaryView: View {
     }
 }
 
-struct PurchaseSummaryView_Previews: PreviewProvider {
-    static var previews: some View {
-        let shoppingCart = ShoppingCart(ticketOperator: ProductsData.shared.data.operators.first!, product: ProductsData.shared.data.operators.first!.productTypes!.first!)
-        let purchaseSummareyViewModel = PurchaseSummaryViewModel(shoppingCart: shoppingCart)
-        PurchaseSummaryView(viewModel: purchaseSummareyViewModel)
-    }
-}
+//struct PurchaseSummaryView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let shoppingCart = ShoppingCart(ticketOperator: ProductsData.shared.data.operators.first!, product: ProductsData.shared.data.operators.first!.productTypes!.first!)
+//        let purchaseSummareyViewModel = PurchaseSummaryViewModel(shoppingCart: shoppingCart)
+//        PurchaseSummaryView(viewModel: purchaseSummareyViewModel)
+//    }
+//}
 

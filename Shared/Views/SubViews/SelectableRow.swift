@@ -19,6 +19,7 @@ struct SelectableRow<Model>: View where Model: SelectableItem {
     var item: Model
     @Binding var selectedItem: Model?
     
+    
     var body: some View {
         HStack {
             

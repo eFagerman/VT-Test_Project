@@ -9,37 +9,37 @@ import SwiftUI
 
 class SelectPriceCategoryViewModel: ObservableObject {
     
-    @Published var shoppingCart: ShoppingCart
-    var selectedZoneId: String? = nil
+    //@Published var shoppingCart: ShoppingCart
+    //var selectedZoneId: String? = nil
     
-    @Published var selectedValidityPeriodTitle: String
-    let validityPeriodSeconds: [Int64]
-    let validityPeriodTitles: [String]
+    @Published var selectedValidityPeriodTitle: String = ""
+    let validityPeriodSeconds: [Int64] = [1]
+    let validityPeriodTitles: [String] = []
 
     let ticketTypeTitle = "Biljettyp"
     let zoneTitle = "Zon"
     let priceClassTitle = "Prisklass"
     let buyTicketTitle = "Köp biljett"
-    
     let validityDurationTitle = "Giltighetsperiod"
     
-    init(shoppingCart: ShoppingCart, selectedZoneId: String? = nil) {
-        self.shoppingCart = shoppingCart
-        self.selectedZoneId = selectedZoneId
-        var tmpValidityPeriodSeconds = [Int64]()
-        var tmpValidityPeriodTitles = [String]()
-        if let prices = shoppingCart.product.prices {
-            for price in prices {
-                tmpValidityPeriodSeconds.append(price.validityDuration ?? 0)
-                let minutes = String((price.validityDuration ?? 0) / 60)
-                let tmpValidityPeriodTitle = minutes + " minuter"
-                tmpValidityPeriodTitles.append(tmpValidityPeriodTitle)
-            }
-        }
-        self.validityPeriodSeconds = tmpValidityPeriodSeconds
-        self.validityPeriodTitles = tmpValidityPeriodTitles
-        self.selectedValidityPeriodTitle = tmpValidityPeriodTitles.first ?? ""
-    }
+    
+//    init(shoppingCart: ShoppingCart, selectedZoneId: String? = nil) {
+//        self.shoppingCart = shoppingCart
+//        self.selectedZoneId = selectedZoneId
+//        var tmpValidityPeriodSeconds = [Int64]()
+//        var tmpValidityPeriodTitles = [String]()
+//        if let prices = shoppingCart.product.prices {
+//            for price in prices {
+//                tmpValidityPeriodSeconds.append(price.validityDuration ?? 0)
+//                let minutes = String((price.validityDuration ?? 0) / 60)
+//                let tmpValidityPeriodTitle = minutes + " minuter"
+//                tmpValidityPeriodTitles.append(tmpValidityPeriodTitle)
+//            }
+//        }
+//        self.validityPeriodSeconds = tmpValidityPeriodSeconds
+//        self.validityPeriodTitles = tmpValidityPeriodTitles
+//        self.selectedValidityPeriodTitle = tmpValidityPeriodTitles.first ?? ""
+//    }
 }
 
 struct SelectPriceCategoryView: View {
@@ -47,6 +47,7 @@ struct SelectPriceCategoryView: View {
     @Environment(\.presentationMode) var presentation
 
     @ObservedObject var viewModel: SelectPriceCategoryViewModel
+    @EnvironmentObject var shoppingCart: ShoppingCart
     
     init(viewModel: SelectPriceCategoryViewModel) {
         self.viewModel = viewModel
@@ -77,10 +78,10 @@ struct SelectPriceCategoryView: View {
                     SectionHeaderView(title: viewModel.ticketTypeTitle, changeButton: true)
                     
                     // TICKET TYPE CELL
-                    SimpleCell(title: viewModel.shoppingCart.product.title)
+                    SimpleCell(title: shoppingCart.productType?.title ?? "")
                     
                     // ZONE
-                    if let zones = viewModel.shoppingCart.product.zones, zones.count > 0 {
+                    if let zones = shoppingCart.productType?.zones, zones.count > 1 {
                         
                         // ZONE HEADER
                         SectionHeaderView(title: viewModel.zoneTitle, changeButton: true)
@@ -88,9 +89,8 @@ struct SelectPriceCategoryView: View {
                         Spacer().frame(height: 8)
                         
                         // ZONE CELL
-                        ForEach(zones, id: \.id) { zone in
-                            SimpleCell(title: zone.resources?["sv"]?["zone.title"] ?? "")
-                        }
+                        SimpleCell(title: shoppingCart.zone?.title ?? "")
+                       
                         DividerTight()
                     }
                     
@@ -100,11 +100,11 @@ struct SelectPriceCategoryView: View {
                     
                     Spacer().frame(height: 8)
                     
-                    ForEach($viewModel.shoppingCart.items) { $item in
+                    ForEach($shoppingCart.selectableItems) { $item in
                         DividerTight()
                         PriceClassRow(shoppingCartItem: $item)
                     }
-                    if viewModel.shoppingCart.items.count > 0 {
+                    if shoppingCart.selectableItems.count > 0 {
                         DividerTight()
                     }
                     
@@ -132,7 +132,7 @@ struct SelectPriceCategoryView: View {
                 Spacer()
                 
                 VStack {
-                    let viewModel2 = PurchaseSummaryViewModel(shoppingCart: viewModel.shoppingCart)
+                    let viewModel2 = PurchaseSummaryViewModel(shoppingCart: shoppingCart)
                     NavigationLink(destination: PurchaseSummaryView(viewModel: viewModel2)
                                     .navigationTitle(viewModel.buyTicketTitle)) {
                         HStack {
@@ -162,7 +162,7 @@ struct SelectPriceCategoryView: View {
                 }
                 ToolbarItem(placement: .principal) {
                     HStack {
-                        Text(viewModel.shoppingCart.ticketOperator.title)
+                        Text(shoppingCart.ticketOperator?.title ?? "")
                             .foregroundColor(Color(UIColor.Popup.title))
                             .font(.applicationFont(withWeight: .bold, andSize: 17))
                     }
@@ -172,10 +172,10 @@ struct SelectPriceCategoryView: View {
     }
 }
 
-struct SelectPriceCategoryView_Previews: PreviewProvider {
-    static var previews: some View {
-        
-        let shoppingCart = ShoppingCart(ticketOperator: ProductsData.shared.data.operators.first!, product: ProductsData.shared.data.operators.first!.productTypes!.first!)
-        SelectPriceCategoryView(viewModel: SelectPriceCategoryViewModel(shoppingCart: shoppingCart))
-    }
-}
+//struct SelectPriceCategoryView_Previews: PreviewProvider {
+//    static var previews: some View {
+//
+//        let shoppingCart = ShoppingCart(ticketOperator: ProductsData.shared.data.operators.first!, product: ProductsData.shared.data.operators.first!.productTypes!.first!)
+//        SelectPriceCategoryView(viewModel: SelectPriceCategoryViewModel(shoppingCart: shoppingCart))
+//    }
+//}

@@ -34,4 +34,11 @@ extension ResponseOperatorPriceGroup: ContainsTextResources {
     }
 }
 
+extension ResponseOperatorZone: ContainsTextResources {
+    
+    var title: String {
+        return localization(for: "zone.title") ?? ""
+    }
+}
+
 

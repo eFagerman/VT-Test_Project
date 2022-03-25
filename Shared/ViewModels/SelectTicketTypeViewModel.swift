@@ -48,12 +48,10 @@ struct HistoricalTicket: TicketHistory {
     var operatorSectionHeader: String = "Operatör"
     var selectTicketTypeSectionHeader: String = "Välj biljettyp"
     
-    @Published var operatorImage: Image? = nil
     @Published var historicalTickets: [TicketHistory] = []
     @Published var ticketOperators: [ResponseOperator] = []
     @Published var selectedOperator: ResponseOperator?
     @Published var isLoading = false
-    
     
     private let operatorsService: OperatorsService
     
@@ -71,13 +69,6 @@ struct HistoricalTicket: TicketHistory {
                 isLoading = true
                 ticketOperators = try await operatorsService.loadOperators()
                 selectedOperator = ticketOperators.first
-                
-                
-                
-                selectedOperator?.iconUrl
-                // TODO: fetch historicalTickets
-                // TODO: don't use Image("se_vt")
-//                historicalTickets = [HistoricalTicket(operatorImage: Image("se_vt"), ticketTypeName: "Enkelbiljett", priceGroupName: "Vuxen"), HistoricalTicket(operatorImage: Image("se_sl"), ticketTypeName: "Enkelbiljett", priceGroupName: "Barn"), HistoricalTicket(operatorImage: Image("se_sl"), ticketTypeName: "Enkelbiljett", priceGroupName: "Barn"), HistoricalTicket(operatorImage: Image("se_sl"), ticketTypeName: "Enkelbiljett", priceGroupName: "Barn"), HistoricalTicket(operatorImage: Image("se_sl"), ticketTypeName: "Enkelbiljett", priceGroupName: "Barn"), HistoricalTicket(operatorImage: Image("se_sl"), ticketTypeName: "Enkelbiljett", priceGroupName: "Barn")]
                 isLoading = false
                 
             } catch {

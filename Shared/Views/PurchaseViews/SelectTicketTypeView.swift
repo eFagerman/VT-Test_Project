@@ -15,8 +15,11 @@ extension ResponseOperator: SelectableItem { }
 struct SelectTicketTypeView: View {
     
     @ObservedObject var viewModel: SelectTicketTypeViewModel
+    @StateObject var shoppingCart = ShoppingCart()
     @State private var isExpanded = false
     @State var pushActive = false
+    @State private var isShowingDetailView = false
+    
     
     var body: some View {
         
@@ -24,6 +27,7 @@ struct SelectTicketTypeView: View {
             ZStack {
                 
                 Color(UIColor.General.backgroundTwo).edgesIgnoringSafeArea(.all)
+                
                 
                 ScrollView {
                     
@@ -46,9 +50,11 @@ struct SelectTicketTypeView: View {
                     SectionHeaderView(title: viewModel.selectTicketTypeSectionHeader)
                     
                     Spacer().frame(height: 8)
-
+                    
                     // PRODUCT CELLS
                     productCells()
+                    
+                    
                 }
                 .padding(.top)
                 .navigationBarBackButtonHidden(true)
@@ -86,26 +92,43 @@ struct SelectTicketTypeView: View {
                     }
                 }
             }
-        }
+        }.environmentObject(shoppingCart)
     }
     
     private func productCells() -> some View {
+        
         VStack {
+            
             if let selectedOperator = viewModel.selectedOperator, let productTypes = selectedOperator.productTypes {
+
                 DividerTight()
+
                 ForEach(productTypes) { productType in
-                    let shoppingCart = ShoppingCart(ticketOperator: selectedOperator, product: productType)
+
                     if productType.zones?.count ?? 0 > 1 {
-                        NavigationLink(destination: SelectZoneView(viewModel: SelectZoneViewModel(shoppingCart: shoppingCart, zones: productType.zones))) {
-                            arrowCell(title: productType.title)
+                        
+                        NavigationLink(destination: SelectZoneView(viewModel: SelectZoneViewModel()), isActive: $isShowingDetailView) {
+                            arrowCell(title: productType.title).onTapGesture {
+                                shoppingCart.productType = productType
+                                shoppingCart.ticketOperator = selectedOperator
+                                isShowingDetailView = true
+                            }
                         }
                         .buttonStyle(PlainButtonStyle())
-                    } else {
-                        NavigationLink(destination: SelectPriceCategoryView(viewModel: SelectPriceCategoryViewModel(shoppingCart: shoppingCart))) {
-                            arrowCell(title: productType.title)
+
+                    }
+                    else {
+                        
+                        NavigationLink(destination: SelectPriceCategoryView(viewModel: SelectPriceCategoryViewModel()), isActive: $isShowingDetailView) {
+                            arrowCell(title: productType.title).onTapGesture {
+                                shoppingCart.productType = productType
+                                shoppingCart.ticketOperator = selectedOperator
+                                isShowingDetailView = true
+                            }
                         }
                         .buttonStyle(PlainButtonStyle())
                     }
+                    
                     if productType == productTypes.last {
                         DividerTight()
                     } else {
@@ -115,7 +138,7 @@ struct SelectTicketTypeView: View {
             }
         }
     }
-        
+    
     private func operatorCells() -> some View {
         VStack {
             DividerTight()
@@ -151,11 +174,11 @@ struct SelectTicketTypeView: View {
                             
                             if let iconUrl = viewModel.selectedOperator?.iconUrl {
                                 BackportAsyncImage(url: URL(string: iconUrl)) { image in
-                                            image.resizable()
-                                        } placeholder: {
-                                            ProgressView()
-                                        }
-                                        .frame(width: 24.0, height: 24.0)
+                                    image.resizable()
+                                } placeholder: {
+                                    ProgressView()
+                                }
+                                .frame(width: 24.0, height: 24.0)
                                 Spacer().frame(width: 16)
                             }
                             
@@ -189,39 +212,39 @@ struct SelectTicketTypeView: View {
         .frame(height: 46)
         .background(Color(UIColor.General.secondComplementBackground))
     }
-
-    private func historySectionView() -> some View {
-        VStack {
-            SectionHeaderView(title: viewModel.historySectionHeader)
-            
-            ScrollView(.horizontal, showsIndicators: false) {
-                
-                HStack(spacing: 4) {
-                    
-                    // TODO: change \.ticketTypeName to some kind of id that we get from the server
-                    ForEach(viewModel.historicalTickets, id: \.ticketTypeName) { historicalTicket in
-                        
-                        let viewModel = HistoricalTicket(operatorImage: historicalTicket.operatorImage, ticketTypeName: historicalTicket.ticketTypeName, priceGroupName: historicalTicket.priceGroupName)
-                        HistoricalTicketView(viewModel: viewModel)
-                            .onTapGesture {
-                                pushActive = true
-                            }
-                        let shoppingCart = ShoppingCart(ticketOperator: ProductsData.shared.data.operators.first!, product: ProductsData.shared.data.operators.first!.productTypes!.first!)
-                        let purchaseSummareyViewModel = PurchaseSummaryViewModel(shoppingCart: shoppingCart)
-                        NavigationLink(destination: PurchaseSummaryView(viewModel: purchaseSummareyViewModel), isActive: $pushActive) {
-                        }.hidden()
-                    }
-                }
-                .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 12))
-            }
-            .frame(height: 67, alignment: .leading)
-        }
-    }
+    
+    //    private func historySectionView() -> some View {
+    //        VStack {
+    //            SectionHeaderView(title: viewModel.historySectionHeader)
+    //
+    //            ScrollView(.horizontal, showsIndicators: false) {
+    //
+    //                HStack(spacing: 4) {
+    //
+    //                    // TODO: change \.ticketTypeName to some kind of id that we get from the server
+    //                    ForEach(viewModel.historicalTickets, id: \.ticketTypeName) { historicalTicket in
+    //
+    //                        let viewModel = HistoricalTicket(operatorImage: historicalTicket.operatorImage, ticketTypeName: historicalTicket.ticketTypeName, priceGroupName: historicalTicket.priceGroupName)
+    //                        HistoricalTicketView(viewModel: viewModel)
+    //                            .onTapGesture {
+    //                                pushActive = true
+    //                            }
+    //                        let shoppingCart = ShoppingCart(ticketOperator: ProductsData.shared.data.operators.first!, product: ProductsData.shared.data.operators.first!.productTypes!.first!)
+    //                        let purchaseSummareyViewModel = PurchaseSummaryViewModel(shoppingCart: shoppingCart)
+    //                        NavigationLink(destination: PurchaseSummaryView(viewModel: purchaseSummareyViewModel), isActive: $pushActive) {
+    //                        }.hidden()
+    //                    }
+    //                }
+    //                .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 12))
+    //            }
+    //            .frame(height: 67, alignment: .leading)
+    //        }
+    //    }
 }
 
 struct SelectTicketTypeView_Previews: PreviewProvider {
     static var previews: some View {
-        
+
         let viewModel = SelectTicketTypeViewModel()
         SelectTicketTypeView(viewModel: viewModel)
     }

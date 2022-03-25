@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct ZoneCellView: View {
-    
-    var viewModel: ZoneCellModel
+   
+    var zone: ResponseOperatorZone
+    @Binding var selectedZone: ResponseOperatorZone?
     
     var body: some View {
         
@@ -17,28 +18,28 @@ struct ZoneCellView: View {
             Spacer().frame(width: 16)
             VStack(alignment: .leading) {
                 Spacer().frame(height: 12)
-                Text(viewModel.title)
+                Text(zone.title)
                     .font(.applicationFont(withWeight: .bold, andSize: 15))
                     .foregroundColor(Color(UIColor.Popup.title))
                 Spacer().frame(height: 4)
-                Text(viewModel.message)
+                //Text(viewModel.message)
                     .foregroundColor(Color(UIColor.Text.label))
                     .font(.applicationFont(withWeight: .regular, andSize: 13))
                 Spacer().frame(height: 12)
             }
             Spacer()
-            RadioButtonView(isSelected: viewModel.selected)
+            RadioButtonView(isSelected: zone.id == selectedZone?.id)
         }
         .background(Color(UIColor.General.secondComplementBackground))
-        .opacity(viewModel.dimmed ? 0.5 : 1)
+        //.opacity(viewModel.dimmed ? 0.5 : 1)
         .animation(.easeInOut)
         
     }
 }
 
-struct ZoneCellView_Previews: PreviewProvider {
-    static var previews: some View {
-        let zoneA = ZoneCellModel(id: "", title: "Zon A", message: "Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ", selected: false, dimmed: false)
-        ZoneCellView(viewModel: zoneA)
-    }
-}
+//struct ZoneCellView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let zoneA = ZoneCellModel(id: "", title: "Zon A", message: "Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ", selected: false, dimmed: false)
+//        ZoneCellView(viewModel: zoneA)
+//    }
+//}

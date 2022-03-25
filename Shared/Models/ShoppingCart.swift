@@ -11,45 +11,67 @@ import SwiftUI
 struct ShoppingCartItem: Hashable, Identifiable {
     var id: Self { self }
     var ticketOperator: ResponseOperator
-    var product: ResponseOperatorProductType
+    var productType: ResponseOperatorProductType
+    var product: ResponseOperatorProductTypeProduct
+    var zone: ResponseOperatorZone
     var priceGroup: ResponseOperatorPriceGroup
     var price: ResponseOperatorProductPrice
     var number: Int
 }
 
 class ShoppingCart: ObservableObject {
-
-    @Published var items = [ShoppingCartItem]()
-    private (set) var ticketOperator: ResponseOperator
-    private (set) var product: ResponseOperatorProductType
+    
+    @Published var selectableItems = [ShoppingCartItem]()
+    
+    @Published var ticketOperator: ResponseOperator?
+    @Published var productType: ResponseOperatorProductType? {
+        didSet {
+            self.product = productType?.products?.first
+            self.zone = productType?.zones?.first
+        }
+    }
+   
+    @Published var zone: ResponseOperatorZone? {
+        didSet {
+            updateSelectableItems()
+        }
+    }
+    @Published var product: ResponseOperatorProductTypeProduct? {
+        didSet {
+            updateSelectableItems()
+        }
+    }
     
     var totalPrice: Int {
-        return items.map({$0.number * Int($0.price.amountTotal ?? 0)}).reduce(0, +)
+        return selectableItems.map({$0.number * Int($0.price.amountTotal ?? 0)}).reduce(0, +)
     }
     
     var totalPriceWithCurrency: String {
         return String(totalPrice) + " kr"
     }
     
-    func addItem(_ item: ShoppingCartItem) {
-        self.items.append(item)
-    }
-    
-    init(ticketOperator: ResponseOperator, product: ResponseOperatorProductType) {
-        self.ticketOperator = ticketOperator
-        self.product = product
-
+    private func updateSelectableItems() {
+        
+        guard let ticketOperator = self.ticketOperator else { return }
+        guard let productType = self.productType else { return }
+        guard let zone = self.zone else { return }
+        guard let product = self.product else { return }
+        
+        
         var i = [ShoppingCartItem]()
 
-        if let priceGroups = product.priceGroups {
+        if let priceGroups = productType.priceGroups {
             priceGroups.forEach { priceGroup in
                 
-                if let price = product.prices?.first(where: {$0.priceGroupId == priceGroup.id }) {
-                    let newItem = ShoppingCartItem(ticketOperator: ticketOperator, product: product, priceGroup: priceGroup, price: price, number: 0)
+                if let price = productType.prices?.first(where: {$0.priceGroupId == priceGroup.id && $0.zoneId == zone.id && $0.productId == product.id }) {
+
+                    let newItem = ShoppingCartItem(ticketOperator: ticketOperator, productType: productType, product: product, zone: zone, priceGroup: priceGroup, price: price, number: 0)
+
                     i.append( newItem)
                 }
             }
         }
-        self.items = i
+        self.selectableItems = i
     }
+    
 }
