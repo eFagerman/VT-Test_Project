@@ -18,6 +18,7 @@ extension ResponseOperatorZone: Identifiable {}
 class SelectZoneViewModel: ObservableObject {
     
     let ticketTypeSectionTitle = "Biljettyp"
+    let validityDurationTitle = "Giltighetsperiod"
     let zoneSearchSectionTitle = "Sök zon"
     let zoneSelectionSectionTitle = "Välj zon"
     let placeholderTitle = "Ange adress eller plats"
@@ -35,16 +36,19 @@ class SelectZoneViewModel: ObservableObject {
     @Published var isFromTextActive = false
     @Published var isToTextActive = true
     
-    @Published var selectedProduct: ResponseOperatorProductTypeProduct?
+    @Published var selectedProduct: ResponseOperatorProductTypeProduct
     @Published var selectedZone: ResponseOperatorZone?
     
     let selectedOperator: ResponseOperator
     let selectedProductType: ResponseOperatorProductType
 
-    init(selectedOperator: ResponseOperator, selectedProductType: ResponseOperatorProductType) {
+    init?(selectedOperator: ResponseOperator, selectedProductType: ResponseOperatorProductType) {
+        
+        guard let defaultProduct = selectedProductType.products?.sorted(by: { $0.sort ?? 999 < $1.sort ?? 999 }).first else { return nil }
+        
         self.selectedOperator = selectedOperator
         self.selectedProductType = selectedProductType
-        self.selectedProduct = selectedProductType.products?.sorted { $0.sort ?? 999 < $1.sort ?? 999 }.first
+        self.selectedProduct = defaultProduct
         self.selectedZone = selectedProductType.zones?.sorted { $0.sort ?? 999 < $1.sort ?? 999 }.first
     }
     
@@ -66,8 +70,6 @@ class SelectZoneViewModel: ObservableObject {
 struct SelectZoneView: View {
     
     @Environment(\.presentationMode) var presentation
-    
-    //@EnvironmentObject var shoppingCart: ShoppingCart
 
     @ObservedObject var viewModel: SelectZoneViewModel
     @State private var textMinWidth: CGFloat?
@@ -110,6 +112,26 @@ struct SelectZoneView: View {
                         
                     }
                     */
+                    
+                    // VALIDITY DURATION SELECTION
+                    if viewModel.selectedProductType.products?.count ?? 0 > 1 {
+                        
+                        SectionHeaderView(title: viewModel.validityDurationTitle, changeButton: false)
+                        
+                        Picker("", selection: $viewModel.selectedProduct) {
+                            
+                            ForEach(viewModel.selectedProductType.products ?? []) { product in
+                                Text(product.title)
+                                    .tag(product)
+                                    .foregroundColor(.green)
+                            }
+                        }
+                        .accentColor(.yellow)
+                        .padding(.horizontal)
+                        .pickerStyle(.segmented)
+                    }
+                    
+                    
                     
                     // ZONE SELECTION HEADER
                     SectionHeaderView(title: viewModel.zoneSelectionSectionTitle)

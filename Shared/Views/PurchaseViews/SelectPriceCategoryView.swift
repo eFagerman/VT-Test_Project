@@ -97,23 +97,9 @@ struct SelectPriceCategoryView: View {
                         DividerTight()
                     }
                     
-                    // PRICE CLASS
-                    
-                    SectionHeaderView(title: viewModel.priceClassTitle)
-                    
-                    Spacer().frame(height: 8)
-                    
-                    ForEach($viewModel.shoppingCart.selectableItems) { $item in
-                        DividerTight()
-                        PriceClassRow(shoppingCartItem: $item)
-                    }
-                    if $viewModel.shoppingCart.selectableItems.count > 0 {
-                        DividerTight()
-                    }
                     
                     // SEGMENTED CONTROL FOR VALIDITY DURATION
-                    
-                    if viewModel.selectedProductType.products?.count ?? 0 > 1 {
+                    if viewModel.selectedProductType.products?.count ?? 0 > 1 && viewModel.selectedProductType.zones?.count ?? 0 < 1 {
                         VStack {
                             SectionHeaderView(title: viewModel.validityDurationTitle)
                             Spacer().frame(height: 8)
@@ -129,6 +115,21 @@ struct SelectPriceCategoryView: View {
                             .padding(.horizontal)
                             .pickerStyle(.segmented)
                         }
+                    }
+                    
+                    
+                    // PRICE CLASS
+                    
+                    SectionHeaderView(title: viewModel.priceClassTitle)
+                    
+                    Spacer().frame(height: 8)
+                    
+                    ForEach($viewModel.shoppingCart.selectableItems) { $item in
+                        DividerTight()
+                        PriceClassRow(shoppingCartItem: $item)
+                    }
+                    if $viewModel.shoppingCart.selectableItems.count > 0 {
+                        DividerTight()
                     }
                     
                 }
