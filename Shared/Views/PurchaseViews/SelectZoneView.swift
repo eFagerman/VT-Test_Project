@@ -7,15 +7,6 @@
 
 import SwiftUI
 
-
-//struct ZoneCellModel {
-//    let id: String?
-//    let title: String
-//    let message: String
-//    var selected = false
-//    var dimmed = false
-//}
-
 struct SearchSuggestionModel: Hashable {
     let transportIconName: String
     let stopName: String
@@ -38,69 +29,30 @@ class SelectZoneViewModel: ObservableObject {
     let activeTextColor = UIColor.Ticket.activeSearchTextColor
     let inactiveBackgroundColor = UIColor.Ticket.inactiveSearchBackgroundColor
     let inactiveTextColor = UIColor.Popup.title
-    
-    //@EnvironmentObject var shoppingCart: ShoppingCart
-
+   
     @Published var fromText: String = ""
     @Published var toText: String = ""
     @Published var isFromTextActive = false
     @Published var isToTextActive = true
-    //@Published var searchSuggestionList: [SearchSuggestionModel]
-    
     
     @Published var selectedProduct: ResponseOperatorProductTypeProduct?
     @Published var selectedZone: ResponseOperatorZone?
     
     let selectedOperator: ResponseOperator
     let selectedProductType: ResponseOperatorProductType
-    
-    
-//    var zones: [ResponseOperatorZone]? {
-//        return selectedProductType.zones?.sorted { $0.sort ?? 999 < $1.sort ?? 999 }
-//    }
 
     init(selectedOperator: ResponseOperator, selectedProductType: ResponseOperatorProductType) {
         self.selectedOperator = selectedOperator
         self.selectedProductType = selectedProductType
         self.selectedProduct = selectedProductType.products?.sorted { $0.sort ?? 999 < $1.sort ?? 999 }.first
         self.selectedZone = selectedProductType.zones?.sorted { $0.sort ?? 999 < $1.sort ?? 999 }.first
-        
     }
-
-    
-//    private static func getZoneCellModelList(zones: [ResponseOperatorZone]?) -> [ZoneCellModel] {
-//        guard var zones = zones else { return [] }
-//        zones.sort(by: { $0.sort ?? 0 < $1.sort ?? 0 })
-//        var zoneCellModelList = [ZoneCellModel]()
-//        for zone in zones {
-//            let selected = zone == zones.first
-//            let zoneCellModel = ZoneCellModel(id: zone.id, title: zone.resources?["sv"]?["zone.title"] ?? "Zone", message: "Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ", selected: selected, dimmed: false)
-//            zoneCellModelList.append(zoneCellModel)
-//        }
-//        return zoneCellModelList
-//    }
     
 //    private static func getSearchSuggestionModelList() -> [SearchSuggestionModel] {
 //        let searchSuggestion1 = SearchSuggestionModel(transportIconName: "tram.fill", stopName: "Järntorget", areaName: "Göteborg")
 //        let searchSuggestion2 = SearchSuggestionModel(transportIconName: "bus.fill", stopName: "Järntorget", areaName: "Göteborg")
 //        let searchSuggestion3 = SearchSuggestionModel(transportIconName: "mappin", stopName: "Järntorget", areaName: "Göteborg")
 //        return [searchSuggestion1, searchSuggestion2, searchSuggestion3]
-//    }
-
-//    func tappedOnZone(tappedIndex: Int) {
-//        var newZoneList = [ZoneCellModel]()
-//        var index = -1
-//        for zoneListItem in self.zoneList {
-//            index += 1
-//            var newZoneListItem = zoneListItem
-//            let selected = tappedIndex == index
-//            newZoneListItem.selected = selected
-//            newZoneList.append(newZoneListItem)
-//            if selected {
-//                selectedZoneId = zoneListItem.id
-//            }
-//        }
-//        self.zoneList = newZoneList
 //    }
     
 //    func tappedOnSearch(tappedIndex: Int) {
@@ -354,10 +306,8 @@ struct SelectZoneView: View {
         .cornerRadius(3, corners: [.topLeft, .topRight])
         .cornerRadius(20, corners: [.bottomLeft, .bottomRight])
         .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
-
     }
     
-
 }
 
 //struct ZoneSelectorView_Previews: PreviewProvider {

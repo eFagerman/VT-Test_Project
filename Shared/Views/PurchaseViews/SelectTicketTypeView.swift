@@ -24,7 +24,6 @@ struct SelectTicketTypeView: View {
                 
                 Color(UIColor.General.backgroundTwo).edgesIgnoringSafeArea(.all)
                 
-                
                 ScrollView {
                     
                     // HISTORY
@@ -49,7 +48,6 @@ struct SelectTicketTypeView: View {
                     
                     // PRODUCT CELLS
                     productCells()
-                    
                     
                 }
                 .padding(.top)
