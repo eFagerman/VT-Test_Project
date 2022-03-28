@@ -1,5 +1,5 @@
 //
-//  TicketInfoView.swift
+//  NewTicketInfoView.swift
 //  TicketTest
 //
 //  Created by Johan Thureson on 2022-03-08.
@@ -14,7 +14,7 @@ extension ShoppingCartItem {
     }
 }
 
-struct TicketInfoView: View {
+struct NewTicketInfoView: View {
     
     var shoppingCartItems: [ShoppingCartItem]
     
